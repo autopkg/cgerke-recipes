@@ -1,4 +1,4 @@
-recipes
+autopkg
 =======
 
-AutoPKG Recipes
+some tasty recipes
