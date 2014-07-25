@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.2.9</string>
     <key>ParentRecipe</key>
-    <string>com.github.cgerke.download.OpenOffice</string>
+    <string>io.github.hjuutilainen.download.OpenOffice</string>
     <key>Process</key>
     <array>
         <dict>
