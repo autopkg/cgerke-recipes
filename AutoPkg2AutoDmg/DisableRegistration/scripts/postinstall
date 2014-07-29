@@ -1,8 +1,0 @@
-#!/bin/bash
-#++ disable registration wizard
-
-path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
-
-touch "${path_root}/Library/Receipts/.SetupRegComplete"
-
-exit 0
