@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a payload free package.</string>
+	<string>Create a package.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.DisableDockfixup</string>
+	<string>com.github.cgerke.DisableRegistrationWizard</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableDockfixup</string>
+		<string>DisableRegistrationWizard</string>
 		<key>URL</key>
 		<string>https://github.com/cgerke/autopkg-template/zipball/master</string>
 	</dict>
@@ -58,7 +58,7 @@
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Create a root which in this case is an empty placeholder.</string>
+			<string>Create a root.</string>
 			<key>Processor</key>
 			<string>PkgRootCreator</string>
 			<key>Arguments</key>
@@ -67,11 +67,26 @@
 				<string>%RECIPE_CACHE_DIR%/%NAME%_root</string>
 				<key>pkgdirs</key>
 				<dict>
-					<key>tmp</key>
-					<string>0755</string>
+					<key>Library</key>
+          <string>0755</string>
+          <key>Library/Receipts</key>
+          <string>0755</string>
 				</dict>
 			</dict>
 		</dict>
+		<dict>
+      <key>Comment</key>
+      <string>Copy .SetupRegComplete to /Library/Receipts/.SetupRegComplete</string>
+      <key>Processor</key>
+      <string>Copier</string>
+      <key>Arguments</key>
+      <dict>
+          <key>source_path</key>
+          <string>%pkg_path%/%NAME%/Root/Library/Receipts/.SetupRegComplete</string>
+          <key>destination_path</key>
+          <string>%pkgroot%/Library/Receipts/.SetupRegComplete</string>
+      </dict>
+    </dict>
 		<dict>
 			<key>Comment</key>
 			<string>Create a PackageInfo file using the template.</string>
@@ -91,7 +106,7 @@
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Build the payload free package.</string>
+			<string>Build the package.</string>
 			<key>Processor</key>
 			<string>PkgCreator</string>
 			<key>Arguments</key>
@@ -116,7 +131,15 @@
 					<array>
 						<dict>
 							<key>path</key>
-							<string>tmp</string>
+							<string>Library</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+						<dict>
+							<key>path</key>
+							<string>Library/Receipts</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
