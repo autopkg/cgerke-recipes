@@ -10,52 +10,11 @@
 	<dict>
 		<key>NAME</key>
 		<string>EnableRemoteLogin</string>
-		<key>URL</key>
-		<string>https://github.com/cgerke/autopkg-template/zipball/master</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
 	<key>Process</key>
 	<array>
-		<dict>
-			<key>Comment</key>
-			<string>Download git repo.</string>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-			<key>Arguments</key>
-			<dict>
-				<key>url</key>
-				<string>%URL%</string>
-				<key>filename</key>
-				<string>%NAME%.zip</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>archive_path</key>
-				<string>%pathname%</string>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/source</string>
-				<key>purge_destination</key>
-				<true/>
-			</dict>
-			<key>Processor</key>
-			<string>Unarchiver</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%destination_path%</string>
-			</dict>
-			<key>Processor</key>
-			<string>ThinImageModulesSourceFinder</string>
-		</dict>
 		<dict>
 			<key>Comment</key>
 			<string>Create a root.</string>
@@ -64,31 +23,31 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pkgroot</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%_root</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 				<key>pkgdirs</key>
 				<dict>
-					<key>private</key>
-          <string>0755</string>
-          <key>private/var</key>
-          <string>0755</string>
-          <key>private/var/db</key>
-          <string>0755</string>
+					<key>Library</key>
+					<string>0755</string>
+					<key>Library/LaunchDaemons</key>
+					<string>0755</string>
+					<key>etc</key>
+					<string>0755</string>
 				</dict>
 			</dict>
 		</dict>
 		<dict>
-      <key>Comment</key>
-      <string>Copy motd to /etc/motd</string>
-      <key>Processor</key>
-      <string>Copier</string>
-      <key>Arguments</key>
-      <dict>
-          <key>source_path</key>
-          <string>%pkg_path%/%NAME%/Root/etc/motd</string>
-          <key>destination_path</key>
-          <string>%pkgroot%/etc/motd</string>
-      </dict>
-    </dict>
+			<key>Comment</key>
+			<string>Copy motd to /etc/motd</string>
+			<key>Processor</key>
+			<string>Copier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_DIR%/%NAME%/Root/etc/motd</string>
+				<key>destination_path</key>
+				<string>%pkgroot%/etc/motd</string>
+			</dict>
+		</dict>
 		<dict>
 			<key>Comment</key>
 			<string>Copy com.github.cgerke.ssh.plist to /Library/LaunchDameons/com.github.cgerke.ssh.plist</string>
@@ -96,10 +55,10 @@
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
-					<key>source_path</key>
-					<string>%pkg_path%/%NAME%/Root/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
-					<key>destination_path</key>
-					<string>%pkgroot%/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
+				<key>source_path</key>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
+				<key>destination_path</key>
+				<string>%pkgroot%/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
 			</dict>
 		</dict>
 		<dict>
@@ -112,7 +71,7 @@
 				<key>version</key>
 				<string>0.1</string>
 				<key>template_path</key>
-				<string>%pkg_path%/%NAME%/PackageInfo</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 				<key>infofile</key>
 				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
 				<key>pkgtype</key>
@@ -135,18 +94,18 @@
 					<key>id</key>
 					<string>com.github.cgerke.%NAME%</string>
 					<key>infofile</key>
-					<string>%pkg_path%/%NAME%/PackageInfo</string>
+					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>resources</key>
-					<string>%pkg_path%/%NAME%/Resources</string>
+					<string>%RECIPE_DIR%/%NAME%/Resources</string>
 					<key>options</key>
 					<string>purge_ds_store</string>
 					<key>scripts</key>
-					<string>%pkg_path%/%NAME%/Scripts</string>
+					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 					<key>chown</key>
 					<array>
 						<dict>
 							<key>path</key>
-							<string>private</string>
+							<string>Library/LaunchDaemons</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
@@ -154,15 +113,7 @@
 						</dict>
 						<dict>
 							<key>path</key>
-							<string>private/var</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
-						<dict>
-							<key>path</key>
-							<string>private/var/db</string>
+							<string>Library</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
