@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Disable Apple Registration Wizard. This is used to avoid end users having to enter any personal details the first time the system boots. You can re-run the Registration Wizard at a later time if you really need to by executing; sudo &quot;/System/Library/CoreServices/Setup Assistant.app/Contents/MacOS/Setup Assistant&quot;</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>Disable Apple Registration Wizard.</string>
+</dict>
+</plist>
