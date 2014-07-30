@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 import os
 import shutil
 import subprocess
@@ -22,7 +21,6 @@ import subprocess
 from autopkglib import Processor, ProcessorError
 
 __all__ = ["cmmacCreator"]
-
 
 class cmmacCreator(Processor):
     '''Create an SCCM cmmac file using a pkg.'''
@@ -54,7 +52,7 @@ class cmmacCreator(Processor):
 
         self.compress(source_file, dest_path)
 
-        self.output("Compressed %s to %s"
+        self.output("Compressed for SCCM %s to %s"
             % (source_file, dest_path))
 
 if __name__ == '__main__':
