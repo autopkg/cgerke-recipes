@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Disable Apple Dockfixup changes by renaming the plist. This plist is responsible for listing paths to applications added to dock at login (generally when a new user home is created). It is also responsible for altering the Dock after an upgrade if Apple decide to rename one of their core applications.</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>Disable Apple Dockfixup.</string>
+</dict>
+</plist>

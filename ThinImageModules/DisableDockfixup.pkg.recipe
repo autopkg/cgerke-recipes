@@ -10,52 +10,11 @@
 	<dict>
 		<key>NAME</key>
 		<string>DisableDockfixup</string>
-		<key>URL</key>
-		<string>https://github.com/cgerke/autopkg-template/zipball/master</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
 	<key>Process</key>
 	<array>
-		<dict>
-			<key>Comment</key>
-			<string>Download git repo.</string>
-			<key>Processor</key>
-			<string>URLDownloader</string>
-			<key>Arguments</key>
-			<dict>
-				<key>url</key>
-				<string>%URL%</string>
-				<key>filename</key>
-				<string>%NAME%.zip</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>EndOfCheckPhase</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>archive_path</key>
-				<string>%pathname%</string>
-				<key>destination_path</key>
-				<string>%RECIPE_CACHE_DIR%/source</string>
-				<key>purge_destination</key>
-				<true/>
-			</dict>
-			<key>Processor</key>
-			<string>Unarchiver</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%destination_path%</string>
-			</dict>
-			<key>Processor</key>
-			<string>ThinImageModulesSourceFinder</string>
-		</dict>
 		<dict>
 			<key>Comment</key>
 			<string>Create a root which in this case is an empty placeholder.</string>
@@ -64,7 +23,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pkgroot</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%_root</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 				<key>pkgdirs</key>
 				<dict>
 					<key>tmp</key>
@@ -82,7 +41,7 @@
 				<key>version</key>
 				<string>0.1</string>
 				<key>template_path</key>
-				<string>%pkg_path%/%NAME%/PackageInfo</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 				<key>infofile</key>
 				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
 				<key>pkgtype</key>
@@ -100,18 +59,6 @@
 				<string>%NAME%</string>
 				<key>pkg_request</key>
 				<dict>
-					<key>pkgdir</key>
-					<string>%RECIPE_CACHE_DIR%</string>
-					<key>id</key>
-					<string>com.github.cgerke.%NAME%</string>
-					<key>infofile</key>
-					<string>%pkg_path%/%NAME%/PackageInfo</string>
-					<key>resources</key>
-					<string>%pkg_path%/%NAME%/Resources</string>
-					<key>options</key>
-					<string>purge_ds_store</string>
-					<key>scripts</key>
-					<string>%pkg_path%/%NAME%/Scripts</string>
 					<key>chown</key>
 					<array>
 						<dict>
@@ -123,6 +70,18 @@
 							<string>wheel</string>
 						</dict>
 					</array>
+					<key>pkgdir</key>
+					<string>%RECIPE_CACHE_DIR%</string>
+					<key>id</key>
+					<string>com.github.cgerke.%NAME%</string>
+					<key>infofile</key>
+					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+					<key>resources</key>
+					<string>%RECIPE_DIR%/%NAME%/Resources</string>
+					<key>options</key>
+					<string>purge_ds_store</string>
+					<key>scripts</key>
+					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 				</dict>
 			</dict>
 		</dict>
