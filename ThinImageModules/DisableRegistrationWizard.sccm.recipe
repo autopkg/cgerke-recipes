@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ParentRecipe</key>
+	<string>com.github.cgerke.DisableRegistrationWizard</string>
+	<key>Description</key>
+	<string>Create a cmmac package. Disable Apple Registration Wizard. This is primarily used to avoid end users having to
+enter the registration information when the system boots for the first time after imaging.</string>
+	<key>Identifier</key>
+	<string>com.github.cgerke.sccm.DisableRegistrationWizard</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>DisableRegistrationWizard</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Comment</key>
+			<string>Create a cmmac file for SCCM.</string>
+			<key>Processor</key>
+			<string>cmmacCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_pkg</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<key>destination_folder</key>
+				<string>%RECIPE_CACHE_DIR%</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
