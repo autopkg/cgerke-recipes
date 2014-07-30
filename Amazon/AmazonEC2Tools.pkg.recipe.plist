@@ -4,7 +4,7 @@
 <dict>
 	<key>Description</key>
 	<string>Create a pkg to deply AmazonEC2Tools, this pkg isn&apos;t configure to setup your HOME environment
-      or ACCESS KEYS, refer to .</string>
+      or ACCESS KEYS, refer to Amazon documentation. http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html</string>
 	<key>Identifier</key>
 	<string>com.github.cgerke.pkg.AmazonEC2Tools</string>
 	<key>Input</key>

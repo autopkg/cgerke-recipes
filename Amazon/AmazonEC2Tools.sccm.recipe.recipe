@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ParentRecipe</key>
+	<string>com.github.cgerke.AmazonEC2Tools</string>
+	<key>Description</key>
+	<string>Create a cmmac package. Create a pkg to deply AmazonEC2Tools, this pkg isn&apos;t configure to setup your HOME environment
+      or ACCESS KEYS, refer to Amazon documentation. http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html</string>
+	<key>Identifier</key>
+	<string>com.github.cgerke.sccm.AmazonEC2Tools</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>AmazonEC2Tools</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Comment</key>
+			<string>Create a cmmac file for SCCM.</string>
+			<key>Processor</key>
+			<string>cmmacCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_pkg</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<key>destination_folder</key>
+				<string>%RECIPE_CACHE_DIR%</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
