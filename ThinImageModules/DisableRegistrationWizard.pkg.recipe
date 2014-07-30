@@ -3,7 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package.</string>
+	<string>Create a package. Disable Apple Registration Wizard. This is primarily used to avoid end users having to
+enter the registration information when the system boots for the first time after imaging.</string>
 	<key>Identifier</key>
 	<string>com.github.cgerke.DisableRegistrationWizard</string>
 	<key>Input</key>

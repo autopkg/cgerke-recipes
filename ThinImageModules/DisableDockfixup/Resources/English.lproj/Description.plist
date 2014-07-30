@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IFPkgDescriptionDescription</key>
-	<string>Disable Apple Dockfixup changes by moving the list.</string>
+	<string>Disable Apple Dockfixup changes by moving the plist. This file is responsible for adding default items to the dock during a new home directory creation. It also changes the dock items after an upgrade if Apple have changed the name of an item.</string>
 	<key>IFPkgDescriptionTitle</key>
 	<string>Disable Apple Dockfixup.</string>
 </dict>

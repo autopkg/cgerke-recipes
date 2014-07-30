@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a payload free package.</string>
+	<string>Create a payload free package. Disable Apple Dockfixup changes by moving the plist. This file is responsible
+for adding default items to the dock during a new home directory creation. It also changes the dock items after an
+upgrade if Apple have changed the name of an item.</string>
 	<key>Identifier</key>
 	<string>com.github.cgerke.DisableDockfixup</string>
 	<key>Input</key>

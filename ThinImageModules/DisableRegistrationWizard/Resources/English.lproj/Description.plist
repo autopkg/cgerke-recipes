@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IFPkgDescriptionDescription</key>
-	<string>Disable Apple Registration Wizard.</string>
+	<string>Disable Apple Registration Wizard. This is primarily used to avoid end users having to enter the registration information when the system boots for the first time after imaging.</string>
 	<key>IFPkgDescriptionTitle</key>
 	<string>Disable Apple Registration Wizard.</string>
 </dict>
