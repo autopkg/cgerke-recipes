@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Downloads the latest version of Amazon EC2 Tools and creates a package for deployment, this pkg doesn&apos;t
+configure your HOME environment or ACCESS KEYS as these are subjective, refer to Amazon documentation at http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html#setting_up_ec2_command_linux.</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>Amazon EC2 Tools</string>
+</dict>
+</plist>
