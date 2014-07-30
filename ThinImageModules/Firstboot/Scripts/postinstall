@@ -1,0 +1,14 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+formatted_date=$(date +"%Y%m%d%H%M%S")
+
+#++ disable the loginwindow, enable a "first boot" script
+file_plist="${path_root}/System/Library/LaunchDaemons/com.apple.loginwindow.plist"
+[[ -e "${file_plist}" ]] && cp -f "${file_plist}" "/usr/local/bin/"
+defaults delete "${file_plist}" ProgramArguments
+defaults write "${file_plist}" ProgramArguments -array-add "/usr/local/bin/firstboot.sh"
+chown root:wheel "${file_plist}"
+chmod 644 "${file_plist}"
+
+exit 0

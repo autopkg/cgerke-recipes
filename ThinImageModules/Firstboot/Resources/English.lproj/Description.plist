@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Firstboot script example. This script sets the hostname etc to match the ethernet Mac address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>Firstboot</string>
+</dict>
+</plist>
