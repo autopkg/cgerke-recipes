@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>IFPkgDescriptionDescription</key>
-	<string>Disable Apple Dockfixup changes by renaming the plist. This plist is responsible for listing paths to applications added to dock at login (generally when a new user home is created). It is also responsible for altering the Dock after an upgrade if Apple decide to rename one of their core applications.</string>
+	<string>Disable Apple Dockfixup changes by moving the list.</string>
 	<key>IFPkgDescriptionTitle</key>
 	<string>Disable Apple Dockfixup.</string>
 </dict>

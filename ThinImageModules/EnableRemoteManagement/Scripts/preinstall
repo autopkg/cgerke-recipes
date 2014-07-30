@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# maybe delete launchdaemon if it already exists?
+# maybe delete vnc settings file if it already exists?
+
+exit 0

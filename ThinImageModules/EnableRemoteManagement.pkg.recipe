@@ -3,14 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Includes a LaunchDaemon to ensure ssh remote login is enabled after every reboot.
-		Also configures a default motd terminal banner via /etc/motd</string>
+	<string>Create a package with a payload. Includes a LaunchAgent to enable and configure remote management for
+Apple Remote Desktop and VNC after every reboot. Refer to the recipe launchdaemon to customise the configuration
+to suit your needs and the preference to set your VNC passwrod. In my example I setup Remote Desktop to require
+the end user to accept an incoming connection. You may for example want to the change the allUsers option to
+limit connections to admin users only or even a specific user. This package can also set your VNC password, but
+right now you will need to manually add your HASH to the com.apple.VNCSettings.txt preference as I have not yet
+added a processor to do it for you. Still thinking about how to implement that in a nice way because this
+type of config is very subjective, maybe just leave this as an example for people.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.EnableRemoteLogin</string>
+	<string>com.github.cgerke.EnableRemoteManagement</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>EnableRemoteLogin</string>
+		<string>EnableRemoteManagement</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
@@ -29,37 +35,37 @@
 				<dict>
 					<key>Library</key>
 					<string>0755</string>
-					<key>Library/LaunchDaemons</key>
+					<key>Library/LaunchAgents</key>
 					<string>0755</string>
-					<key>etc</key>
+					<key>Library/Preferences</key>
 					<string>0755</string>
 				</dict>
 			</dict>
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Copy motd to /etc/motd</string>
+			<string>Copy com.apple.VNCSettings.txt to /Library/Preferences/com.apple.VNCSettings.txt</string>
 			<key>Processor</key>
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/etc/motd</string>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/Preferences/com.apple.VNCSettings.txt</string>
 				<key>destination_path</key>
-				<string>%pkgroot%/etc/motd</string>
+				<string>%pkgroot%/Library/Preferences/com.apple.VNCSettings.txt</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Copy com.github.cgerke.ssh.plist to /Library/LaunchDameons/com.github.cgerke.ssh.plist</string>
+			<string>Copy com.github.cgerke.ard.plist to /Library/LaunchAgents/com.github.cgerke.ard.plist</string>
 			<key>Processor</key>
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchAgents/com.github.cgerke.ard.plist</string>
 				<key>destination_path</key>
-				<string>%pkgroot%/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
+				<string>%pkgroot%/Library/LaunchAgents/com.github.cgerke.ard.plist</string>
 			</dict>
 		</dict>
 		<dict>
@@ -106,7 +112,15 @@
 					<array>
 						<dict>
 							<key>path</key>
-							<string>Library/LaunchDaemons</string>
+							<string>Library/Preferences</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+						<dict>
+							<key>path</key>
+							<string>Library/LaunchAgents</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>

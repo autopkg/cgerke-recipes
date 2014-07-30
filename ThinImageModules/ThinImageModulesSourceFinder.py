@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# chris.gerke@gmail.com adapted from AutoPkgSourceFinder.py credits above ^
 
 import os
 import glob
