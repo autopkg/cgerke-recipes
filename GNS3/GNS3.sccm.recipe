@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.cgerke.GNS3</string>
+	<string>com.github.cgerke.pkg.GNS3</string>
 	<key>Description</key>
 	<string>Downloads the latest GNS3 version and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
