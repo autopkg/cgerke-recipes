@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 #
+<<<<<<< HEAD
 # Copyright 2013 Timothy Sutton
+=======
+# Copyright 2014 Chris Gerke
+>>>>>>> FETCH_HEAD
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +18,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
 # Borrowed code and concepts from Unzipper and Copier processors.
 
 # chris.gerke@gmail.com
@@ -26,11 +31,22 @@ import subprocess
 import shutil
 
 from glob import glob
+=======
+'''
+Adapted from the FlatPkgPacker.py AutoPKG processor.
+'''
+
+import os
+import shutil
+import subprocess
+
+>>>>>>> FETCH_HEAD
 from autopkglib import Processor, ProcessorError
 
 __all__ = ["cmmacCreator"]
 
 class cmmacCreator(Processor):
+<<<<<<< HEAD
     description = ("Compresses an app, dmg or pkg using CMAppUtil. ")
     input_variables = {
         "source_file": {
@@ -104,6 +120,39 @@ class cmmacCreator(Processor):
         else:
               self.output("Didn't find an existing cmmac %s" % cmmac)
               self.cmmacConvert()
+=======
+    '''Create an SCCM cmmac file using a pkg.'''
+
+    description = __doc__
+
+    input_variables = {
+        'source_pkg': {
+            'description': 'Path to a package',
+            'required': True,
+        },
+        'destination_folder': {
+            'description': 'Path to the cmmac file to be created',
+            'required': True,
+        },
+    }
+
+    output_variables = {}
+
+    def compress(self, source_file, dest_path):
+        try:
+            subprocess.check_call(['CMAppUtil','-s','-v','-c', source_file, '-o', dest_path])
+        except subprocess.CalledProcessError, err:
+            raise ProcessorError("%s compressing %s" % (err, source_file))
+
+    def main(self):
+        source_file = self.env.get('source_pkg')
+        dest_path = self.env.get('destination_folder')
+
+        self.compress(source_file, dest_path)
+
+        self.output("Compressed for SCCM %s to %s"
+            % (source_file, dest_path))
+>>>>>>> FETCH_HEAD
 
 if __name__ == '__main__':
     processor = cmmacCreator()

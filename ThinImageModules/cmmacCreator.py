@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
 # Borrowed code and concepts from Unzipper and Copier processors.
 
 # chris.gerke@gmail.com
@@ -22,6 +23,14 @@
 # figure out how to make this a shared processor
 
 import os.path
+=======
+'''
+Adapted from the FlatPkgPacker.py AutoPKG processor.
+'''
+
+import os
+import shutil
+>>>>>>> FETCH_HEAD
 import subprocess
 import shutil
 
