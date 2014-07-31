@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.cgerke.MySQLWorkBench</string>
+	<string>com.github.cgerke.pkg.MySQLWorkBench</string>
 	<key>Description</key>
 	<string>Downloads the latest MySQLWorkBench version and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
