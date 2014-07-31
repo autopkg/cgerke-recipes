@@ -25,9 +25,9 @@ after every reboot. Also configures a default motd terminal banner via /etc/motd
 			<string>cmmacCreator</string>
 			<key>Arguments</key>
 			<dict>
-				<key>source_pkg</key>
+				<key>source_file</key>
 				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
-				<key>destination_folder</key>
+				<key>destination_directory</key>
 				<string>%RECIPE_CACHE_DIR%</string>
 			</dict>
 		</dict>
