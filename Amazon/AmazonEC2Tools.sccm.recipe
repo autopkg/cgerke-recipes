@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.cgerke.AmazonEC2Tools</string>
+	<string>com.github.cgerke.pkg.AmazonEC2Tools</string>
 	<key>Description</key>
 	<string>Create a cmmac package. Create a pkg to deply AmazonEC2Tools, this pkg isn&apos;t configure to setup your HOME environment
       or ACCESS KEYS, refer to Amazon documentation. http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html</string>
