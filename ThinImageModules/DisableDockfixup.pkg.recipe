@@ -28,8 +28,6 @@ upgrade if Apple have changed the name of an item.</string>
 				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 				<key>pkgdirs</key>
 				<dict>
-					<key>tmp</key>
-					<string>0755</string>
 				</dict>
 			</dict>
 		</dict>
@@ -63,14 +61,6 @@ upgrade if Apple have changed the name of an item.</string>
 				<dict>
 					<key>chown</key>
 					<array>
-						<dict>
-							<key>path</key>
-							<string>tmp</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
 					</array>
 					<key>pkgdir</key>
 					<string>%RECIPE_CACHE_DIR%</string>
