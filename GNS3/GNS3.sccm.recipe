@@ -14,7 +14,7 @@
 		<string>GNS3</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.2.9</string>
+	<string>0.4.0</string>
 	<key>Process</key>
 	<array>
 		<dict>
