@@ -6,7 +6,7 @@
 	<string>Create a package. Includes a LaunchDaemon to ensure ssh remote login is enabled after every reboot.
 		Also configures a default motd terminal banner via /etc/motd</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.EnableRemoteLogin</string>
+	<string>com.github.autopkg.cgerke-recipes.EnableRemoteLogin</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -51,15 +51,15 @@
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Copy com.github.cgerke.ssh.plist to /Library/LaunchDameons/com.github.cgerke.ssh.plist</string>
+			<string>Copy com.github.autopkg.cgerke-recipes.ssh.plist to /Library/LaunchDameons/com.github.autopkg.cgerke-recipes.ssh.plist</string>
 			<key>Processor</key>
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchDaemons/com.github.autopkg.cgerke-recipes.ssh.plist</string>
 				<key>destination_path</key>
-				<string>%pkgroot%/Library/LaunchDaemons/com.github.cgerke.ssh.plist</string>
+				<string>%pkgroot%/Library/LaunchDaemons/com.github.autopkg.cgerke-recipes.ssh.plist</string>
 			</dict>
 		</dict>
 		<dict>
@@ -93,7 +93,7 @@
 					<key>pkgdir</key>
 					<string>%RECIPE_CACHE_DIR%</string>
 					<key>id</key>
-					<string>com.github.cgerke.%NAME%</string>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
 					<key>infofile</key>
 					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>resources</key>

@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.cgerke.pkg.AmazonEC2Tools</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.AmazonEC2Tools</string>
 	<key>Description</key>
 	<string>Create a cmmac package. Create a pkg to deply AmazonEC2Tools, this pkg isn&apos;t configure to setup your HOME environment
       or ACCESS KEYS, refer to Amazon documentation. http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.sccm.AmazonEC2Tools</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.AmazonEC2Tools</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -22,7 +22,7 @@
 			<key>Comment</key>
 			<string>Create a cmmac file using a shared processor.</string>
 			<key>Processor</key>
-			<string>com.github.cgerke.cgerke-recipes.SharedProcessorCmmacCreator/CmmacCreator</string>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/CmmacCreator</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_file</key>
@@ -31,7 +31,7 @@
 				<string>%RECIPE_CACHE_DIR%</string>
 			</dict>
 			<key>SharedProcessorRepoURL</key>
-			<string>https://github.com/cgerke/cgerke-recipes</string>
+			<string>https://github.com/autopkg/cgerke-recipes</string>
 		</dict>
 	</array>
 </dict>

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Stub recipe reference to use the SharedProcessorCmmacCreator processor here.</string>
+    <string>Stub recipe reference to use the Shared Processors in this repo.</string>
     <key>Identifier</key>
-    <string>com.github.cgerke.cgerke-recipes.SharedProcessorCmmacCreator</string>
+    <string>com.github.autopkg.cgerke-recipes.SharedProcessors</string>
     <key>Input</key>
     <dict/>
     <key>MinimumVersion</key>

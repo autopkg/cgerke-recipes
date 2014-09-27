@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest version MySQLWorkBench.</string>
     <key>Identifier</key>
-    <string>com.github.cgerke.download.MySQLWorkBench</string>
+    <string>com.github.autopkg.cgerke-recipes.download.MySQLWorkBench</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>

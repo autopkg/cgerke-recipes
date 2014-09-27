@@ -57,15 +57,15 @@ type of config is very subjective, maybe just leave this as an example for peopl
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Copy com.github.cgerke.ard.plist to /Library/LaunchAgents/com.github.cgerke.ard.plist</string>
+			<string>Copy com.github.cgerke.ard.plist to /Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
 			<key>Processor</key>
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchAgents/com.github.cgerke.ard.plist</string>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
 				<key>destination_path</key>
-				<string>%pkgroot%/Library/LaunchAgents/com.github.cgerke.ard.plist</string>
+				<string>%pkgroot%/Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
 			</dict>
 		</dict>
 		<dict>
@@ -99,7 +99,7 @@ type of config is very subjective, maybe just leave this as an example for peopl
 					<key>pkgdir</key>
 					<string>%RECIPE_CACHE_DIR%</string>
 					<key>id</key>
-					<string>com.github.cgerke.%NAME%</string>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
 					<key>infofile</key>
 					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>resources</key>

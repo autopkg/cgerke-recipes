@@ -7,7 +7,7 @@
 for adding default items to the dock during a new home directory creation. It also changes the dock items after an
 upgrade if Apple have changed the name of an item.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.DisableDockfixup</string>
+	<string>com.github.autopkg.cgerke-recipes.DisableDockfixup</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -65,7 +65,7 @@ upgrade if Apple have changed the name of an item.</string>
 					<key>pkgdir</key>
 					<string>%RECIPE_CACHE_DIR%</string>
 					<key>id</key>
-					<string>com.github.cgerke.%NAME%</string>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
 					<key>infofile</key>
 					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>resources</key>

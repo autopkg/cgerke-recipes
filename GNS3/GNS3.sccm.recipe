@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.cgerke.pkg.GNS3</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.GNS3</string>
 	<key>Description</key>
 	<string>Downloads the latest GNS3 version and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.sccm.GNS3</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.GNS3</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -21,7 +21,7 @@
 			<key>Comment</key>
 			<string>Create a cmmac file for SCCM using a shared processor.</string>
 			<key>Processor</key>
-			<string>com.github.cgerke.cgerke-recipes.SharedProcessorCmmacCreator/CmmacCreator</string>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/CmmacCreator</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_file</key>
@@ -30,7 +30,7 @@
 				<string>%RECIPE_CACHE_DIR%</string>
 			</dict>
 			<key>SharedProcessorRepoURL</key>
-			<string>https://github.com/cgerke/cgerke-recipes</string>
+			<string>https://github.com/autopkg/cgerke-recipes</string>
 		</dict>
 	</array>
 </dict>

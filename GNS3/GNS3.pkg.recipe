@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest GNS3 version and creates a package.</string>
     <key>Identifier</key>
-    <string>com.github.cgerke.pkg.GNS3</string>
+    <string>com.github.autopkg.cgerke-recipes.pkg.GNS3</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.2.9</string>
     <key>ParentRecipe</key>
-    <string>com.github.cgerke.download.GNS3</string>
+    <string>com.github.autopkg.cgerke-recipes.download.GNS3</string>
     <key>Process</key>
     <array>
         <dict>

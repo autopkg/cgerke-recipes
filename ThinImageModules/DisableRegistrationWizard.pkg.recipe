@@ -6,7 +6,7 @@
 	<string>Create a package. Disable Apple Registration Wizard. This is primarily used to avoid end users having to
 enter the registration information when the system boots for the first time after imaging.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.DisableRegistrationWizard</string>
+	<string>com.github.autopkg.cgerke-recipes.DisableRegistrationWizard</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -78,7 +78,7 @@ enter the registration information when the system boots for the first time afte
 					<key>pkgdir</key>
 					<string>%RECIPE_CACHE_DIR%</string>
 					<key>id</key>
-					<string>com.github.cgerke.%NAME%</string>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
 					<key>infofile</key>
 					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>resources</key>

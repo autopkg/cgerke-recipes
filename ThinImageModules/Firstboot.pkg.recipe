@@ -6,7 +6,7 @@
 	<string>Create a package. Firstboot script example. This script sets the hostname etc to match the ethernet Mac
 address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.Firstboot</string>
+	<string>com.github.autopkg.cgerke-recipes.Firstboot</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -80,7 +80,7 @@ address (without the colons). This type of script is very subjective so it serve
 					<key>pkgdir</key>
 					<string>%RECIPE_CACHE_DIR%</string>
 					<key>id</key>
-					<string>com.github.cgerke.%NAME%</string>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
 					<key>infofile</key>
 					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>resources</key>

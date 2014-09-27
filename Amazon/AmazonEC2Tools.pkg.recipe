@@ -6,7 +6,7 @@
 	<string>Create a pkg to deply AmazonEC2Tools, this pkg isn&apos;t configure to setup your HOME environment
       or ACCESS KEYS, refer to Amazon documentation. http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.pkg.AmazonEC2Tools</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.AmazonEC2Tools</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -15,7 +15,7 @@
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
 	<key>ParentRecipe</key>
-	<string>com.github.cgerke.download.AmazonEC2Tools</string>
+	<string>com.github.autopkg.cgerke-recipes.download.AmazonEC2Tools</string>
 	<key>Process</key>
 	<array>
 		<dict>

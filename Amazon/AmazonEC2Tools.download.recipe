@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Amazon EC2 Tools.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.download.AmazonEC2Tools</string>
+	<string>com.github.autopkg.cgerke-recipes.download.AmazonEC2Tools</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
