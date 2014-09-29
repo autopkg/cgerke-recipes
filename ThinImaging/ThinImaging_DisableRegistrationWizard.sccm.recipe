@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.EnableRemoteLogin</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableRegistrationWizard</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a package. Includes a LaunchDaemon to ensure ssh remote login is enabled
-after every reboot. Also configures a default motd terminal banner via /etc/motd</string>
+	<string>Create a cmmac package. Disable Apple Registration Wizard. This is primarily used to avoid end users having to
+enter the registration information when the system boots for the first time after imaging.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.EnableRemoteLogin</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_DisableRegistrationWizard</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>EnableRemoteLogin</string>
+		<string>DisableRegistrationWizard</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

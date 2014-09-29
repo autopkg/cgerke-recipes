@@ -3,14 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Firstboot script example. This script sets the hostname etc to match the ethernet Mac
-address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
+	<string>Create a package. Disable Apple Setup Assistant. This is primarily used to avoid end users having to a
+local system account the first time the system boots. Typically you would use this pkg in conjunction
+with https://github.com/MagerValp/CreateUserPkg or another script to create any local users required
+in your environment.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.Firstboot</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableSetupAssistant</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Firstboot</string>
+		<string>DisableSetupAssistant</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
@@ -27,26 +29,26 @@ address (without the colons). This type of script is very subjective so it serve
 				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 				<key>pkgdirs</key>
 				<dict>
-					<key>usr</key>
+					<key>private</key>
 					<string>0755</string>
-					<key>usr/local</key>
+					<key>private/var</key>
 					<string>0755</string>
-					<key>usr/local/bin</key>
+					<key>private/var/db</key>
 					<string>0755</string>
 				</dict>
 			</dict>
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Copy firstboot.sh to /usr/local/bin/firstboot.sh</string>
+			<string>Copy .AppleSetupDone to /private/var/db/.AppleSetupDone</string>
 			<key>Processor</key>
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/usr/local/bin/firstboot.sh</string>
+				<string>%RECIPE_DIR%/%NAME%/Root/private/var/db/.AppleSetupDone</string>
 				<key>destination_path</key>
-				<string>%pkgroot%/usr/local/bin/firstboot.sh</string>
+				<string>%pkgroot%/private/var/db/.AppleSetupDone</string>
 			</dict>
 		</dict>
 		<dict>
@@ -93,7 +95,7 @@ address (without the colons). This type of script is very subjective so it serve
 					<array>
 						<dict>
 							<key>path</key>
-							<string>usr</string>
+							<string>private</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
@@ -101,7 +103,7 @@ address (without the colons). This type of script is very subjective so it serve
 						</dict>
 						<dict>
 							<key>path</key>
-							<string>usr/local</string>
+							<string>private/var</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
@@ -109,7 +111,7 @@ address (without the colons). This type of script is very subjective so it serve
 						</dict>
 						<dict>
 							<key>path</key>
-							<string>usr/local/bin</string>
+							<string>private/var/db</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>

@@ -3,18 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.DisableSetupAssistant</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableDockfixup</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Disable Apple Setup Assistant. This is primarily used to avoid end users having to a
-local system account the first time the system boots. Typically you would use this pkg in conjunction
-with https://github.com/MagerValp/CreateUserPkg or another script to create any local users required
-in your environment.</string>
+	<string>Create a cmmac package. Create a payload free package. Disable Apple Dockfixup changes by moving the plist. This file is responsible
+for adding default items to the dock during a new home directory creation. It also changes the dock items after an
+upgrade if Apple have changed the name of an item.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.DisableSetupAssistant</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_DisableDockfixup</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableSetupAssistant</string>
+		<string>DisableDockfixup</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

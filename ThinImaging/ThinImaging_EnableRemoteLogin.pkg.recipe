@@ -6,7 +6,7 @@
 	<string>Create a package. Includes a LaunchDaemon to ensure ssh remote login is enabled after every reboot.
 		Also configures a default motd terminal banner via /etc/motd</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.EnableRemoteLogin</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_EnableRemoteLogin</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

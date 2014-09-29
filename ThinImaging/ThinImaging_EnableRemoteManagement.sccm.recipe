@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.EnableRemoteManagement</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_EnableRemoteManagement</string>
 	<key>Description</key>
 	<string>Create a cmmac package. Create a package with a payload. Includes a LaunchAgent to enable and configure
 remote management for Apple Remote Desktop and VNC after every reboot. Refer to the recipe launchdaemon to customise
@@ -14,7 +14,7 @@ right now you will need to manually add your HASH to the com.apple.VNCSettings.t
 added a processor to do it for you. Still thinking about how to implement that in a nice way because this
 type of config is very subjective, maybe just leave this as an example for people.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.EnableRemoteManagement</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_EnableRemoteManagement</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

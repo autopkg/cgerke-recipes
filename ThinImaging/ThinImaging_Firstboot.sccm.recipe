@@ -3,17 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.DisableDockfixup</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_Firstboot</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a payload free package. Disable Apple Dockfixup changes by moving the plist. This file is responsible
-for adding default items to the dock during a new home directory creation. It also changes the dock items after an
-upgrade if Apple have changed the name of an item.</string>
+	<string>Create a cmmac package. Create a package. Firstboot script example. This script sets the hostname etc to match the ethernet Mac address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.DisableDockfixup</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_Firstboot</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableDockfixup</string>
+		<string>Firstboot</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

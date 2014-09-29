@@ -3,20 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package with a payload. Includes a LaunchAgent to enable and configure remote management for
-Apple Remote Desktop and VNC after every reboot. Refer to the recipe launchdaemon to customise the configuration
-to suit your needs and the preference to set your VNC passwrod. In my example I setup Remote Desktop to require
-the end user to accept an incoming connection. You may for example want to the change the allUsers option to
-limit connections to admin users only or even a specific user. This package can also set your VNC password, but
-right now you will need to manually add your HASH to the com.apple.VNCSettings.txt preference as I have not yet
-added a processor to do it for you. Still thinking about how to implement that in a nice way because this
-type of config is very subjective, maybe just leave this as an example for people.</string>
+	<string>Create a package. Firstboot script example. This script sets the hostname etc to match the ethernet Mac
+address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
 	<key>Identifier</key>
-	<string>com.github.cgerke.EnableRemoteManagement</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_Firstboot</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>EnableRemoteManagement</string>
+		<string>Firstboot</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
@@ -33,39 +27,26 @@ type of config is very subjective, maybe just leave this as an example for peopl
 				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 				<key>pkgdirs</key>
 				<dict>
-					<key>Library</key>
+					<key>usr</key>
 					<string>0755</string>
-					<key>Library/LaunchAgents</key>
+					<key>usr/local</key>
 					<string>0755</string>
-					<key>Library/Preferences</key>
+					<key>usr/local/bin</key>
 					<string>0755</string>
 				</dict>
 			</dict>
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Copy com.apple.VNCSettings.txt to /Library/Preferences/com.apple.VNCSettings.txt</string>
+			<string>Copy firstboot.sh to /usr/local/bin/firstboot.sh</string>
 			<key>Processor</key>
 			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/Library/Preferences/com.apple.VNCSettings.txt</string>
+				<string>%RECIPE_DIR%/%NAME%/Root/usr/local/bin/firstboot.sh</string>
 				<key>destination_path</key>
-				<string>%pkgroot%/Library/Preferences/com.apple.VNCSettings.txt</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Comment</key>
-			<string>Copy com.github.cgerke.ard.plist to /Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
-			<key>Processor</key>
-			<string>Copier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
-				<key>destination_path</key>
-				<string>%pkgroot%/Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
+				<string>%pkgroot%/usr/local/bin/firstboot.sh</string>
 			</dict>
 		</dict>
 		<dict>
@@ -112,7 +93,7 @@ type of config is very subjective, maybe just leave this as an example for peopl
 					<array>
 						<dict>
 							<key>path</key>
-							<string>Library/Preferences</string>
+							<string>usr</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
@@ -120,7 +101,7 @@ type of config is very subjective, maybe just leave this as an example for peopl
 						</dict>
 						<dict>
 							<key>path</key>
-							<string>Library/LaunchAgents</string>
+							<string>usr/local</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>
@@ -128,7 +109,7 @@ type of config is very subjective, maybe just leave this as an example for peopl
 						</dict>
 						<dict>
 							<key>path</key>
-							<string>Library</string>
+							<string>usr/local/bin</string>
 							<key>user</key>
 							<string>root</string>
 							<key>group</key>

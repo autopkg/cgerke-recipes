@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Create a package with a payload. Includes a LaunchAgent to enable and configure remote management for
+Apple Remote Desktop and VNC after every reboot. Refer to the recipe launchdaemon to customise the configuration
+to suit your needs and the preference to set your VNC passwrod. In my example I setup Remote Desktop to require
+the end user to accept an incoming connection. You may for example want to the change the allUsers option to
+limit connections to admin users only or even a specific user. This package can also set your VNC password, but
+right now you will need to manually add your HASH to the com.apple.VNCSettings.txt preference as I have not yet
+added a processor to do it for you. Still thinking about how to implement that in a nice way because this
+type of config is very subjective, maybe just leave this as an example for people.</string>
+	<key>Identifier</key>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_EnableRemoteManagement</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>EnableRemoteManagement</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.2.9</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Comment</key>
+			<string>Create a root.</string>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>pkgdirs</key>
+				<dict>
+					<key>Library</key>
+					<string>0755</string>
+					<key>Library/LaunchAgents</key>
+					<string>0755</string>
+					<key>Library/Preferences</key>
+					<string>0755</string>
+				</dict>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Copy com.apple.VNCSettings.txt to /Library/Preferences/com.apple.VNCSettings.txt</string>
+			<key>Processor</key>
+			<string>Copier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/Preferences/com.apple.VNCSettings.txt</string>
+				<key>destination_path</key>
+				<string>%pkgroot%/Library/Preferences/com.apple.VNCSettings.txt</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Copy com.github.autopkg.cgerke-recipes.ard.plist to /Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
+			<key>Processor</key>
+			<string>Copier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
+				<key>destination_path</key>
+				<string>%pkgroot%/Library/LaunchAgents/com.github.autopkg.cgerke-recipes.ard.plist</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Create a PackageInfo file using the template.</string>
+			<key>Processor</key>
+			<string>PkgInfoCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>version</key>
+				<string>0.1</string>
+				<key>template_path</key>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+				<key>infofile</key>
+				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+				<key>pkgtype</key>
+				<string>flat</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Build the package.</string>
+			<key>Processor</key>
+			<string>PkgCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgname</key>
+				<string>%NAME%</string>
+				<key>pkg_request</key>
+				<dict>
+					<key>pkgdir</key>
+					<string>%RECIPE_CACHE_DIR%</string>
+					<key>id</key>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
+					<key>infofile</key>
+					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+					<key>resources</key>
+					<string>%RECIPE_DIR%/%NAME%/Resources</string>
+					<key>options</key>
+					<string>purge_ds_store</string>
+					<key>scripts</key>
+					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
+					<key>chown</key>
+					<array>
+						<dict>
+							<key>path</key>
+							<string>Library/Preferences</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+						<dict>
+							<key>path</key>
+							<string>Library/LaunchAgents</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+						<dict>
+							<key>path</key>
+							<string>Library</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
