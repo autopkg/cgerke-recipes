@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>Desktops to start up every day at 7am. Desktops + Laptops to shutdown every day at 11pm</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>Enable Energy Saver Policy</string>
+</dict>
+</plist>
