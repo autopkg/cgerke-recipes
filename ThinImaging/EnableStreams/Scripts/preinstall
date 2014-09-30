@@ -1,0 +1,14 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+# probably better to write the values rather than delivering a payload.
+# but for me, I only add these two items to nsmb.conf so I am doing it the lazy way ;)
+#echo "[default]" | sudo tee -a /etc/nsmb.conf
+#echo "streams=yes" | sudo tee -a /etc/nsmb.conf
+
+# make a backup anyway
+cp -f /etc/nsmb.conf /etc/nsmb.conf.${formatted_date}
+
+exit 0
