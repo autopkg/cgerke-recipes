@@ -11,3 +11,4 @@ Several of my recipes use parent recipes from the following repos;
 *  https://github.com/autopkg/hjuutilainen-recipes
 *  https://github.com/autopkg/homebysix-recipes
 *  https://github.com/autopkg/keeleysam-recipes
+*  https://github.com/autopkg/scriptingosx-recipes
