@@ -5,7 +5,7 @@
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.GNS3</string>
 	<key>Description</key>
-	<string>Downloads the latest GNS3 version and creates a cmmac package for deploying via Microsoft SCCM.</string>
+	<string>Downloads the latest GNS3 version (prior to re-write) and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.sccm.GNS3</string>
 	<key>Input</key>

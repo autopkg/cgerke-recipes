@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version GNS3.</string>
+    <string>Downloads the latest version GNS3 (prior to re-write).</string>
     <key>Identifier</key>
     <string>com.github.autopkg.cgerke-recipes.download.GNS3</string>
     <key>Input</key>

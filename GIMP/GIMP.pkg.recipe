@@ -2,19 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ParentRecipe</key>
+    <string>io.github.hjuutilainen.download.GIMP</string>
     <key>Description</key>
-    <string>Downloads the latest GNS3 version (prior to re-write) and creates a package.</string>
+    <string>Downloads the latest GIMP version and creates a package.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.cgerke-recipes.pkg.GNS3</string>
+    <string>com.github.autopkg.cgerke-recipes.pkg.GIMP</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>GNS3</string>
+        <string>GIMP</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.2.9</string>
-    <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.download.GNS3</string>
     <key>Process</key>
     <array>
         <dict>
@@ -46,9 +46,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/GNS3.app</string>
+                <string>%pathname%/Gimp.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/GNS3.app</string>
+                <string>%pkgroot%/Applications/Gimp.app</string>
             </dict>
         </dict>
         <dict>
@@ -63,7 +63,7 @@
                     <key>pkgdir</key>
                     <string>%RECIPE_CACHE_DIR%</string>
                     <key>id</key>
-                    <string>net.gns3.pkg</string>
+                    <string>com.oracle.mysql.workbench.pkg</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>chown</key>
