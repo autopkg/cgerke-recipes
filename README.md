@@ -22,8 +22,10 @@ autopkg repo-add https://github.com/autopkg/recipes https://github.com/autopkg/a
 
 ```
 
-My SCCM Shared Processor requires the CMAppUtil binary which can be found in the macclient.dmg 
+My SCCM Shared Processor requires the CMAppUtil binary,
+which can be found in the macclient.dmg 
 
-Unfortunately Microsoft only offer this download as an MSI file so you need to extract that first to get to the DMG file.
+Unfortunately Microsoft only offer this download as an MSI file so you need to extract
+that first to get to the DMG file.
 
 http://www.microsoft.com/en-au/download/details.aspx?id=39360
