@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_EnableEnergySaver</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DefaultEnergySaver</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a payload free package. Enable default Energy Saver settings as per company policy.</string>
+	<string>Create a cmmac package. Create a payload free package. Default Energy Saver settings as per company policy.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_EnableEnergySaver</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_DefaultEnergySaver</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>EnableEnergySaver</string>
+		<string>DefaultEnergySaver</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
