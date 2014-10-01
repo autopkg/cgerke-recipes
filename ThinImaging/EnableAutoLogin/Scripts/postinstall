@@ -1,0 +1,19 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+short_name="THEUSER"
+
+# enable autlogin user
+the_plist="${path_root}/Library/Preferences/com.apple.loginwindow.plist"
+[[ ! -z "${short_name}" ]] && defaults write "${the_plist}" autoLoginUser -string "${short_name}" || exit 1
+[[ -e "${the_plist}" ]] && chown root:wheel "${the_plist}"  || exit 1
+[[ -e "${the_plist}" ]] && chmod 644 "${the_plist}" || exit 1
+
+# payload
+[[ -e "${path_root}/etc/kcpassword" ]] && chown root:wheel "${path_root}/etc/kcpassword" || exit 1
+[[ -e "${path_root}/etc/kcpassword" ]] && chmod 600 "${path_root}/etc/kcpassword" || exit 1
+[[ -e "${path_root}/etc/kcpassword.disabled" ]] && srm -f "${path_root}/etc/kcpassword.disabled"
+
+exit 0
