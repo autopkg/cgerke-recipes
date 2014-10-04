@@ -1,0 +1,12 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+# mcx or profiles are a better way to do this but...this is handy
+# think about write a loop (through dscl user homes) for existing users
+# think about other languages
+
+defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.NetworkBrowser.plist" DisableAirDrop -bool YES
+
+exit 0

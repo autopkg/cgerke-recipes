@@ -1,7 +1,7 @@
 autopkg
 =======
 
-AutoPKG Recipes for sysadmins.
+AutoPKG Recipes all the way from Sydney, Australia.
 
 Several of my recipes use parent recipes from the following repos;
 
