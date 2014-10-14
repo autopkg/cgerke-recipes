@@ -1,0 +1,11 @@
+#!/bin/bash
+
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+# Backup!
+mkdir -p /System/Library/SecurityBackup
+security authorizationdb read system.preferences.printing > "/System/Library/SecurityBackup/authorization.system.preferences.printing.plist.${formatted_date}"
+security authorizationdb read system.print.admin > "/System/Library/SecurityBackup/authorization.system.print.admin.plist.${formatted_date}"
+security authorizationdb read system.print.operator > "/System/Library/SecurityBackup/authorization.system.print.operator.plist.${formatted_date}"
+
+exit 0

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Authorization to allow non-admin users to modify the Printers & Scanners PreferencePane.
+security authorizationdb write system.preferences allow
+security authorizationdb write system.preferences.printing allow
+security authorizationdb write system.print.admin allow
+security authorizationdb write system.print.operator allow
+
+exit 0

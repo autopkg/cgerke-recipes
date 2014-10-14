@@ -4,7 +4,6 @@ formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 
 # Backup!
 mkdir -p /System/Library/SecurityBackup
-[[ -e "/System/Library/Security/authorization.plist" ]] && cp -f "/System/Library/Security/authorization.plist" "/System/Library/SecurityBackup/authorization.plist.${formatted_date}"
 security authorizationdb read system.preferences.energysaver > "/System/Library/SecurityBackup/authorization.system.preferences.energysaver.plist.${formatted_date}"
 
 exit 0
