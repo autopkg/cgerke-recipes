@@ -1,10 +1,16 @@
 #!/bin/bash
 
-# Authorization to allow non-admin users to modify the Date & Time PreferencePane.
-# Maybe add an AutoPKG override option here when you get time to allow an option for the timezone subset?
-security authorizationdb write system.preferences allow
-security authorizationdb write system.preferences.datetime allow
-# or just
-#security authorizationdb write system.preferences.datetime.changetimezone allow
+# Security authorizationdb can only be run on a booted volume so let's test for it.
+# Think about testing for OS version too when you have time (in case of deprecation etc).
+if [ $3 != "/" ]; then
+	exit 1
+else
+	# Authorization to allow non-admin users to modify the Date & Time PreferencePane.
+	# Maybe add an AutoPKG override option here when you get time to allow an option for the timezone subset?
+	security authorizationdb write system.preferences allow
+	security authorizationdb write system.preferences.datetime allow
+	# or just
+	#security authorizationdb write system.preferences.datetime.changetimezone allow
+fi
 
 exit 0

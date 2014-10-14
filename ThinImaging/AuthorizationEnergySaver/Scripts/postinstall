@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# Authorization to allow non-admin users to modify the Energy Saver PreferencePane.
-security authorizationdb write system.preferences allow
-security authorizationdb write system.preferences.energysaver allow
+# Security authorizationdb can only be run on a booted volume so let's test for it.
+# Think about testing for OS version too when you have time (in case of deprecation etc).
+if [ $3 != "/" ]; then
+	exit 1
+else
+	# Authorization to allow non-admin users to modify the Energy Saver PreferencePane.
+	security authorizationdb write system.preferences allow
+	security authorizationdb write system.preferences.energysaver allow
+fi
 
 exit 0

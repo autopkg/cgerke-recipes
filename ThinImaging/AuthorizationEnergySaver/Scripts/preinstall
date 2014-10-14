@@ -2,8 +2,14 @@
 
 formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 
-# Backup!
-mkdir -p /System/Library/SecurityBackup
-security authorizationdb read system.preferences.energysaver > "/System/Library/SecurityBackup/authorization.system.preferences.energysaver.plist.${formatted_date}"
+# Security authorizationdb can only be run on a booted volume so let's test for it.
+# Think about testing for OS version too when you have time (in case of deprecation etc).
+if [ $3 != "/" ]; then
+	exit 1
+else
+	# Backup!
+	mkdir -p /System/Library/SecurityBackup
+	security authorizationdb read system.preferences.energysaver > "/System/Library/SecurityBackup/authorization.system.preferences.energysaver.plist.${formatted_date}"
+fi
 
 exit 0
