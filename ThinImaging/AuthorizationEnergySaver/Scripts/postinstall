@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Authorization to allow non-admin users to modify the Energy Saver PreferencePane.
+security authorizationdb write system.preferences allow
 security authorizationdb write system.preferences.energysaver allow
 
 exit 0
