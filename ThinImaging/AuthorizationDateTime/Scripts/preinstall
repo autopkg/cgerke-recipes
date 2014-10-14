@@ -1,0 +1,9 @@
+#!/bin/bash
+
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+# Backup!
+mkdir -p /System/Library/SecurityBackup
+security authorizationdb read system.preferences.datetime > "/System/Library/SecurityBackup/authorization.system.preferences.datetime.plist.${formatted_date}"
+
+exit 0

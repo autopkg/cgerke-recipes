@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Authorization to allow non-admin users to modify the Date & Time PreferencePane.
+# Maybe add an AutoPKG override option here when you get time to allow an option for the timezone subset?
+security authorizationdb write system.preferences allow
+security authorizationdb write system.preferences.datetime allow
+# or just
+#security authorizationdb write system.preferences.datetime.changetimezone allow
+
+exit 0
