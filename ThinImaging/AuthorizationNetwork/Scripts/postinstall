@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Security authorizationdb can only be run on a booted volume so let's test for it.
+# Think about testing for OS version too when you have time (in case of deprecation etc).
+if [ $3 != "/" ]; then
+	exit 1
+else
+	# Authorization to allow non-admin users to modify the Network PreferencePane.
+	# You might want to think about how you implement this, some people like to create
+	# a "PowerUsers" group and assign the group as an authorisation. For example, in my
+	# Org we create a local PowerUsers group that is setup to contain members of an AD group
+	# then non-mac techs can simply add someone to the AD group to provide them rights etc etc
+	# For the purposes of this AutoPKG recipe I am just showing you how to allow all.
+	security authorizationdb write system.preferences allow
+	security authorizationdb write system.preferences.network allow
+	security authorizationdb write system.services.systemconfiguration.network allow
+fi
+
+exit 0
