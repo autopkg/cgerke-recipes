@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Authorization to allow non-admin users to modify the Printers & Scanners PreferencePane.
+# There's a few ways to do this, a popular way is to create a "PowerUsers" group and add the group as an Authorization
+# in my environment I want everyone to do as they please.
 security authorizationdb write system.preferences allow
 security authorizationdb write system.preferences.printing allow
 security authorizationdb write system.print.admin allow
