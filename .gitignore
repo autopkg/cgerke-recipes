@@ -1,4 +1,4 @@
-.DS_Store
-.pyc
-.app
-.pkg
+*.DS_Store
+*.app
+*.pkg
+*.pyc
