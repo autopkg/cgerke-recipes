@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="1">
+    <title>Disable Gatekeeper</title>
+    <organization>com.github.autopkg.cgerke-recipes</organization>
+    <domains enable_localSystem="true"/>
+    <options customize="true" require-scripts="false" rootVolumeOnly="false" />
+    <!-- Define documents displayed at various steps -->
+    <welcome    file="welcome.html"    mime-type="text/html" />
+    <license    file="license.html"    mime-type="text/html" />
+    <conclusion file="conclusion.html" mime-type="text/html" />
+    <!-- List all component packages -->
+    <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper"
+             version="0"
+             auth="root">DisableGatekeeper.pkg</pkg-ref>
+    <!-- List them again here. They can now be organized
+         as a hierarchy if you want. -->
+    <choices-outline>
+        <line choice="com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper"/>
+    </choices-outline>
+    <!-- Define each choice above -->
+    <choice
+        id="com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper"
+        visible="true"
+        title="Disable Gatekeeper"
+        description="Payload free pkg to disable Gatekeeper."
+        start_selected="true">
+      <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper"/>
+    </choice>
+</installer-gui-script>
