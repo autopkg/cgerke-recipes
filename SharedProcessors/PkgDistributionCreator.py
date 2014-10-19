@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2014 Chris G.
+# Copyright 2013 Timothy Sutton
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 # Borrowed code and concepts from Unzipper and Copier processors.
 
 # chris.gerke@gmail.com
-# Borrowed code and concepts from FlatPkgUnpacker.py (Copyright 2013 Timothy Sutton) in the AutoPKG core.
+# Borrowed code and concepts from FlatPkgUnpacker.py in the AutoPKG core. Credits above ^
 # see comments throughout, there is a some todo items
 # figure out how to make this a shared processor
 
