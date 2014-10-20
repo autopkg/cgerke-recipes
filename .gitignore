@@ -2,3 +2,4 @@
 *.app
 *.pkg
 *.pyc
+*kcpassword*
