@@ -27,9 +27,9 @@
 				<key>pkgroot</key>
 				<string>%RECIPE_DIR%/%NAME%/Root</string>
 				<key>template_path</key>
-				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
 				<key>infofile</key>
-				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
 				<key>pkgtype</key>
 				<string>flat</string>
 			</dict>
@@ -45,18 +45,6 @@
 				<string>%NAME%</string>
 				<key>pkg_request</key>
 				<dict>
-					<key>pkgdir</key>
-					<string>%RECIPE_CACHE_DIR%</string>
-					<key>id</key>
-					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
-					<key>infofile</key>
-					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
-					<key>options</key>
-					<string>purge_ds_store</string>
-					<key>resources</key>
-					<string>%RECIPE_DIR%/%NAME%/Resources</string>
-					<key>scripts</key>
-					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 					<key>chown</key>
 					<array>
 						<dict>
@@ -68,6 +56,14 @@
 							<string>wheel</string>
 						</dict>
 					</array>
+					<key>id</key>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
+					<key>options</key>
+					<string>purge_ds_store</string>
+					<key>resources</key>
+					<string>%RECIPE_DIR%/%NAME%/Resources</string>
+					<key>scripts</key>
+					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 				</dict>
 			</dict>
 		</dict>

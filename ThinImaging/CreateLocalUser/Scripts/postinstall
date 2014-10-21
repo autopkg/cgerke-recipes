@@ -12,7 +12,7 @@ dev_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" 
 # create the user on the target volume (this will be your autologin user)
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name}
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} UserShell /bin/bash
-dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} RealName "Local Admin"
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} RealName "Local User"
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} PrimaryGroupID 20
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} UniqueID ${UniqueID}
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} Picture "/Library/User Pictures/Nature/Zen.tif"
