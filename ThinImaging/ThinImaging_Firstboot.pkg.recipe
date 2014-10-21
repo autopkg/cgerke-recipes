@@ -18,39 +18,6 @@ address (without the colons). This type of script is very subjective so it serve
 	<array>
 		<dict>
 			<key>Comment</key>
-			<string>Create a root.</string>
-			<key>Processor</key>
-			<string>PkgRootCreator</string>
-			<key>Arguments</key>
-			<dict>
-				<key>pkgroot</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-				<key>pkgdirs</key>
-				<dict>
-					<key>usr</key>
-					<string>0755</string>
-					<key>usr/local</key>
-					<string>0755</string>
-					<key>usr/local/bin</key>
-					<string>0755</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>Comment</key>
-			<string>Copy firstboot.sh to /usr/local/bin/firstboot.sh</string>
-			<key>Processor</key>
-			<string>Copier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/usr/local/bin/firstboot.sh</string>
-				<key>destination_path</key>
-				<string>%pkgroot%/usr/local/bin/firstboot.sh</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Comment</key>
 			<string>Create a PackageInfo file using the template.</string>
 			<key>Processor</key>
 			<string>PkgInfoCreator</string>
@@ -58,8 +25,10 @@ address (without the colons). This type of script is very subjective so it serve
 			<dict>
 				<key>version</key>
 				<string>0.1</string>
+				<key>pkgroot</key>
+				<string>%RECIPE_DIR%/%NAME%/Root</string>
 				<key>template_path</key>
-				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
 				<key>infofile</key>
 				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
 				<key>pkgtype</key>
@@ -77,18 +46,6 @@ address (without the colons). This type of script is very subjective so it serve
 				<string>%NAME%</string>
 				<key>pkg_request</key>
 				<dict>
-					<key>pkgdir</key>
-					<string>%RECIPE_CACHE_DIR%</string>
-					<key>id</key>
-					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
-					<key>infofile</key>
-					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
-					<key>resources</key>
-					<string>%RECIPE_DIR%/%NAME%/Resources</string>
-					<key>options</key>
-					<string>purge_ds_store</string>
-					<key>scripts</key>
-					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 					<key>chown</key>
 					<array>
 						<dict>
@@ -116,6 +73,14 @@ address (without the colons). This type of script is very subjective so it serve
 							<string>wheel</string>
 						</dict>
 					</array>
+					<key>id</key>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
+					<key>options</key>
+					<string>purge_ds_store</string>
+					<key>resources</key>
+					<string>%RECIPE_DIR%/%NAME%/Resources</string>
+					<key>scripts</key>
+					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 				</dict>
 			</dict>
 		</dict>

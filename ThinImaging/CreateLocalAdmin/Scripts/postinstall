@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# configure payload, include variables /tmp/config
+# configure payload, include /tmp/kcpassword.10.x.x
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi # fix //
+dev_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion) # 10.9.x etc
+
+# source the dscl variables
+. "${path_root}/tmp/config"
+
+# create the user on the target volume (this will be your autologin user)
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name}
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} UserShell /bin/bash
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} RealName "Local Admin"
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} PrimaryGroupID 20
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} UniqueID ${UniqueID}
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} Picture "/Library/User Pictures/Nature/Zen.tif"
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} NFSHomeDirectory "/var/${short_name}"
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -passwd /Local/Target/Users/${short_name} tellevery1
+ 
+# admin access (optional)
+dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -append /Local/Target/Groups/admin GroupMembership ${short_name}
+
+# write the stored hash now
+if [ $3 != "/" ]; then
+	echo "Won't flush, external volume""
+else
+	dscacheutil -flushcache
+fi
+defaults write "${path_root}/var/db/dslocal/nodes/Default/Users/${short_name}.plist" ShadowHashData "${ShadowHashData}"
+
+# create the home directory? or let it happen naturally...
+#cp -R "${path_root}/System/Library/User Template/English.lproj" "${path_root}/var/${short_name}""
+#chown -R ${short_name}:staff "${path_root}/Users/${short_name}""
+
+# payload
+[[ -e "${path_root}/etc/kcpassword" ]] && mv -f "${path_root}/etc/kcpassword"{,."${formatted_date}"}
+[[ -e "${path_root}/tmp/kcpassword.${dev_os}" ]] && mv -f "${path_root}/tmp/kcpassword.${dev_os}" "${path_root}/etc/kcpassword"
+[[ -e "${path_root}/etc/kcpassword" ]] && chown root:wheel "${path_root}/etc/kcpassword"
+[[ -e "${path_root}/etc/kcpassword" ]] && chmod 600 "${path_root}/etc/kcpassword"
+[[ -e "${path_root}/etc/kcpassword.disabled" ]] && srm -f "${path_root}/etc/kcpassword.disabled"
+
+# enable autlogin user
+if [ -e "${path_root}/etc/kcpassword" ]; then
+	the_plist="${path_root}/Library/Preferences/com.apple.loginwindow.plist"
+	[[ ! -z "${short_name}" ]] && defaults write "${the_plist}" autoLoginUser -string "${short_name}"
+	[[ -e "${the_plist}" ]] && chown root:wheel "${the_plist}"
+	[[ -e "${the_plist}" ]] && chmod 644 "${the_plist}"
+fi
+
+# cleanup
+[[ -e "${path_root}/tmp/config" ]] && srm -f "${path_root}/tmp/config"
+
+exit 0

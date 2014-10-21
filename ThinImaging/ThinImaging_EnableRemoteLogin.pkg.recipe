@@ -18,52 +18,6 @@
 	<array>
 		<dict>
 			<key>Comment</key>
-			<string>Create a root.</string>
-			<key>Processor</key>
-			<string>PkgRootCreator</string>
-			<key>Arguments</key>
-			<dict>
-				<key>pkgroot</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-				<key>pkgdirs</key>
-				<dict>
-					<key>Library</key>
-					<string>0755</string>
-					<key>Library/LaunchDaemons</key>
-					<string>0755</string>
-					<key>etc</key>
-					<string>0755</string>
-				</dict>
-			</dict>
-		</dict>
-		<dict>
-			<key>Comment</key>
-			<string>Copy motd to /etc/motd</string>
-			<key>Processor</key>
-			<string>Copier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/etc/motd</string>
-				<key>destination_path</key>
-				<string>%pkgroot%/etc/motd</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Comment</key>
-			<string>Copy com.github.autopkg.cgerke-recipes.ssh.plist to /Library/LaunchDameons/com.github.autopkg.cgerke-recipes.ssh.plist</string>
-			<key>Processor</key>
-			<string>Copier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>source_path</key>
-				<string>%RECIPE_DIR%/%NAME%/Root/Library/LaunchDaemons/com.github.autopkg.cgerke-recipes.ssh.plist</string>
-				<key>destination_path</key>
-				<string>%pkgroot%/Library/LaunchDaemons/com.github.autopkg.cgerke-recipes.ssh.plist</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Comment</key>
 			<string>Create a PackageInfo file using the template.</string>
 			<key>Processor</key>
 			<string>PkgInfoCreator</string>
@@ -71,8 +25,10 @@
 			<dict>
 				<key>version</key>
 				<string>0.1</string>
+				<key>pkgroot</key>
+				<string>%RECIPE_DIR%/%NAME%/Root</string>
 				<key>template_path</key>
-				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
 				<key>infofile</key>
 				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
 				<key>pkgtype</key>
@@ -90,18 +46,6 @@
 				<string>%NAME%</string>
 				<key>pkg_request</key>
 				<dict>
-					<key>pkgdir</key>
-					<string>%RECIPE_CACHE_DIR%</string>
-					<key>id</key>
-					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
-					<key>infofile</key>
-					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
-					<key>resources</key>
-					<string>%RECIPE_DIR%/%NAME%/Resources</string>
-					<key>options</key>
-					<string>purge_ds_store</string>
-					<key>scripts</key>
-					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 					<key>chown</key>
 					<array>
 						<dict>
@@ -121,6 +65,14 @@
 							<string>wheel</string>
 						</dict>
 					</array>
+					<key>id</key>
+					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
+					<key>options</key>
+					<string>purge_ds_store</string>
+					<key>resources</key>
+					<string>%RECIPE_DIR%/%NAME%/Resources</string>
+					<key>scripts</key>
+					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 				</dict>
 			</dict>
 		</dict>

@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Enable a user to auto login.</string>
+	<string>Create a package. Create a local user. You must supply some payload items.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_EnableAutoLogin</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_CreateLocalUser</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>EnableAutoLogin</string>
+		<string>CreateLocalUser</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
@@ -27,9 +27,9 @@
 				<key>pkgroot</key>
 				<string>%RECIPE_DIR%/%NAME%/Root</string>
 				<key>template_path</key>
-				<string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 				<key>infofile</key>
-				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
+				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 				<key>pkgtype</key>
 				<string>flat</string>
 			</dict>
@@ -45,20 +45,33 @@
 				<string>%NAME%</string>
 				<key>pkg_request</key>
 				<dict>
-					<key>chown</key>
-					<array>
-					</array>
+					<key>pkgdir</key>
+					<string>%RECIPE_CACHE_DIR%</string>
 					<key>id</key>
 					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
+					<key>infofile</key>
+					<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 					<key>options</key>
 					<string>purge_ds_store</string>
 					<key>resources</key>
 					<string>%RECIPE_DIR%/%NAME%/Resources</string>
 					<key>scripts</key>
 					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
+					<key>chown</key>
+					<array>
+						<dict>
+							<key>path</key>
+							<string>tmp</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+					</array>
 				</dict>
 			</dict>
 		</dict>
+		
 	</array>
 </dict>
 </plist>

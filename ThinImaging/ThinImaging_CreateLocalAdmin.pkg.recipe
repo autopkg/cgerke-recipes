@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Enable a user to auto login.</string>
+	<string>Create a package. Create a local administrator user. You must supply some payload items.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_EnableAutoLogin</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_CreateLocalAdmin</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>EnableAutoLogin</string>
+		<string>CreateLocalAdmin</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.2.9</string>
+	<string>0.4.0</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -47,6 +47,14 @@
 				<dict>
 					<key>chown</key>
 					<array>
+						<dict>
+							<key>path</key>
+							<string>tmp</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
 					</array>
 					<key>id</key>
 					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
@@ -59,6 +67,7 @@
 				</dict>
 			</dict>
 		</dict>
+		
 	</array>
 </dict>
 </plist>

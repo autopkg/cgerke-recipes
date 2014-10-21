@@ -11,8 +11,6 @@ defaults write "${path_root}/System/Library/User Template/English.lproj/Library/
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastPreLoginTasksPerformedVersion "${device_os}"
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastPreLoginTasksPerformedBuild "${device_build}"
 
 # think about looping dscl instead as user directories may be re-directed. use uid to get real users.
 
@@ -21,9 +19,7 @@ do
 	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
 	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
 	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${device_os}"
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenBuddyBuildVersion "${device_build}" 
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastPreLoginTasksPerformedVersion "${device_os}"
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastPreLoginTasksPerformedBuild "${device_build}"     
+	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenBuddyBuildVersion "${device_build}"    
 done
 
 exit 0
