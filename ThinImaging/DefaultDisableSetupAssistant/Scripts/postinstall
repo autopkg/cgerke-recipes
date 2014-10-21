@@ -12,14 +12,47 @@ defaults write "${path_root}/System/Library/User Template/English.lproj/Library/
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
 
-# think about looping dscl instead as user directories may be re-directed. use uid to get real users.
+# loop user home directories
+if [ "${path_root}" != "/" ]; then
+	echo "Not the boot volume."
+	
+	for u in $(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -readall /Local/Target/Users | grep RecordName | awk '{print $2}'); do
+	user_id=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u UniqueID | awk '{print $2}')
+	if [ $user_id -gt 500 ]; then
+		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
+		if [ -e "${path_root}/${user_home}/Library/Preferences" ]; then
+			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool TRUE
+			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
+			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
+			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
+		fi
+	fi
+	done
+	
+else
 
-for USER_HOMES in "/Users"/*
-do
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${device_os}"
-	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenBuddyBuildVersion "${device_build}"    
-done
+	for u in $(dscl . -ls /Users); do
+	user_id=$(dscl . -read /Users/$u UniqueID | awk '{print $2}')
+	if [ $user_id -gt 500 ]; then
+		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
+		if [ -e "${user_home}/Library/Preferences" ]; then
+			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool TRUE
+			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
+			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
+			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
+		fi
+	fi
+	done
+	
+fi
+
+# old skool
+#for USER_HOMES in "/Users"/*
+#do
+#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
+#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
+#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${device_os}"
+#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenBuddyBuildVersion "${device_build}"    
+#done
 
 exit 0

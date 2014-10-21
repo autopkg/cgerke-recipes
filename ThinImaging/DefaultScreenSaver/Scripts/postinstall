@@ -10,21 +10,27 @@ formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 
 # user template
 #
-mkdir "/System/Library/User Template/English.lproj/Library/Preferences/ByHost"
+if [ "${path_root}" != "/" ]; then
+	exit 1
+else
 
-# com.apple.screensaver.${UUID}.plist
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" idleTime -int "1800"
+	mkdir "/System/Library/User Template/English.lproj/Library/Preferences/ByHost"
 
-# com.apple.screensaver.${UUID}.plist
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" CleanExit -string "YES"
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" PrefsVersion -int "100"
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "moduleName" -string "Computer Name"
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "path" -string "/System/Library/Frameworks/ScreenSaver.framework/Resources/Computer Name.saver"
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "type" -int "0"
-defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.ScreenSaver.Basic" "MESSAGE" -string "${MESSAGE}"
+	# com.apple.screensaver.${UUID}.plist
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" idleTime -int "1800"
 
-# com.apple.screensaver.plist
-defaults write "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.screensaver" askForPassword -int 1
-defaults write "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.screensaver" askForPasswordDelay -int 0
+	# com.apple.screensaver.${UUID}.plist
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" CleanExit -string "YES"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" PrefsVersion -int "100"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "moduleName" -string "Computer Name"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "path" -string "/System/Library/Frameworks/ScreenSaver.framework/Resources/Computer Name.saver"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "type" -int "0"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.ScreenSaver.Basic" "MESSAGE" -string "${MESSAGE}"
+
+	# com.apple.screensaver.plist
+	defaults write "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.screensaver" askForPassword -int 1
+	defaults write "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.screensaver" askForPasswordDelay -int 0
+
+fi
 
 exit 0

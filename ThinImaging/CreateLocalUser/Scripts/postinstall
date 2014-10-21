@@ -20,11 +20,11 @@ dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Tar
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -passwd /Local/Target/Users/${short_name} tellevery1
  
 # admin access (optional)
-dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -append /Local/Target/Groups/admin GroupMembership ${short_name}
+# dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -append /Local/Target/Groups/admin GroupMembership ${short_name}
 
 # write the stored hash now
-if [ $3 != "/" ]; then
-	echo "Won't flush, external volume""
+if [ "${path_root}" != "/" ]; then
+	echo "Won't flush, external volume"
 else
 	dscacheutil -flushcache
 fi

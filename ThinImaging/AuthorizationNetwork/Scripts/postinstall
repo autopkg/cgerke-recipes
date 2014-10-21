@@ -1,8 +1,9 @@
 #!/bin/bash
 
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 # Security authorizationdb can only be run on a booted volume so let's test for it.
 # Think about testing for OS version too when you have time (in case of deprecation etc).
-if [ $3 != "/" ]; then
+if [ "${path_root}" != "/" ]; then
 	exit 1
 else
 	# Authorization to allow non-admin users to modify the Network PreferencePane.
