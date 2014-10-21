@@ -5,11 +5,11 @@
 	<key>Description</key>
 	<string>Create a payload free package. Set User Template preference.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DefaultDisableSetupAssistant</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DefaultDisableiCloud</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DefaultDisableSetupAssistant</string>
+		<string>DefaultDisableiCloud</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

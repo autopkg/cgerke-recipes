@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DefaultDisableSetupAssistant</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DefaultDisableGestureMovie</string>
 	<key>Description</key>
 	<string>Create a cmmac package. Create a payload free package. Set User Template preference.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_DefaultDisableSetupAssistant</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_DefaultDisableGestureMovie</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DefaultDisableSetupAssistant</string>
+		<string>DefaultDisableGestureMovie</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

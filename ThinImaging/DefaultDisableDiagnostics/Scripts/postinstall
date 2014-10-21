@@ -7,11 +7,7 @@ device_build=$(defaults read "${path_root}/System/Library/CoreServices/SystemVer
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
 
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool true
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
-
 # loop user home directories
 if [ "${path_root}" != "/" ]; then
 	echo "Not the boot volume."
@@ -21,10 +17,8 @@ if [ "${path_root}" != "/" ]; then
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${path_root}/${user_home}/Library/Preferences" ]; then
-			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool TRUE
-			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
-			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
 			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
+			chown "${u}" "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
 		fi
 	fi
 	done
@@ -36,10 +30,8 @@ else
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${user_home}/Library/Preferences" ]; then
-			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool TRUE
-			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
-			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
 			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
+			chown "${u}" "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
 		fi
 	fi
 	done
