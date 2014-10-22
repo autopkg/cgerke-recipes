@@ -6,13 +6,14 @@ device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersio
 device_build=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductBuildVersion) # 13A603 etc
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
-
+# maybe start using profiles...
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
+
 # loop user home directories
 if [ "${path_root}" != "/" ]; then
-	echo "Not the boot volume."
-	
-	for u in $(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -readall /Local/Target/Users | grep RecordName | awk '{print $2}'); do
+	# non-booted volume
+	# check dscl for users UID > 500
+	for u in $(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -readall /Local/Target/Users | grep RecordName | grep -v 'RecordName: _' | awk '{print $2}'); do
 	user_id=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u UniqueID | awk '{print $2}')
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
@@ -22,10 +23,10 @@ if [ "${path_root}" != "/" ]; then
 		fi
 	fi
 	done
-	
 else
-
-	for u in $(dscl . -ls /Users); do
+	# booted volume
+	# check dscl for users UID > 500
+	for u in $(dscl . -ls /Users | grep -v '^_'); do
 	user_id=$(dscl . -read /Users/$u UniqueID | awk '{print $2}')
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
@@ -35,16 +36,6 @@ else
 		fi
 	fi
 	done
-	
 fi
-
-# old skool
-#for USER_HOMES in "/Users"/*
-#do
-#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant DidSeeCloudSetup -bool TRUE
-#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant GestureMovieSeen none
-#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenCloudProductVersion "${device_os}"
-#	defaults write "${USER_HOMES}"/Library/Preferences/com.apple.SetupAssistant LastSeenBuddyBuildVersion "${device_build}"    
-#done
 
 exit 0

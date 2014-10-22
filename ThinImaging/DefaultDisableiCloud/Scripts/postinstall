@@ -5,16 +5,16 @@ formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
-
+# maybe start using profiles...
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool true
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
 
 # loop user home directories
-# to reverse this you have to also delete the com.apple.loginwindow.plist and loginwindow.plist files from the users prefs folder
+# to reverse this you have to also delete the users com.apple.loginwindow.plist and loginwindow.plist preferences (wtf!)
 if [ "${path_root}" != "/" ]; then
-	echo "Not the boot volume."
-	
-	for u in $(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -readall /Local/Target/Users | grep RecordName | awk '{print $2}'); do
+	# non-booted volume
+	# check dscl for users UID > 500
+	for u in $(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -readall /Local/Target/Users | grep RecordName | grep -v 'RecordName: _' | awk '{print $2}'); do
 	user_id=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u UniqueID | awk '{print $2}')
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
@@ -27,8 +27,9 @@ if [ "${path_root}" != "/" ]; then
 	done
 	
 else
-
-	for u in $(dscl . -ls /Users); do
+	# booted volume
+	# check dscl for users UID > 500
+	for u in $(dscl . -ls /Users | grep -v '^_'); do
 	user_id=$(dscl . -read /Users/$u UniqueID | awk '{print $2}')
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
@@ -39,7 +40,6 @@ else
 		fi
 	fi
 	done
-	
 fi
 
 exit 0

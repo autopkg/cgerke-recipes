@@ -5,6 +5,7 @@
 
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi # fix //
 dev_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion) # 10.9.x etc
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 
 # source the dscl variables
 . "${path_root}/tmp/config"
@@ -30,12 +31,12 @@ else
 fi
 defaults write "${path_root}/var/db/dslocal/nodes/Default/Users/${short_name}.plist" ShadowHashData "${ShadowHashData}"
 
-# create the home directory? or let it happen naturally...
+# create the home directory? or let it happen naturally...depends if you want this user to receive changes prior to login
 #cp -R "${path_root}/System/Library/User Template/English.lproj" "${path_root}/var/${short_name}""
 #chown -R ${short_name}:staff "${path_root}/Users/${short_name}""
 
 # payload
-[[ -e "${path_root}/etc/kcpassword" ]] && mv -f "${path_root}/etc/kcpassword"{,."${formatted_date}"}
+[[ -e "${path_root}/tmp/kcpassword.${dev_os}" ]] && mv -f "${path_root}/etc/kcpassword"{,."${formatted_date}"}
 [[ -e "${path_root}/tmp/kcpassword.${dev_os}" ]] && mv -f "${path_root}/tmp/kcpassword.${dev_os}" "${path_root}/etc/kcpassword"
 [[ -e "${path_root}/etc/kcpassword" ]] && chown root:wheel "${path_root}/etc/kcpassword"
 [[ -e "${path_root}/etc/kcpassword" ]] && chmod 600 "${path_root}/etc/kcpassword"
@@ -51,5 +52,6 @@ fi
 
 # cleanup
 [[ -e "${path_root}/tmp/config" ]] && srm -f "${path_root}/tmp/config"
+srm -f "${path_root}/tmp/kc*"
 
 exit 0
