@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.download.TeamViewer</string>
 	<key>Description</key>
-	<string>Downloads the latest TeamViewer version and builds a pkg.</string>
+	<string>Downloads the latest version of TeamViewer and builds a pkg.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.TeamViewer</string>
 	<key>Input</key>
@@ -15,6 +13,8 @@
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.autopkg.cgerke-recipes.download.TeamViewer</string>
 	<key>Process</key>
 	<array>
 		<dict>
