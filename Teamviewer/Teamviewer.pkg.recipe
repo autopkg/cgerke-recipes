@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>io.github.hjuutilainen.download.TeamViewer</string>
+	<string>com.github.autopkg.cgerke-recipes.download.TeamViewer</string>
 	<key>Description</key>
-	<string>Downloads the latest TeamViewer version and extracts the package.</string>
+	<string>Downloads the latest TeamViewer version and builds a pkg.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.TeamViewer</string>
 	<key>Input</key>

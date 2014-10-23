@@ -5,7 +5,7 @@
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.download.Wireshark</string>
 	<key>Description</key>
-	<string>Downloads the latest Wireshark version and extracts the package.</string>
+	<string>Downloads the latest version of Wireshark and builds a pkg.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.Wireshark</string>
 	<key>Input</key>
@@ -64,16 +64,18 @@
             </dict>
         </dict>
         <dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
 			<key>Arguments</key>
 			<dict>
 				<key>path_list</key>
 				<array>
+					<string>%RECIPE_CACHE_DIR%/%NAME%</string>
 					<string>%RECIPE_CACHE_DIR%/unpack</string>
 					<string>%RECIPE_CACHE_DIR%/payload</string>
+					<!--<string>%RECIPE_CACHE_DIR%/downloads</string>-->
 				</array>
 			</dict>
-			<key>Processor</key>
-			<string>PathDeleter</string>
 		</dict>
 	</array>
 </dict>

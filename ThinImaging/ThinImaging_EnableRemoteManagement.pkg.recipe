@@ -48,6 +48,8 @@ type of config is very subjective, maybe just leave this as an example for peopl
 			<string>PkgCreator</string>
 			<key>Arguments</key>
 			<dict>
+                <key>force_pkg_build</key>
+                <string>true</string>
 				<key>pkgname</key>
 				<string>%NAME%</string>
 				<key>pkg_request</key>

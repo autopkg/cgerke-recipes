@@ -24,6 +24,8 @@
 			<dict>
 				<key>version</key>
 				<string>0.1</string>
+				<key>pkgroot</key>
+				<string>%RECIPE_DIR%/%NAME%/Root</string>
 				<key>template_path</key>
 				<string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
 				<key>infofile</key>
@@ -39,6 +41,8 @@
 			<string>PkgCreator</string>
 			<key>Arguments</key>
 			<dict>
+                <key>force_pkg_build</key>
+                <string>true</string>
 				<key>pkgname</key>
 				<string>%NAME%</string>
 				<key>pkg_request</key>

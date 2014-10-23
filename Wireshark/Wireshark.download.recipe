@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version Wireshark.</string>
+    <string>Downloads the latest version of Wireshark.</string>
     <key>Identifier</key>
     <string>com.github.autopkg.cgerke-recipes.download.Wireshark</string>
     <key>Input</key>
@@ -12,7 +12,7 @@
         <string>Wireshark</string>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.2.9</string>
+    <string>0.4.0</string>
     <key>Process</key>
     <array>
         <dict>

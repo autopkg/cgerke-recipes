@@ -43,6 +43,8 @@ upgrade if Apple have changed the name of an item.</string>
 			<string>PkgCreator</string>
 			<key>Arguments</key>
 			<dict>
+                <key>force_pkg_build</key>
+                <string>true</string>
 				<key>pkgname</key>
 				<string>%NAME%</string>
 				<key>pkg_request</key>

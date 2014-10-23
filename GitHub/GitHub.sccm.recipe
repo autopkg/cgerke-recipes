@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.homebysix.pkg.GitHub</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.GitHub</string>
 	<key>Description</key>
-	<string>Downloads the latest GitHub version and creates a cmmac package for deploying via Microsoft SCCM.</string>
+	<string>Downloads the latest version of GitHub and builds a pkg, builds a cmmac bundle for Microsoft SCCM.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.sccm.GitHub</string>
 	<key>Input</key>
@@ -31,6 +31,17 @@
 			</dict>
 			<key>SharedProcessorRepoURL</key>
 			<string>https://github.com/autopkg/cgerke-recipes</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<!--<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>-->
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>
