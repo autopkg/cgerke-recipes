@@ -3,18 +3,29 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of Github and builds a pkg.</string>
+    <string>Downloads the latest version of AutoDMG and creates a pkg.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.cgerke-recipes.pkg.GitHub</string>
+    <string>com.github.autopkg.cgerke-recipes.pkg.AutoDMG</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>GitHub</string>
+        <string>AutoDMG</string>
     </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.download.GitHub</string>
+    <string>com.github.autopkg.cgerke-recipes.download.AutoDMG</string>
     <key>Process</key>
     <array>
+        <dict>
+            <key>Processor</key>
+            <string>AppDmgVersioner</string>
+            <key>Arguments</key>
+            <dict>
+                <key>dmg_path</key>
+                <string>%pathname%</string>
+            </dict>
+        </dict>
         <dict>
             <key>Processor</key>
             <string>PkgRootCreator</string>
@@ -31,26 +42,13 @@
         </dict>
         <dict>
             <key>Processor</key>
-            <string>Unarchiver</string>
+            <string>Copier</string>
             <key>Arguments</key>
             <dict>
-                <key>archive_path</key>
-                <string>%pathname%</string>
+                <key>source_path</key>
+                <string>%pathname%/AutoDMG.app</string>
                 <key>destination_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications</string>
-                <key>purge_destination</key>
-                <true/>
-            </dict>
-        </dict>
-        <dict>
-            <key>Processor</key>
-            <string>Versioner</string>
-            <key>Arguments</key>
-            <dict>
-                <key>input_plist_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%/Applications/GitHub.app/Contents/Info.plist</string>
-                <key>plist_version_key</key>
-                <string>CFBundleVersion</string>
+                <string>%pkgroot%/Applications/AutoDMG.app</string>
             </dict>
         </dict>
         <dict>
@@ -58,14 +56,14 @@
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
+                <key>pkgname</key>
+                <string>%NAME%-%version%</string>
                 <key>pkg_request</key>
                 <dict>
-                    <key>pkgname</key>
-                    <string>%NAME%-%version%</string>
-                    <key>version</key>
-                    <string>%version%</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
                     <key>id</key>
-                    <string>com.github.GitHub</string>
+                    <string>se.gu.it.AutoDMG.pkg</string>
                     <key>options</key>
                     <string>purge_ds_store</string>
                     <key>chown</key>
@@ -85,7 +83,7 @@
         <dict>
 			<key>Processor</key>
 			<string>PathDeleter</string>
-        	<key>Arguments</key>
+			<key>Arguments</key>
 			<dict>
 				<key>path_list</key>
 				<array>
@@ -93,7 +91,7 @@
 					<!--<string>%RECIPE_CACHE_DIR%/downloads</string>-->
 				</array>
 			</dict>
-        </dict>
+		</dict>
     </array>
 </dict>
 </plist>

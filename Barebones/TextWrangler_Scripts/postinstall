@@ -1,0 +1,42 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+# think about other languages, or better still stop editing the default template..not really "best practise".
+# maybe start using profiles...
+mkdir -p "${path_root}/System/Library/User Template/English.lproj/Library/Application Support"
+ditto "${path_root}/tmp/TextWrangler" "${path_root}/System/Library/User Template/English.lproj/Library/Application Support/TextWrangler"
+
+# loop user home directories
+if [ "${path_root}" != "/" ]; then
+	# non-booted volume
+	# check dscl for users UID > 500
+	for u in $(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -readall /Local/Target/Users | grep RecordName | grep -v 'RecordName: _' | awk '{print $2}'); do
+	user_id=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u UniqueID | awk '{print $2}')
+	if [ $user_id -gt 500 ]; then
+		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
+		if [ -e "${path_root}/${user_home}/Library/Preferences" ]; then
+			mkdir -p "${path_root}${user_home}/Library/Application Support/TextWrangler"
+			ditto "${path_root}/tmp/TextWrangler" "${path_root}${user_home}/Library/Application Support/TextWrangler"
+			chown -R "${u}" "${path_root}${user_home}/Library/Application Support/TextWrangler"
+		fi
+	fi
+	done
+else
+	# booted volume
+	# check dscl for users UID > 500
+	for u in $(dscl . -ls /Users | grep -v '^_'); do
+	user_id=$(dscl . -read /Users/$u UniqueID | awk '{print $2}')
+	if [ $user_id -gt 500 ]; then
+		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
+		if [ -e "${user_home}/Library/Preferences" ]; then
+			mkdir -p "${path_root}${user_home}/Library/Application Support/TextWrangler"
+			ditto "${path_root}/tmp/TextWrangler" "${path_root}${user_home}/Library/Application Support/TextWrangler"
+			chown -R "${u}" "${path_root}${user_home}/Library/Application Support/TextWrangler"
+		fi
+	fi
+	done
+fi
+
+exit 0

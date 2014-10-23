@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads and installs the current release version of TextWrangler.</string>
+	<string>Downloads the latest version of TextWrangler and builds a pkg, installs it.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.install.TextWrangler</string>
 	<key>Input</key>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest TextWrangler and creates a pkg.</string>
+    <string>Downloads the latest version of TextWrangler and builds a pkg.</string>
     <key>Identifier</key>
     <string>com.github.autopkg.cgerke-recipes.pkg.TextWrangler</string>
     <key>Input</key>
@@ -53,6 +53,17 @@
         </dict>
         <dict>
             <key>Processor</key>
+            <string>Copier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_path</key>
+                <string>%RECIPE_DIR%/TextWrangler</string>
+                <key>destination_path</key>
+                <string>%pkgroot%/tmp/TextWrangler</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>PkgCreator</string>
             <key>Arguments</key>
             <dict>
@@ -60,13 +71,7 @@
                 <string>%NAME%-%version%</string>
                 <key>pkg_request</key>
                 <dict>
-                    <key>pkgdir</key>
-                    <string>%RECIPE_CACHE_DIR%</string>
-                    <key>id</key>
-                    <string>com.barebones.textwrangler.pkg</string>
-                    <key>options</key>
-                    <string>purge_ds_store</string>
-                    <key>chown</key>
+                	<key>chown</key>
                     <array>
                         <dict>
                             <key>path</key>
@@ -77,6 +82,14 @@
                             <string>admin</string>
                         </dict>
                     </array>
+                    <key>id</key>
+                    <string>com.barebones.textwrangler.pkg</string>
+                    <key>pkgdir</key>
+                    <string>%RECIPE_CACHE_DIR%</string>
+                    <key>options</key>
+                    <string>purge_ds_store</string>
+                    <key>scripts</key>
+                    <string>TextWrangler_Scripts</string>
                 </dict>
             </dict>
         </dict>

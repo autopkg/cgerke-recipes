@@ -2,16 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
+    <key>Description</key>
     <string>Downloads the latest version of AutoDMG.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.cgerke-recipes.download.GitHub</string>
+    <string>com.github.autopkg.cgerke-recipes.download.AutoDMG</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>GitHub</string>
-        <key>DOWNLOAD_URL</key>
-        <string>https://central.github.com/mac/latest</string>
+        <string>AutoDMG</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.0</string>
@@ -19,13 +17,20 @@
     <array>
         <dict>
             <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>github_repo</key>
+                <string>MagerValp/AutoDMG</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
             <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>%DOWNLOAD_URL%</string>
                 <key>filename</key>
-                <string>%NAME%.zip</string>
+                <string>%NAME%.dmg</string>
             </dict>
         </dict>
         <dict>

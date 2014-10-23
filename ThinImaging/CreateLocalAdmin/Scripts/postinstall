@@ -10,6 +10,8 @@ formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 # source the dscl variables
 . "${path_root}/tmp/config"
 
+# query first to see if the user exists?
+
 # create the user on the target volume (this will be your autologin user)
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name}
 dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -create /Local/Target/Users/${short_name} UserShell /bin/bash
