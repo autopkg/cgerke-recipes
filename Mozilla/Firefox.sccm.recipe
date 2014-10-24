@@ -2,19 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ParentRecipe</key>
-	<string>com.github.autopkg.pkg.Firefox_EN</string>
 	<key>Description</key>
-	<string>Downloads the latest Firefox version and creates a cmmac package for deploying via Microsoft SCCM.</string>
+	<string>Downloads the latest version of Firefox and builds a pkg, builds a cmmac bundle for Microsoft SCCM.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.Firefox_EN</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.Firefox</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Firefox_EN</string>
+		<string>Firefox</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
+	<key>ParentRecipe</key>
+	<string>com.github.autopkg.cgerke-recipes.pkg.Firefox</string>
 	<key>Process</key>
 	<array>
 		<dict>

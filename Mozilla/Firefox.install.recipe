@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>Downloads the latest version of Firefox and builds a pkg, installs it.</string>
+    <key>Identifier</key>
+    <string>com.github.autopkg.cgerke-recipes.install.Firefox</string>
+    <key>Input</key>
+    <dict>
+        <key>RELEASE</key>
+        <string>latest</string>
+        <key>LOCALE</key>
+        <string>en_US</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>ParentRecipe</key>
+    <string>com.github.autopkg.cgerke-recipes.pkg.Firefox</string>
+    <key>Process</key>
+	<array>
+		<dict>
+			<key>Processor</key>
+			<string>Installer</string>
+		</dict>
+	</array>
+</dict>
+</plist>
