@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads and installs the latest version of GoogleDrive.</string>
+	<string>Downloads the latest version of Google Drive and builds a pkg, installs it.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.install.GoogleDrive</string>
 	<key>Input</key>
