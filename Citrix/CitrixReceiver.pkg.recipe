@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ParentRecipe</key>
-	<string>io.github.hjuutilainen.download.CitrixReceiver</string>
 	<key>Description</key>
 	<string>Downloads the latest CitrixReceiver version and extracts the package.</string>
 	<key>Identifier</key>
@@ -13,6 +11,8 @@
 		<key>NAME</key>
 		<string>CitrixReceiver</string>
 	</dict>
+	<key>ParentRecipe</key>
+	<string>com.github.autopkg.cgerke-recipes.download.CitrixReceiver</string>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
 	<key>Process</key>
@@ -64,6 +64,8 @@
             </dict>
         </dict>
         <dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
 			<key>Arguments</key>
 			<dict>
 				<key>path_list</key>
@@ -72,8 +74,6 @@
 					<string>%RECIPE_CACHE_DIR%/payload</string>
 				</array>
 			</dict>
-			<key>Processor</key>
-			<string>PathDeleter</string>
 		</dict>
 	</array>
 </dict>
