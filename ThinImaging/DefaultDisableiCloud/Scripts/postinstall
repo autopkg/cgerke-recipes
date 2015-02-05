@@ -8,9 +8,9 @@ device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersio
 # maybe start using profiles...
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool true
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
-
+defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" NSDocumentSaveNewDocumentsToCloud -bool false
+ 
 # loop user home directories
-# to reverse this you have to also delete the users com.apple.loginwindow.plist and loginwindow.plist preferences (wtf!)
 if [ "${path_root}" != "/" ]; then
 	# non-booted volume
 	# check dscl for users UID > 500
@@ -19,6 +19,8 @@ if [ "${path_root}" != "/" ]; then
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${path_root}/${user_home}/Library/Preferences" ]; then
+			defaults write "${path_root}${user_home}/Library/Preferences/.GlobalPreferences.plist" NSDocumentSaveNewDocumentsToCloud -bool false
+			/usr/libexec/PlistBuddy -c "Delete :favoriteitems:CustomListItems:1" "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
 			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool true
 			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "${device_os}"
 			chown "${u}" "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
@@ -34,6 +36,8 @@ else
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${user_home}/Library/Preferences" ]; then
+			defaults write "${user_home}/Library/Preferences/.GlobalPreferences.plist" NSDocumentSaveNewDocumentsToCloud -bool false
+			/usr/libexec/PlistBuddy -c "Delete :favoriteitems:CustomListItems:1" "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
 			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool true
 			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenCloudProductVersion "10.9"
 			chown "${u}" "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
@@ -41,5 +45,9 @@ else
 	fi
 	done
 fi
+
+
+cp ~/Library/Preferences/com.apple.sidebarlists.plist ~/Library/Preferences/com.apple.sidebarlists.plist.bak
+/usr/bin/plutil -convert xml1 ~/Library/Preferences/com.apple.sidebarlists.plist
 
 exit 0
