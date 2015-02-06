@@ -6,7 +6,6 @@ device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersio
 device_build=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductBuildVersion) # 13A603 etc
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
-# maybe start using profiles...
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
 
 # loop user home directories

@@ -3,13 +3,10 @@
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 
-# mcx or profiles are a better way to do this but...this is handy
 # probably think about write a loop (through dscl user homes) for existing users and also other languages
-
 # also note the usage "-currentHost" means this must be run on a booted volume
 
 # user template
-#
 if [ "${path_root}" != "/" ]; then
 	exit 1
 else

@@ -3,10 +3,14 @@
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
-device_build=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductBuildVersion) # 13A603 etc
+
+# find out why this would be here!!!
+if [ -e "${path_root}/Library/Preferences/com.apple.NetworkBrowser.plist" ]; then
+	defaults write "${path_root}/Library/Preferences/com.apple.NetworkBrowser.plist" DisableAirDrop -bool false
+fi
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
+defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.NetworkBrowser.plist" DisableAirDrop -bool false
 
 # loop user home directories
 if [ "${path_root}" != "/" ]; then
@@ -17,11 +21,12 @@ if [ "${path_root}" != "/" ]; then
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${path_root}/${user_home}/Library/Preferences" ]; then
-			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
-			chown "${u}" "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
+			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.NetworkBrowser.plist" DisableAirDrop -bool false
+			chown "${u}" "${path_root}${user_home}/Library/Preferences/com.apple.NetworkBrowser.plist"
 		fi
 	fi
 	done
+	
 else
 	# booted volume
 	# check dscl for users UID > 500
@@ -30,11 +35,18 @@ else
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${user_home}/Library/Preferences" ]; then
-			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
-			chown "${u}" "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
+			defaults write "${user_home}/Library/Preferences/com.apple.NetworkBrowser.plist" DisableAirDrop -bool false
+			chown "${u}" "${user_home}/Library/Preferences/com.apple.NetworkBrowser.plist"
 		fi
 	fi
 	done
 fi
+
+# test the implications of this
+#if [ "${path_root}" != "/" ]; then
+#	echo "Not a booted volume."
+#else
+#	ifconfig awdl0 down
+#fi
 
 exit 0

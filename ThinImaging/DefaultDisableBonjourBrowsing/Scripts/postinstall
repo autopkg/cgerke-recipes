@@ -4,6 +4,8 @@ path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_
 formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
 
+# test this a little more with regard to timing and cprefsd
+
 # think about other languages, or better still stop editing the default template..not really "best practise".
 /usr/libexec/PlistBuddy -c "Add :networkbrowser dict" "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.sidebarlists.plist"
 /usr/libexec/PlistBuddy -c "Add :networkbrowser:CustomListProperties dict" "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.sidebarlists.plist"

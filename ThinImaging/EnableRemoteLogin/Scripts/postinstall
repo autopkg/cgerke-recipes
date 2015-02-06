@@ -2,7 +2,7 @@
 
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 
-# maybe launchctl load the launchagent if root is / ???
+# maybe launchctl load the launchagent if path_root is / ???
 
 # ensure correct permissions for the LaunchDaemon
 chown root:wheel "${path_root}/Library/LaunchDaemons/com.github.autopkg.cgerke-recipes.ssh.plist"
