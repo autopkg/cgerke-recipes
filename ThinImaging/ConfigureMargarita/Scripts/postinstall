@@ -26,8 +26,8 @@ ln -s "${path_root}/Volumes/Data/www/reposado/code/preferences.plist" "${path_ro
 # modify this to point to the correct path
 cp -f ./margarita/com.github.jessepeterson.margarita.plist /Library/LaunchDaemons/
 
-defaults write /Library/LaunchDaemons/com.github.jessepeterson.margarita.plist StandardErrorPath "/Volumes/Data/www/margarita/margarita.log"
-defaults write /Library/LaunchDaemons/com.github.jessepeterson.margarita.plist StandardOutPath "/Volumes/Data/www/margarita/margarita.log"
+defaults write /Library/LaunchDaemons/com.github.jessepeterson.margarita.plist StandardErrorPath "/tmp/margarita.log"
+defaults write /Library/LaunchDaemons/com.github.jessepeterson.margarita.plist StandardOutPath "/tmp/margarita.log"
 
 defaults delete "${path_root}/Library/LaunchDaemons/com.github.jessepeterson.margarita.plist" ProgramArguments
 defaults write "${path_root}/Library/LaunchDaemons/com.github.jessepeterson.margarita.plist" ProgramArguments -array-add "/usr/bin/python" "/Volumes/Data/www/margarita/margarita.py"
