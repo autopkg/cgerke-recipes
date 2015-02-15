@@ -1,0 +1,29 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+version_os=$(defaults read "${ROOT}/System/Library/CoreServices/SystemVersion" ProductVersion | cut -c 1-5)
+
+if [ "${version_os}" == "10.10" ]; then
+	installer -pkg /Library/ORG/Printers/KonicaMinolta/KonicaMinolta554e_10.9-10.10.pkg -target /
+fi
+
+if [ "${version_os}" == "10.9" ]; then
+	installer -pkg /Library/ORG/Printers/KonicaMinolta/KonicaMinolta554e_10.9-10.10.pkg -target /
+fi
+
+if [ "${version_os}" == "10.8" ]; then
+	installer -pkg /Library/ORG/Printers/KonicaMinolta/KonicaMinolta554e_10.8.pkg -target /
+fi
+
+if [ "${version_os}" == "10.7" ]; then
+	installer -pkg /Library/ORG/Printers/KonicaMinolta/KonicaMinolta554e_10.7.pkg -target /
+fi
+
+if [ "${version_os}" == "10.6" ]; then
+	installer -pkg /Library/ORG/Printers/KonicaMinolta/KonicaMinolta554e_10.6.pkg -target /
+fi
+
+chown -R root:admin /Library/ORG
+chmod -R 755 /Library/ORG
+
+exit 0
