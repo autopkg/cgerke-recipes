@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>ParentRecipe</key>
+    <string>com.github.autopkg.cgerke-recipes.download.OracleJava8</string>
     <key>Description</key>
     <string>Downloads the latest version Oracle Java 8 JRE and builds a pkg.
 To use this recipe, you must accept the Oracle Binary Code License Agreement for Java SE.
@@ -18,8 +20,6 @@ http://www.oracle.com/technetwork/java/javase/terms/license/index.html
     </dict>
     <key>MinimumVersion</key>
     <string>0.4.0</string>
-    <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.download.OracleJava8</string>
     <key>Process</key>
     <array>
         <dict>
