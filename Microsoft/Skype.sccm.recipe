@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.pkg.Skype</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.Skype</string>
 	<key>Description</key>
 	<string>Downloads the latest Skype version and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
