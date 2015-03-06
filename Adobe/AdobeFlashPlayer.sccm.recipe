@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.AdobeFlashPlayer</string>
+	<string>com.github.autopkg.pkg.FlashPlayerExtractPackage</string>
 	<key>Description</key>
 	<string>Downloads the latest Adobe Flash Player version and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
