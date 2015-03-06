@@ -1,9 +1,0 @@
--*- coding: utf-8; version: 1; -*-
-
-This file's presence means that the contents of your BBEdit support
-folder have been updated by BBEdit 10, by copying items from your
-"Unix Scripts", "Unix Filters", and "Text Factories" folders into
-the "Scripts" and "Text Filters" folders, as appropriate. If you
-delete this file, BBEdit will repeat the update process.
-
-*fin*
