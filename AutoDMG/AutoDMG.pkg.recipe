@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.4.0</string>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.download.AutoDMG</string>
+    <string>com.github.timsutton.download.AutoDMG</string>
     <key>Process</key>
     <array>
         <dict>
