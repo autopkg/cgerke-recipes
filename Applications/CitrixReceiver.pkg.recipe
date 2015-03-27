@@ -12,7 +12,7 @@
 		<string>CitrixReceiver</string>
 	</dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.download.CitrixReceiver</string>
+	<string>io.github.hjuutilainen.download.CitrixReceiver</string>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
 	<key>Process</key>

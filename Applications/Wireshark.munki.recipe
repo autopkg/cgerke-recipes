@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.pkg.Wireshark</string>
+    <string>com.justinrummel.pkg.WiresharkDev</string>
     <key>Description</key>
     <string>Builds Wireshark and imports into a Munki repo.</string>
     <key>Identifier</key>
