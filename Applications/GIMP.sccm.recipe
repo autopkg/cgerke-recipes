@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.FileZilla</string>
+	<string>io.github.hjuutilainen.pkg.GIMP</string>
 	<key>Description</key>
-	<string>Downloads the latest version of FileZilla and builds a pkg, builds a cmmac bundle for Microsoft SCCM.</string>
+	<string>Downloads the latest version of GIMP and builds a pkg, builds a cmmac bundle for Microsoft SCCM.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.FileZilla</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.GIMP</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>FileZilla</string>
+		<string>GIMP</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
