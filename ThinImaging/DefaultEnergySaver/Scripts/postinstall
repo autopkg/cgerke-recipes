@@ -1,32 +1,25 @@
 #!/bin/bash
 
-path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
-formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
-
-if [ "${path_root}" != "/" ]; then
-	exit 1
+pmset -a autorestart 0
+pmset -a disksleep 0
+pmset -a displaysleep 90
+pmset -a powerbutton 0
+pmset -a sleep 0
+pmset -a womp 0
+# Device Type
+ioreg -rd1 -c IOPlatformExpertDevice | grep -E model | awk '{print $3}' | sed s/\<\"// | sed s/\"\>// | grep "Book"
+if [ "$?" == "1" ]; then
+	# Desktop
+	pmset repeat wakeorpoweron MTWRF 07:00:00 shutdown MTWRFSU 23:00:00
 else
-	pmset -a autorestart 0
-	pmset -a disksleep 0
-	pmset -a displaysleep 90
-	pmset -a powerbutton 0
-	pmset -a sleep 0
-	pmset -a womp 0
-	# Device Type
-	ioreg -rd1 -c IOPlatformExpertDevice | grep -E model | awk '{print $3}' | sed s/\<\"// | sed s/\"\>// | grep "Book"
-	if [ "$?" == "1" ]; then
-		# Desktop
-		pmset repeat wakeorpoweron MTWRF 07:00:00 shutdown MTWRFSU 23:00:00
-	else
-		# Laptop
-		pmset -b autorestart 0
-		pmset -b disksleep 0
-		pmset -b displaysleep 90
-		pmset -b powerbutton 0
-		pmset -b sleep 120
-		pmset -b womp 0
-		pmset repeat shutdown MTWRFSU 23:00:00
-	fi
+	# Laptop
+	pmset -b autorestart 0
+	pmset -b disksleep 0
+	pmset -b displaysleep 90
+	pmset -b powerbutton 0
+	pmset -b sleep 120
+	pmset -b womp 0
+	pmset repeat shutdown MTWRFSU 23:00:00
 fi
 
 exit 0
