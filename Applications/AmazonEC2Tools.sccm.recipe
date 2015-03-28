@@ -33,7 +33,6 @@
 			<key>SharedProcessorRepoURL</key>
 			<string>https://github.com/autopkg/cgerke-recipes</string>
 		</dict>
-		<!-- Conserve disk space?
 		<dict>
 			<key>Arguments</key>
 			<dict>
@@ -55,7 +54,7 @@
 			</dict>
 			<key>Processor</key>
 			<string>PathDeleter</string>
-		</dict>-->
+		</dict>
 	</array>
 </dict>
 </plist>
