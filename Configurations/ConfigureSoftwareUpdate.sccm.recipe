@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableSoftwareUpdate</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigureSoftwareUpdate</string>
 	<key>Description</key>
 	<string>Create a cmmac package. Create a payload free package. Disable schedule Apple Software Update.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_DisableSoftwareUpdate</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigureSoftwareUpdate</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
