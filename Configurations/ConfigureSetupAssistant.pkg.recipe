@@ -8,14 +8,14 @@ local system account the first time the system boots. Typically you would use th
 with https://github.com/MagerValp/CreateUserPkg or another script to create any local users required
 in your environment.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableSetupAssistant</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigureSetupAssistant</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableSetupAssistant</string>
+		<string>ConfigureSetupAssistant</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.2.9</string>
+	<string>0.4.0</string>
 	<key>Process</key>
 	<array>
 		<dict>
