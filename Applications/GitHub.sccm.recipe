@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.GitHub</string>
+	<string>com.github.keeleysam.recipes.pkg.GitHub</string>
 	<key>Description</key>
 	<string>Downloads the latest version of GitHub and builds a pkg, builds a cmmac bundle for Microsoft SCCM.</string>
 	<key>Identifier</key>
