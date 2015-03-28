@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ParentRecipe</key>
+	<string>com.github.autopkg.cgerke-recipes.download.AmazonEC2Tools</string>
 	<key>Description</key>
 	<string>Create a pkg to deply AmazonEC2Tools, this pkg isn&apos;t configure to setup your HOME environment
       or ACCESS KEYS, refer to Amazon documentation. http://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/set-up-ec2-cli-linux.html</string>
@@ -14,8 +16,6 @@
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>
-	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.download.AmazonEC2Tools</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -118,17 +118,6 @@
 					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
 				</dict>
 			</dict>
-		</dict>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>path_list</key>
-				<array>
-					<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-				</array>
-			</dict>
-			<key>Processor</key>
-			<string>PathDeleter</string>
 		</dict>
 	</array>
 </dict>
