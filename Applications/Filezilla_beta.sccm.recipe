@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.FileZilla_nightly</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.FileZilla_beta</string>
 	<key>Description</key>
 	<string>Downloads the latest version of FileZilla BETA and builds a pkg, builds a cmmac bundle for Microsoft SCCM.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.FileZilla_nightly</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.FileZilla_beta</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>FileZilla_nightly</string>
+		<string>FileZilla_beta</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
