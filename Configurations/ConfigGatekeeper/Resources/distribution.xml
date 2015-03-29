@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <installer-gui-script minSpecVersion="1">
-    <title>Disable Gatekeeper</title>
-    <organization>com.github.autopkg.cgerke-recipes</organization>
-    <domains enable_localSystem="true"/>
-    <options customize="true" require-scripts="false" rootVolumeOnly="true" />
+    <options customize="never" rootVolumeOnly="true" require-scripts="false"/>
+    <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper">
+        <bundle-version/>
+    </pkg-ref>
     <welcome file="welcome.html" mime-type="text/html" />
-    <license    file="license.html" mime-type="text/html" />
-    <conclusion file="conclusion.html" mime-type="text/html" />
-    <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper"
-             version="0"
-             auth="root">ConfigGatekeeper.pkg</pkg-ref>
     <choices-outline>
-        <line choice="ConfigGatekeeper"/>
+        <line choice="default">
+            <line choice="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper"/>
+        </line>
     </choices-outline>
-    <choice
-        id="DisableGatekeeper"
-        visible="true"
-        title="Disable Gatekeeper"
-        description="Payload free pkg to disable Gatekeeper."
-        start_selected="true">
-      <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper"/>
+    <choice id="default"/>
+    <choice id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper" visible="false">
+        <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper"/>
     </choice>
+    <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper" onConclusion="none">ConfigGatekeeper.pkg</pkg-ref>
 </installer-gui-script>
