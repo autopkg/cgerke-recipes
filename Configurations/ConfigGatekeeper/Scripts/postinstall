@@ -1,12 +1,5 @@
 #!/bin/bash
 
-path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
-formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
-
-if [ "${path_root}" != "/" ]; then
-	exit 1
-else
-	spctl --master-disable
-fi
+spctl --master-disable
 
 exit 0
