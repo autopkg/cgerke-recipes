@@ -1,4 +1,4 @@
-The /tmp directory requires payload items;
+# How to
 
 -tmp
   |_config

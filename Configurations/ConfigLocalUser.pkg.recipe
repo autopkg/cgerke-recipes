@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Create a local user. You must supply some payload items.</string>
+	<string>Create a package. Create a local user. You must supply some payload items. See %RECIPE_DIR%/%NAME%/Root/tmp/ReadMe.md</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_CreateLocalUser</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigLocalUser</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>CreateLocalUser</string>
+		<string>ConfigLocalUser</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.2.9</string>

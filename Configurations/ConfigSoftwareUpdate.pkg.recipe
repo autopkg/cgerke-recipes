@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Create a local administrator user. You must supply some payload items.</string>
+	<string>Create a payload free package. Disable scheduled Apple Software Update.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_CreateLocalAdmin</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigSoftwareUpdate</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>CreateLocalAdmin</string>
+		<string>ConfigSoftwareUpdate</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
@@ -36,7 +36,7 @@
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Build the package.</string>
+			<string>Build the payload free package.</string>
 			<key>Processor</key>
 			<string>PkgCreator</string>
 			<key>Arguments</key>
@@ -49,14 +49,6 @@
 				<dict>
 					<key>chown</key>
 					<array>
-						<dict>
-							<key>path</key>
-							<string>tmp</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
 					</array>
 					<key>id</key>
 					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
@@ -69,7 +61,6 @@
 				</dict>
 			</dict>
 		</dict>
-		
 	</array>
 </dict>
 </plist>

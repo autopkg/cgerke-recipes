@@ -3,13 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a payload free package. Disable scheduled Apple Software Update.</string>
+	<string>Create a package. Disable Apple Setup Assistant. This is primarily used to avoid end users having to a
+local system account the first time the system boots. Typically you would use this pkg in conjunction
+with https://github.com/MagerValp/CreateUserPkg or another script to create any local users required
+in your environment.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigureSoftwareUpdate</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigSetupAssistant</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>ConfigureSoftwareUpdate</string>
+		<string>ConfigSetupAssistant</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
@@ -36,7 +39,7 @@
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Build the payload free package.</string>
+			<string>Build the package.</string>
 			<key>Processor</key>
 			<string>PkgCreator</string>
 			<key>Arguments</key>
@@ -49,6 +52,30 @@
 				<dict>
 					<key>chown</key>
 					<array>
+						<dict>
+							<key>path</key>
+							<string>private</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+						<dict>
+							<key>path</key>
+							<string>private/var</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
+						<dict>
+							<key>path</key>
+							<string>private/var/db</string>
+							<key>user</key>
+							<string>root</string>
+							<key>group</key>
+							<string>wheel</string>
+						</dict>
 					</array>
 					<key>id</key>
 					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
