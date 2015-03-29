@@ -1,8 +1,10 @@
 # How to
 
--tmp
-  |_config
-  |_kcpassword.10.x 
+```
+/tmp
+    /_config
+    /_kcpassword.10.x 
+```
 
 The “config” file should contain 3 variables:
 
