@@ -3,17 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Disable Apple Registration Wizard. This is primarily used to avoid end users having to
-enter the registration information when the system boots for the first time after imaging.</string>
+	<string>Create a payload free package. Disable Gatekeeper.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableRegistrationWizard</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableRegistrationWizard</string>
+		<string>ConfigGatekeeper</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.2.9</string>
+	<string>0.4.0</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -37,7 +36,7 @@ enter the registration information when the system boots for the first time afte
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Build the package.</string>
+			<string>Build the payload free package.</string>
 			<key>Processor</key>
 			<string>PkgCreator</string>
 			<key>Arguments</key>
@@ -50,22 +49,6 @@ enter the registration information when the system boots for the first time afte
 				<dict>
 					<key>chown</key>
 					<array>
-						<dict>
-							<key>path</key>
-							<string>Library</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
-						<dict>
-							<key>path</key>
-							<string>Library/Receipts</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
 					</array>
 					<key>id</key>
 					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>

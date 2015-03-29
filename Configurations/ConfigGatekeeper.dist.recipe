@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper</string>
 	<key>Description</key>
 	<string>Create a distribution style package. Create a payload free package. Disable Gatekeeper.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.dist.ThinImaging_DisableGatekeeper</string>
+	<string>com.github.autopkg.cgerke-recipes.dist.ConfigGatekeeper</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
