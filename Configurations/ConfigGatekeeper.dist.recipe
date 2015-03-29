@@ -11,7 +11,7 @@
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableGatekeeper</string>
+		<string>ConfigGatekeeper</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

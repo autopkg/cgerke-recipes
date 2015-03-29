@@ -7,11 +7,11 @@
     <welcome file="welcome.html" mime-type="text/html" />
     <license    file="license.html" mime-type="text/html" />
     <conclusion file="conclusion.html" mime-type="text/html" />
-    <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper"
+    <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper"
              version="0"
-             auth="root">DisableGatekeeper.pkg</pkg-ref>
+             auth="root">ConfigGatekeeper.pkg</pkg-ref>
     <choices-outline>
-        <line choice="DisableGatekeeper"/>
+        <line choice="ConfigGatekeeper"/>
     </choices-outline>
     <choice
         id="DisableGatekeeper"
@@ -19,6 +19,6 @@
         title="Disable Gatekeeper"
         description="Payload free pkg to disable Gatekeeper."
         start_selected="true">
-      <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableGatekeeper"/>
+      <pkg-ref id="com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper"/>
     </choice>
 </installer-gui-script>
