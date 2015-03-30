@@ -40,7 +40,7 @@
 				<key>source_path</key>
 				<string>%RECIPE_CACHE_DIR%/</string>
 				<key>destination_file</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%-dist.pkg</string>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.mpkg</string>
 				<key>distribution_file</key>
 				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
 				<key>resources_path</key>
