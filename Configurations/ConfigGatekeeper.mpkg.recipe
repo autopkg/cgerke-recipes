@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Create a distribution style package. Create a payload free package. Disable Gatekeeper.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.dist.ConfigGatekeeper</string>
+	<string>com.github.autopkg.cgerke-recipes.mpkg.ConfigGatekeeper</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -28,6 +28,19 @@
 				<string>%RECIPE_DIR%/%NAME%/Resources</string>
 				<key>destination_path</key>
 				<string>%RECIPE_CACHE_DIR%/Resources</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Create distribution file.</string>
+			<key>Processor</key>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/PkgDistributionInfoCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<key>distribution_file</key>
+				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
 			</dict>
 		</dict>
 		<dict>

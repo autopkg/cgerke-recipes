@@ -28,27 +28,19 @@ import shutil
 from glob import glob
 from autopkglib import Processor, ProcessorError
 
-__all__ = ["PkgDistributionCreator"]
+__all__ = ["PkgDistributionInfoCreator"]
 
-class PkgDistributionCreator(Processor):
+class PkgDistributionInfoCreator(Processor):
     description = ("Creates a distribution style package. ")
     input_variables = {
-        "distribution_file": {
-            "required": True,
-            "description": ("Path to a distribution file. "),
-        },
-        "resources_path": {
-            "required": True,
-            "description": ("Path to a resources. "),
-        },
         "source_path": {
             "required": True,
             "description": ("Path to a pkg. "),
         },
-        "destination_file": {
+        "distribution_file": {
             "required": True,
-            "description": ("File to be created "),
-        },
+            "description": ("Path to a distribution file. "),
+        }
     }
     output_variables = {
     }
@@ -64,20 +56,19 @@ class PkgDistributionCreator(Processor):
                 raise ProcessorError(
                     "Can't find binary %s: %s" % ('/usr/bin/productbuild', e.strerror))
         try:
-            pbcmd = ["/usr/bin/productbuild",
-                      "--distribution", self.env['distribution_file'],
-                      "--resources", self.env['resources_path'],
-                      "--package-path", self.env['source_path'],
-                      self.env['destination_file']]
-            p = subprocess.Popen(pbcmd,
+            pbscmd = ["/usr/bin/productbuild",
+                      "--synthesize",
+                      "--package", self.env['source_path'],
+                      self.env['distribution_file']]
+            p = subprocess.Popen(pbscmd,
                                  stdout=subprocess.PIPE,
                                  stderr=subprocess.PIPE)
             (out, err) = p.communicate()
         except OSError as e:
-            raise ProcessorError("cmmac execution failed with error code %d: %s"
+            raise ProcessorError("productbuild failed with error code %d: %s"
                 % (e.errno, e.strerror))
         if p.returncode != 0:
-            raise ProcessorError("cmmac conversion of %s failed: %s"
+            raise ProcessorError("productbuild conversion of %s failed: %s"
                 % (self.env['source_path'], err))
                 
     def main(self):
@@ -87,13 +78,7 @@ class PkgDistributionCreator(Processor):
             except OSError as e:
                 raise ProcessorError(
                     "Can't find %s" % (self.env['source_path'], e.strerror))
-        if os.path.exists(self.env['destination_file']):
-            try:
-                self.output("Found %s" % self.env['destination_file'])
-            except OSError as e:
-                raise ProcessorError(
-                    "Can't find %s" % (self.env['destination_file'], e.strerror))
-        if os.path.exists(self.env['distribution_file']):
+        if not os.path.exists(self.env['distribution_file']):
             try:
                 self.output("Found %s" % self.env['distribution_file'])
                 self.pkgConvert()
@@ -102,5 +87,5 @@ class PkgDistributionCreator(Processor):
                     "Can't find %s" % (self.env['distribution_file'], e.strerror))
 
 if __name__ == '__main__':
-    processor = PkgDistributionCreator()
+    processor = PkgDistributionInfoCreator()
     processor.execute_shell()
