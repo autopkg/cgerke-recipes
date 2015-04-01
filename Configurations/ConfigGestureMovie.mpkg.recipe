@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Description</key>
-	<string>Create a payload free package. Disable GestureMovie.</string>
-	<key>Identifier</key>
+	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigGestureMovie</string>
+	<key>Description</key>
+	<string>Create a distribution style package. Create a payload free package. Disable Gesture Movie.</string>
+	<key>Identifier</key>
+	<string>com.github.autopkg.cgerke-recipes.mpkg.ConfigGestureMovie</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -17,49 +19,48 @@
 	<array>
 		<dict>
 			<key>Comment</key>
-			<string>Create a PackageInfo file using the template.</string>
+			<string>Copy resources.</string>
 			<key>Processor</key>
-			<string>PkgInfoCreator</string>
+			<string>Copier</string>
 			<key>Arguments</key>
 			<dict>
-				<key>version</key>
-				<string>0.1</string>
-				<key>pkgroot</key>
-				<string>%RECIPE_DIR%/%NAME%/Root</string>
-				<key>template_path</key>
-				<string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
-				<key>infofile</key>
-				<string>%RECIPE_CACHE_DIR%/PackageInfo</string>
-				<key>pkgtype</key>
-				<string>flat</string>
+				<key>source_path</key>
+				<string>%RECIPE_DIR%/%NAME%/Resources</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/Resources</string>
 			</dict>
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Build the payload free package.</string>
+			<string>Create distribution file.</string>
 			<key>Processor</key>
-			<string>PkgCreator</string>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/PkgDistributionInfoCreator</string>
 			<key>Arguments</key>
 			<dict>
-                <key>force_pkg_build</key>
-                <string>true</string>
-				<key>pkgname</key>
-				<string>%NAME%</string>
-				<key>pkg_request</key>
-				<dict>
-					<key>chown</key>
-					<array>
-					</array>
-					<key>id</key>
-					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>
-					<key>options</key>
-					<string>purge_ds_store</string>
-					<key>resources</key>
-					<string>%RECIPE_DIR%/%NAME%/Resources</string>
-					<key>scripts</key>
-					<string>%RECIPE_DIR%/%NAME%/Scripts</string>
-				</dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<key>distribution_file</key>
+				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
 			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Create a distribution pkg using a shared processor.</string>
+			<key>Processor</key>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/PkgDistributionCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/</string>
+				<key>destination_file</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.mpkg</string>
+				<key>distribution_file</key>
+				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
+				<key>resources_path</key>
+				<string>%RECIPE_CACHE_DIR%/Resources</string>
+			</dict>
+			<key>SharedProcessorRepoURL</key>
+			<string>https://github.com/autopkg/cgerke-recipes</string>
 		</dict>
 	</array>
 </dict>
