@@ -7,11 +7,11 @@
 for adding default items to the dock during a new home directory creation. It also changes the dock items after an
 upgrade if Apple have changed the name of an item.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_DisableDockfixup</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigDockfixup</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>DisableDockfixup</string>
+		<string>ConfigDockfixup</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
