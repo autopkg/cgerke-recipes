@@ -1,12 +1,8 @@
 #!/bin/bash
 
-path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
-formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+# perfect candidate for a profile
 
-# to be run on a booted volume only
-# you could detect it using $path_root above prior to attempting to run this
-# but better to let it fail so std out shows it failing
-if [ "${path_root}" != "/" ]; then
+if [ "${3}" != "/" ]; then
 	exit 1
 else
 	/usr/sbin/softwareupdate --schedule off

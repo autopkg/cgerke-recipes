@@ -3,10 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Disable Apple Setup Assistant. This is primarily used to avoid end users having to a
-local system account the first time the system boots. Typically you would use this pkg in conjunction
-with https://github.com/MagerValp/CreateUserPkg or another script to create any local users required
-in your environment.</string>
+	<string>Creates a pkg to disable the Apple setup assistant.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigSetupAssistant</string>
 	<key>Input</key>

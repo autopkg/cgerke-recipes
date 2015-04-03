@@ -3,8 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Disable Apple Registration Wizard. This is primarily used to avoid end users having to
-enter the registration information when the system boots for the first time after imaging.</string>
+	<string>Creates a payload free pkg to disable the Apple registration wizard.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigRegistrationWizard</string>
 	<key>Input</key>

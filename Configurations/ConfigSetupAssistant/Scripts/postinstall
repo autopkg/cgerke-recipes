@@ -1,6 +1,3 @@
 #!/bin/bash
 
-path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
-formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
-
 exit 0

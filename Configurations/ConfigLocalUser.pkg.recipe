@@ -3,7 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Create a local user. You must supply some payload items. See %RECIPE_DIR%/%NAME%/Root/tmp/ReadMe.md</string>
+	<string>Creates a distribution pkg to create a local user. Requires you to provide a payload.
+	See %RECIPE_DIR%/%NAME%/Root/tmp/ReadMe.md</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigLocalUser</string>
 	<key>Input</key>

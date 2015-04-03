@@ -1,19 +1,19 @@
 # How to
 
+## Add a payload
+
 ```
 /tmp
     /_config
     /_kcpassword.10.x 
 ```
 
-The “config” file should contain 3 variables:
-
+The "_config" file should contain 3 variables:
 
 ```
 short_name=
 UniqueID=
 ShadowHashData=
-
 ```
 
 The kcpassword should be a valid kcpassword file if you wish to have the image perform an autologin. You can add one for each OS as some major versions are different.

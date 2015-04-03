@@ -1,7 +1,0 @@
-#!/bin/bash
-
-formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
-
-# Possibly check first if the new user exists and decide what to do?
-
-exit 0

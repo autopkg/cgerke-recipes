@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ParentRecipe</key>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigRemoteManagement</string>
+	<key>Description</key>
+	<string>Creates a distribution pkg to enforce remote management with an agent. Requires you to provide a payload.
+	See %RECIPE_DIR%/%NAME%/Root/Library/Preferences/com.apple.VNCSettings.txt
+	Refer to the recipe launchagent to customise the configuration to suit your needs and the preference to
+	set your VNC passwrod. In my example I setup Remote Desktop to require the end user to accept an incoming
+	connection. You may for example want to the change the allUsers option to limit connections to admin
+	users only or even a specific user. This package can also set your VNC password, but right now you will
+	need to manually add your HASH to the com.apple.VNCSettings.txt preference as I have not yet
+	added a processor to do it for you. Still thinking about how to implement that in a nice way because this
+	type of config is very subjective.
+	</string>
+	<key>Identifier</key>
+	<string>com.github.autopkg.cgerke-recipes.mpkg.ConfigRemoteManagement</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>ConfigRemoteManagement</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.4.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Comment</key>
+			<string>Copy resources.</string>
+			<key>Processor</key>
+			<string>Copier</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_DIR%/%NAME%/Resources</string>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/Resources</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Create distribution file.</string>
+			<key>Processor</key>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/PkgDistributionInfoCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+				<key>distribution_file</key>
+				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Comment</key>
+			<string>Create a distribution pkg using a shared processor.</string>
+			<key>Processor</key>
+			<string>com.github.autopkg.cgerke-recipes.SharedProcessors/PkgDistributionCreator</string>
+			<key>Arguments</key>
+			<dict>
+				<key>source_path</key>
+				<string>%RECIPE_CACHE_DIR%/</string>
+				<key>destination_file</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.mpkg</string>
+				<key>distribution_file</key>
+				<string>%RECIPE_CACHE_DIR%/Resources/distribution.xml</string>
+				<key>resources_path</key>
+				<string>%RECIPE_CACHE_DIR%/Resources</string>
+			</dict>
+			<key>SharedProcessorRepoURL</key>
+			<string>https://github.com/autopkg/cgerke-recipes</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -5,7 +5,7 @@
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigGatekeeper</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a payload free package. Disable Gatekeeper.</string>
+	<string>Creates a payload free cmmac wrapped pkg to disable gatekeeper. Can only target a booted volume.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigGatekeeper</string>
 	<key>Input</key>

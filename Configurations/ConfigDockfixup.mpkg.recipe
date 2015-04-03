@@ -5,7 +5,7 @@
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigDockfixup</string>
 	<key>Description</key>
-	<string>Create a distribution style package. Create a payload free package. Disable Dockfixup.</string>
+	<string>Creates a payload free distribution pkg to disable default apps in the Apple Dock.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.mpkg.ConfigDockfixup</string>
 	<key>Input</key>

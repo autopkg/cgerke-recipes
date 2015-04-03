@@ -5,6 +5,8 @@ formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
 device_build=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductBuildVersion) # 13A603 etc
 
+# I hate everything about this postinstall, a good candidate for a profile.
+
 # think about other languages, or better still stop editing the default template..not really "best practise".
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
 

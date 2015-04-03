@@ -5,7 +5,7 @@
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigSoftwareUpdate</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a payload free package. Disable schedule Apple Software Update.</string>
+	<string>Creates a cmmac wrapped pkg to disable the Apple software update check. Can only target a booted volume.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigSoftwareUpdate</string>
 	<key>Input</key>

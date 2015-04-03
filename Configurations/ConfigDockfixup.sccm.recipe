@@ -5,9 +5,7 @@
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigDockfixup</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a payload free package. Disable Apple Dockfixup changes by moving the plist. This file is responsible
-for adding default items to the dock during a new home directory creation. It also changes the dock items after an
-upgrade if Apple have changed the name of an item.</string>
+	<string>Creates a payload free cmmac wrapped pkg to disable default apps in the Apple Dock.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigDockfixup</string>
 	<key>Input</key>
