@@ -1,0 +1,16 @@
+#!/bin/bash
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+
+if [ "${3}" != "/" ]; then
+	echo "Not a booted volume."
+else
+	apachectl start
+fi
+
+defaults write "${path_root}/System/Library/LaunchDaemons/org.apache.httpd.plist" Disabled -bool false
+
+# need php?
+# uncomment this #LoadModule php5_module libexec/apache2/libphp5.so
+
+exit 0

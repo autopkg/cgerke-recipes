@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# I hate everything about this postinstall, a good candidate for a profile.
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+
+# probably think about write a loop (through dscl user homes) for existing users and also other languages
+# also note the usage "-currentHost" means this must be run on a booted volume
+
+# user template
+if [ "${3}" != "/" ]; then
+	exit 1
+else
+
+	mkdir "/System/Library/User Template/English.lproj/Library/Preferences/ByHost"
+
+	# com.apple.screensaver.${UUID}.plist
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" idleTime -int "1800"
+
+	# com.apple.screensaver.${UUID}.plist
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" CleanExit -string "YES"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" PrefsVersion -int "100"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "moduleName" -string "Computer Name"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "path" -string "/System/Library/Frameworks/ScreenSaver.framework/Resources/Computer Name.saver"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.screensaver" "moduleDict" -dict-add "type" -int "0"
+	defaults -currentHost write "/System/Library/User Template/English.lproj/Library/Preferences/ByHost/com.apple.ScreenSaver.Basic" "MESSAGE" -string "${MESSAGE}"
+
+	# com.apple.screensaver.plist
+	defaults write "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.screensaver" askForPassword -int 1
+	defaults write "/System/Library/User Template/English.lproj/Library/Preferences/com.apple.screensaver" askForPasswordDelay -int 0
+
+fi
+
+exit 0
