@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# I hate everything about this postinstall, a good candidate for a profile.
+# I hate everything about this postinstall, a good candidate for a profile. stop modifying system services!
 
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
@@ -8,7 +8,7 @@ device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersio
 device_build=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductBuildVersion) # 13A603 etc
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
-defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
+defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
 
 # loop user home directories
 if [ "${path_root}" != "/" ]; then
@@ -19,7 +19,7 @@ if [ "${path_root}" != "/" ]; then
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl -f "${path_root}/var/db/dslocal/nodes/Default" localonly -read /Local/Target/Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${path_root}/${user_home}/Library/Preferences" ]; then
-			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
+			defaults write "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
 			chown "${u}" "${path_root}${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
 		fi
 	fi
@@ -32,7 +32,7 @@ else
 	if [ $user_id -gt 500 ]; then
 		user_home=$(dscl . -read /Users/$u NFSHomeDirectory | awk '{print $2}')
 		if [ -e "${user_home}/Library/Preferences" ]; then
-			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" GestureMovieSeen none
+			defaults write "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist" LastSeenBuddyBuildVersion "${device_build}"
 			chown "${u}" "${user_home}/Library/Preferences/com.apple.SetupAssistant.plist"
 		fi
 	fi

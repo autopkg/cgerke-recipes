@@ -1,10 +1,9 @@
 #!/bin/bash
 
+# I hate everything about this postinstall, a good candidate for a profile. you need to kill cprefs.
+
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
-
-# you need to kill cprefs if this is a booted volume
-# I hate everything about this postinstall, a good candidate for a profile.
 
 # think about other languages, or better still stop editing the default template..not really "best practise".
 defaults write "${path_root}/System/Library/User Template/English.lproj/Library/Preferences/com.apple.SetupAssistant.plist" DidSeeCloudSetup -bool true
