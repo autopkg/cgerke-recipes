@@ -1,0 +1,14 @@
+#!/bin/bash
+
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+# Security authorizationdb can only be run on a booted volume so let's test for it.
+# Think about testing for OS version too when you have time (in case of deprecation etc).
+if [ "${3}" != "/" ]; then
+	exit 0
+else
+	# Backup!
+	security authorizationdb read system.preferences.network > "/etc/authorization.system.preferences.network.plist.${formatted_date}"
+	security authorizationdb read system.services.systemconfiguration.network > "/etc/authorization.system.services.systemconfiguration.network.plist.${formatted_date}"
+fi
+
+exit 0

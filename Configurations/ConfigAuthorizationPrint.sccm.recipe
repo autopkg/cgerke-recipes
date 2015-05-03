@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigAirdrop</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigAuthorizationPrint</string>
 	<key>Description</key>
-	<string>Create a cmmac wrapped pkg to disable Airdrop.</string>
+	<string>Create a cmmac package. Create a payload free package. Modify Authorization.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigAirdrop</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigAuthorizationPrint</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>ConfigAirdrop</string>
+		<string>ConfigAuthorizationPrint</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
