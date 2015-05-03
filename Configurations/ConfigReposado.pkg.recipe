@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a payload free package. Configure Reposado.</string>
+	<string>Create a payload free package. Configure Reposado with Margarita. Very subjective and requires some more error checking in postinstall.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_ConfigureReposado</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigReposado</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>ConfigureReposado</string>
+		<string>ConfigReposado</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
