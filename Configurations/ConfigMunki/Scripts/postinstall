@@ -1,0 +1,59 @@
+#!/bin/bash
+
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+
+# Munki, it's awesome, its here https://github.com/munki/munki
+#/Library/Server/Web/Config/apache2/ReadMe.txt
+
+if [ -e "/Users/Shared/munki_repo" ]; then
+	echo  "Can see Munki."
+else
+	# munki repo path
+	mkdir -p "/Users/Shared/munki_repo"
+	mkdir -p "/Users/Shared/munki_repo/catalogs"
+	mkdir -p "/Users/Shared/munki_repo/manifests"
+	mkdir -p "/Users/Shared/munki_repo/pkgs"
+	mkdir -p "/Users/Shared/munki_repo/pkgsinfo"
+	# permissions
+	chown -R root:admin /Users/Shared/munki_repo
+	chmod -R 775 /Users/Shared/munki_repo
+fi
+
+if [ -e "/Library/Server/Web/Data/Sites/Default" ]; then
+	ln -s "/Users/Shared/munki_repo" "/Library/Server/Web/Data/Sites/Default/"
+else
+	echo "Probably OSX Client."
+	cp /etc/apache2/httpd.conf{,.$formatted_date}
+	# gcc
+	if [ ! -e "/Library/WebServer/Documents/reposado" ]; then
+		ln -s "/Users/Shared/munki_repo" "/Library/WebServer/Documents/"
+	fi
+	sudo defaults write "/System/Library/LaunchDaemons/org.apache.httpd.plist" Disabled -bool false
+	# Uncomment LoadModule rewrite_module libexec/apache2/mod_rewrite.so
+	apachect restart
+fi
+
+# Download, install, configure
+# https://github.com/munki/munki/releases/latest
+
+# Munkiwebadmin, it's awesome, its here https://github.com/munki/munkiwebadmin
+easy_install virtualenv
+cd /Users/Shared
+virtualenv munkiwebadmin_env
+cd munkiwebadmin_env
+source bin/activate
+pip install django==1.5.1
+pip install django-wsgiserver==0.8.0beta
+git clone https://github.com/munki/munkiwebadmin/ munkiwebadmin
+cd munkiwebadmin
+cp settings_template.py settings.py
+
+#Edit settings.py:
+
+#Set ADMINS to an administrative name and email
+#Set TIME_ZONE to the appropriate timezone
+#Under INSTALLED_APPS uncomment django_wsgiserver
+#Set MUNKI_REPO_DIR to the local filesystem path to your munki repo. (In this case, /Users/Shared/munki_repo)
+#Make other edits as you feel comfortable
+
+exit 0

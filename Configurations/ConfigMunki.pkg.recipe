@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a payload free package. Configure Munki.</string>
+	<string>Create a payload free package. Configure Munki. Very subjective and requires some more error checking in postinstall.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_ConfigureMunki</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigMunki</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>ConfigureMunki</string>
+		<string>ConfigMunki</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>

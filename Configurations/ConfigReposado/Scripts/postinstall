@@ -5,19 +5,11 @@ formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
 # Reposado, it's awesome, its here https://github.com/wdas/reposado
 #/Library/Server/Web/Config/apache2/ReadMe.txt
 
-# must sudo
-if [[ $(id -u) -ne 0 ]]; then
-  echo "Run this script with sudo, just to be safe."
-  exit 1
-fi
-
-httpd -v
-
 if [ -e "/Users/Shared/reposado" ]; then
 	echo  "Can see reposado."
 else
 	echo  "Can't see reposado. Cloning."
-	cd "/Volumes/Data/"
+	cd "/Users/Shared/"
 	git clone https://github.com/wdas/reposado.git
 fi
 
@@ -25,9 +17,9 @@ fi
 #python /Users/Shared/reposado/setup.py install
 
 if [ -e "/Library/Server/Web/Data/Sites/Default" ]; then
-	ln -s "/Users/Shared/reposado" "/Library/Server/Web/Data/Sites/Default/reposado"
+	ln -s "/Users/Shared/reposado" "/Library/Server/Web/Data/Sites/Default/"
 	# hack
-	ln -s "/Users/Shared/reposado/html/content" "/Library/Server/Web/Data/Sites/Default/reposado/content"
+	ln -s "/Users/Shared/reposado/html/content" "/Library/Server/Web/Data/Sites/Default/reposado/"
 else
 	echo "Probably OSX Client."
 	cp /etc/apache2/httpd.conf{,.$formatted_date}
@@ -36,7 +28,7 @@ else
 		touch "/Library/WebServer/Documents/.htaccess"
 		chown _www "/Library/WebServer/Documents/.htaccess"
 		echo "Linking Reposado."
-		ln -s "/Users/Shared/reposado" "/Library/WebServer/Documents/reposado"
+		ln -s "/Users/Shared/reposado" "/Library/WebServer/Documents/"
 	fi
 	sudo defaults write "/System/Library/LaunchDaemons/org.apache.httpd.plist" Disabled -bool false
 	# Uncomment LoadModule rewrite_module libexec/apache2/mod_rewrite.so
