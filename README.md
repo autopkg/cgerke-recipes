@@ -1,7 +1,7 @@
 autopkg
 =======
 
-AutoPKG Recipes all the way from Sydney, Australia.
+AutoPKG Recipes all the way from Perth, Western Australia.
 
 Several of my recipes use parent recipes from the following repos;
 

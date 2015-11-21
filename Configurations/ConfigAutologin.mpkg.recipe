@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigAutologin</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigAutoLogin</string>
 	<key>Description</key>
 	<string>Creates a distribution pkg to enable autologin for specific user. Requires you to provide a payload.
 	See %RECIPE_DIR%/%NAME%/Root/tmp/Readme.md</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.mpkg.ConfigAutologin</string>
+	<string>com.github.autopkg.cgerke-recipes.mpkg.ConfigAutoLogin</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>ConfigAutologin</string>
+		<string>ConfigAutoLogin</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
