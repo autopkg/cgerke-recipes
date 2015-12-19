@@ -5,8 +5,8 @@
 	<key>IFPkgDescriptionDescription</key>
 	<string>FIRSTBOOT script example. This type of script is very subjective so
 	it serves as an example of a minimal "first boot" script to bootstrap your
-	deployment system. A lot of people like to use LaunchDaemons for this too,
-	I just want to ensure some things occur well before the GUI.</string>
+	deployment system. Many people like to use LaunchDaemons for this, I just want
+	to ensure some things occur well before the GUI.</string>
 	<key>IFPkgDescriptionTitle</key>
 	<string>FIRSTBOOT</string>
 </dict>

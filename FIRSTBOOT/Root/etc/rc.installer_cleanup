@@ -1,5 +1,6 @@
 #!/bin/bash
-# Minimal "first boot" script
+# Minimal "firstboot" script
+# Note not everything is available during rc stage, keep it simple.
 
 SYS_VERS=$(/usr/bin/sw_vers -productVersion)
 SYS_BUILD=$(/usr/bin/sw_vers -buildVersion)
@@ -30,6 +31,7 @@ EOPROFILE
 /usr/bin/touch "/Library/Receipts/.SetupRegComplete"
 
 # Preferences for new users
+# Ugly! Figure out why I can't use defaults during rc stage
 /bin/cat > "/var/tmp/com.apple.SetupAssistant.plist" << EOPROFILE
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -63,7 +65,8 @@ EOPROFILE
 for USER_TEMPLATE in "/System/Library/User Template"/*
 do
 	if [ -d "${USER_TEMPLATE}"/Library/Preferences ]; then
-		cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist
+		/bin/cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist
+		# Figure out why I can't use defaults during rc stage
 		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist DidSeeCloudSetup -bool TRUE
 		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist GestureMovieSeen none
 		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedBuild "${SYS_BUILD}"
@@ -80,7 +83,8 @@ done
 #	USER_UID=`/usr/bin/basename "${USER_HOME}"`
 #    if [ ! "${USER_UID}" = "Shared" ]; then
 #      if [ -d "${USER_HOME}"/Library/Preferences ]; then
-#		cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+#		# Figure out why I can't use defaults during rc stage
+#		/bin/cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
 #      	/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist DidSeeCloudSetup -bool TRUE
 #		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist GestureMovieSeen none
 #		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedBuild "${SYS_BUILD}"
@@ -97,7 +101,9 @@ done
 /usr/sbin/scutil --set LocalHostName "${SYS_SERIAL}"
 /usr/sbin/scutil --set HostName "${SYS_SERIAL}"
 /bin/hostname "${SYS_SERIAL}"
+# Figure out why I can't use defaults during rc stage
 #/usr/bin/defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" NetBIOSName "${SYS_SERIAL}"
+# Ugly! Figure out why I can't use defaults during rc stage
 /bin/cat > "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" << EOPROFILE
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">

@@ -6,8 +6,8 @@
 	<string>com.github.autopkg.cgerke-recipes.pkg.FIRSTBOOT</string>
 	<key>Description</key>
 	<string>Create a cmmac package. Create a package. This type of script is very subjective so
-	it serves as an example of a minimal "first boot" script to bootstrap your deployment system. A lot
-	of people like to use LaunchDaemons for this too, I just want to ensure some things occur well before
+	it serves as an example of a minimal "first boot" script to bootstrap your deployment system. Many
+	people like to use LaunchDaemons for this, I just want to ensure some things occur well before
 	the GUI.</string>
 	<key>Identifier</key>
 	<string>com.github.autopkg.cgerke-recipes.sccm.FIRSTBOOT</string>

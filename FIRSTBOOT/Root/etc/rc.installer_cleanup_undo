@@ -1,4 +1,5 @@
 #!/bin/bash
+# Just for quicker testing
 
 # Enable GateKeeper
 /usr/sbin/spctl --master-enable
