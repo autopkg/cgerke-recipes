@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IFPkgDescriptionDescription</key>
+	<string>FIRSTBOOT script example. This type of script is very subjective so
+	it serves as an example of a minimal "first boot" script to bootstrap your
+	deployment system. A lot of people like to use LaunchDaemons for this too,
+	I just want to ensure some things occur well before the GUI.</string>
+	<key>IFPkgDescriptionTitle</key>
+	<string>FIRSTBOOT</string>
+</dict>
+</plist>

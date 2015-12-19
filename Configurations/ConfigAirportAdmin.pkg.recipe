@@ -3,17 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Create a package. Firstboot script example. This script sets the hostname etc to match the ethernet Mac
-address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
+	<string>Create a payload free pkg to require Administrator authorisation to create computer-to-computer networks.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_Firstboot</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigAirportAdmin</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Firstboot</string>
+		<string>ConfigAirportAdmin</string>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>0.2.9</string>
+	<string>0.4.0</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -37,7 +36,7 @@ address (without the colons). This type of script is very subjective so it serve
 		</dict>
 		<dict>
 			<key>Comment</key>
-			<string>Build the package.</string>
+			<string>Build the payload free package.</string>
 			<key>Processor</key>
 			<string>PkgCreator</string>
 			<key>Arguments</key>
@@ -50,30 +49,6 @@ address (without the colons). This type of script is very subjective so it serve
 				<dict>
 					<key>chown</key>
 					<array>
-						<dict>
-							<key>path</key>
-							<string>usr</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
-						<dict>
-							<key>path</key>
-							<string>usr/local</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
-						<dict>
-							<key>path</key>
-							<string>usr/local/bin</string>
-							<key>user</key>
-							<string>root</string>
-							<key>group</key>
-							<string>wheel</string>
-						</dict>
 					</array>
 					<key>id</key>
 					<string>com.github.autopkg.cgerke-recipes.%NAME%</string>

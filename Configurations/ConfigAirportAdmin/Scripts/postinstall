@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# I hate everything about this postinstall, a good candidate for a profile.
+
+path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
+formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
+device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
+
+# loop user home directories
+if [ "${path_root}" != "/" ]; then
+	# non-booted volume
+	# find the plist and use defaults
+	echo "Nothing to see yet..."
+else
+	# booted volume
+	# Require administrative authorisation to create comp-to-comp networks
+	/usr/libexec/airportd en1 prefs RequireAdminIBSS=YES
+fi
+
+
+exit 0

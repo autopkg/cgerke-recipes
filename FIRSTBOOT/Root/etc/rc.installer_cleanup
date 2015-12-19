@@ -1,0 +1,118 @@
+#!/bin/bash
+# Minimal "first boot" script
+
+SYS_VERS=$(/usr/bin/sw_vers -productVersion)
+SYS_BUILD=$(/usr/bin/sw_vers -buildVersion)
+SYS_SERIAL=$(/usr/sbin/ioreg -l | /usr/bin/grep IOPlatformSerialNumber | /usr/bin/awk '{print $4}' | /usr/bin/cut -d \" -f 2)
+
+# Disable GateKeeper
+/usr/sbin/spctl --master-disable
+
+# Disable GateKeeper re-arm
+#/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool false
+
+/bin/cat > "/Library/Preferences/com.apple.security.plist" << EOPROFILE
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GKAutoRearm</key>
+	<false/>
+	<key>SecItemSynchronizable</key>
+	<true/>
+</dict>
+</plist>
+EOPROFILE
+/usr/bin/plutil -convert binary1 "/Library/Preferences/com.apple.security.plist"
+
+# Disable Setup and Registration
+/usr/bin/touch "/private/var/db/.AppleSetupDone"
+/usr/bin/touch "/Library/Receipts/.SetupRegComplete"
+
+# Preferences for new users
+/bin/cat > "/var/tmp/com.apple.SetupAssistant.plist" << EOPROFILE
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DidSeeCloudSetup</key>
+	<true/>
+	<key>DidSeeSyncSetup</key>
+	<true/>
+	<key>DidSeeSyncSetup2</key>
+	<true/>
+	<key>DidSeeiCloudSecuritySetup</key>
+	<true/>
+	<key>GestureMovieSeen</key>
+	<string>none</string>
+	<key>LastPreLoginTasksPerformedBuild</key>
+	<string>${SYS_BUILD}</string>
+	<key>LastPreLoginTasksPerformedVersion</key>
+	<string>${SYS_VERS}</string>
+	<key>LastSeenBuddyBuildVersion</key>
+	<string>${SYS_BUILD}</string>
+	<key>LastSeenCloudProductVersion</key>
+	<string>${SYS_VERS}</string>
+	<key>LastSeenSyncProductVersion</key>
+	<string>${SYS_VERS}</string>
+</dict>
+</plist>
+EOPROFILE
+/usr/bin/plutil -convert binary1 "/var/tmp/com.apple.SetupAssistant.plist"
+
+for USER_TEMPLATE in "/System/Library/User Template"/*
+do
+	if [ -d "${USER_TEMPLATE}"/Library/Preferences ]; then
+		cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist
+		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist DidSeeCloudSetup -bool TRUE
+		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist GestureMovieSeen none
+		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedBuild "${SYS_BUILD}"
+		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedVersion "${SYS_VERS}"
+		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenBuddyBuildVersion "${SYS_BUILD}"
+		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenCloudProductVersion "${SYS_VERS}"
+	fi
+done
+  
+# Preferences for existing users
+# Make this smarter, users may not exist in /Users
+#for USER_HOME in /Users/*
+#do
+#	USER_UID=`/usr/bin/basename "${USER_HOME}"`
+#    if [ ! "${USER_UID}" = "Shared" ]; then
+#      if [ -d "${USER_HOME}"/Library/Preferences ]; then
+#		cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+#      	/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist DidSeeCloudSetup -bool TRUE
+#		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist GestureMovieSeen none
+#		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedBuild "${SYS_BUILD}"
+#		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedVersion "${SYS_VERS}"
+#		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenBuddyBuildVersion "${SYS_BUILD}"
+#		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenCloudProductVersion "${SYS_VERS}"
+#       /usr/sbin/chown "${USER_UID}" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+#      fi
+#    fi
+#done
+
+# Temporary identification
+/usr/sbin/scutil --set ComputerName "${SYS_SERIAL}"
+/usr/sbin/scutil --set LocalHostName "${SYS_SERIAL}"
+/usr/sbin/scutil --set HostName "${SYS_SERIAL}"
+/bin/hostname "${SYS_SERIAL}"
+#/usr/bin/defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" NetBIOSName "${SYS_SERIAL}"
+/bin/cat > "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" << EOPROFILE
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NetBIOSName</key>
+	<string>${SYS_SERIAL}</string>
+</dict>
+</plist>
+EOPROFILE
+/usr/bin/plutil -convert binary1 "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist"
+
+# Bootstrap FILEWAVE,MUNKI,SCCM here...
+
+# Self destruct
+sudo /usr/bin/srm "${0}"
+
+exit 0

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Enable GateKeeper
+/usr/sbin/spctl --master-enable
+
+# Enable GateKeeper re-arm
+/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool true
+
+# Enable Setup and Registration
+/bin/rm -f "/private/var/db/.AppleSetupDone"
+/bin/rm -f "/Library/Receipts/.SetupRegComplete"
+
+# Preferences for new users
+for USER_TEMPLATE in "/System/Library/User Template"/*
+do
+	if [ -d "${USER_TEMPLATE}"/Library/Preferences ]; then
+		/bin/rm -f "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist
+	fi
+done
+  
+# Preferences for existing users
+# Make this smarter, users may not exist in /Users
+#for USER_HOME in /Users/*
+#do
+#	USER_UID=`/usr/bin/basename "${USER_HOME}"`
+#    if [ ! "${USER_UID}" = "Shared" ]; then
+#      if [ -d "${USER_HOME}"/Library/Preferences/ByHost ]; then
+#      	/bin/rm -f "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+#      fi
+#    fi
+#done
+
+# Temporary identification
+/usr/sbin/scutil --set ComputerName "MacintoshHD"
+/usr/sbin/scutil --set LocalHostName "MacintoshHD"
+/usr/sbin/scutil --set HostName "MacintoshHD"
+/bin/hostname "MacintoshHD"
+/usr/bin/defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" NetBIOSName "MacintoshHD"
+
+exit 0

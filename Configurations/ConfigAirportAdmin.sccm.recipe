@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.ThinImaging_Firstboot</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.ConfigAirportAdmin</string>
 	<key>Description</key>
-	<string>Create a cmmac package. Create a package. Firstboot script example. This script sets the hostname etc to match the ethernet Mac address (without the colons). This type of script is very subjective so it serves as an example at the moment.</string>
+	<string>Create a cmmac wrapped pkg to require Administrator authorisation to create computer-to-computer networks.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.sccm.ThinImaging_Firstboot</string>
+	<string>com.github.autopkg.cgerke-recipes.sccm.ConfigAirportAdmin</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
-		<string>Firstboot</string>
+		<string>ConfigAirportAdmin</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
