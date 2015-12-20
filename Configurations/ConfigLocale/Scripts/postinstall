@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # A good candidate for a profile.
+# This example has a plist payload, you could instead write the values programmatically as below. This would save you having to use a different
+# package for every Locale you need to support
+# You need to kill cprefs.
 
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 device_os=$(defaults read "${path_root}/System/Library/CoreServices/SystemVersion" ProductVersion)	# 10.9 etc
@@ -11,8 +14,7 @@ apple_metricunits="true"
 keyboardlayout_name="Australian"
 keyboardlayout_id="15"
 
-# Default locale
-# Test if the measurement/metric need setting now...maybe redundant
+# Commented because this package has a payload, you can do it however you prefer.
 /usr/bin/defaults write "${path_root}/Library/Preferences/.GlobalPreferences.plist" AppleLocale -string "${apple_locale}"
 /usr/bin/defaults write "${path_root}/Library/Preferences/.GlobalPreferences.plist" Country -string "${apple_country}"
 /usr/bin/defaults write "${path_root}/Library/Preferences/.GlobalPreferences.plist" AppleMeasurementUnits -string "${apple_measurementunits}"
@@ -61,6 +63,7 @@ keyboardlayout_id="15"
 </plist>
 EOPROFILE
 /usr/bin/plutil -convert binary1 "${path_root}/var/tmp/com.apple.HIToolbox.loginwindow.plist"
+killall cfprefsd
 
 # Ugly! Default system keyboard input
 /bin/cat > "${path_root}/Library/Preferences/com.apple.HIToolbox.plist" << EOPROFILE
@@ -94,6 +97,7 @@ EOPROFILE
 </plist>
 EOPROFILE
 /usr/bin/plutil -convert binary1 "${path_root}/Library/Preferences/com.apple.HIToolbox.plist"
+killall cfprefsd
 
 # loop user home directories
 if [ "${path_root}" != "/" ]; then
@@ -127,7 +131,6 @@ if [ "${path_root}" != "/" ]; then
 	
 else
 	# booted volume
-	killall cfprefsd
 	# check dscl for users UID > 500
 	for u in $(dscl . -ls /Users | grep -v '^_'); do
 	user_id=$(dscl . -read /Users/$u UniqueID | awk '{print $2}')
