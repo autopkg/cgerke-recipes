@@ -103,6 +103,8 @@ EOPROFILE
 killall cfprefsd
 
 # loop user home directories
+# think about writing a launchdaemon here too for scenarios where this pkg is injected into an image. you would need
+# a way for this cleanup to occur at boot
 if [ "${path_root}" != "/" ]; then
 	# non-booted volume
 	# check dscl for users UID > 500
