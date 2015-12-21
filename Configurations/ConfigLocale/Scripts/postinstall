@@ -66,6 +66,9 @@ keyboardlayout_id="15"
 </plist>
 EOPROFILE
 /usr/bin/plutil -convert binary1 "${path_root}/var/tmp/com.apple.HIToolbox.loginwindow.plist"
+# Check special permissions in El-Capitan. Maybe redundant.
+/usr/sbin/chown securityagent:wheel "/var/tmp/com.apple.HIToolbox.loginwindow.plist"
+/bin/chmod 644 "/var/tmp/com.apple.HIToolbox.loginwindow.plist"
 killall cfprefsd
 
 # Ugly! Default system keyboard input
