@@ -11,7 +11,7 @@ SYS_SERIAL=$(/usr/sbin/ioreg -l | /usr/bin/grep IOPlatformSerialNumber | /usr/bi
 
 # Disable GateKeeper re-arm
 #/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool false
-
+# Ugly! Figure out why I can't use defaults during rc stage
 /bin/cat > "/Library/Preferences/com.apple.security.plist" << EOPROFILE
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -119,6 +119,7 @@ EOPROFILE
 # Bootstrap FILEWAVE,MUNKI,SCCM here...
 
 # Self destruct
-sudo /usr/bin/srm "${0}"
+/usr/bin/srm "/var/tmp/com.apple.SetupAssistant.plist"
+/usr/bin/srm "${0}"
 
 exit 0

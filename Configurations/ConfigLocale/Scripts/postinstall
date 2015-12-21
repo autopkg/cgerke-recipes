@@ -154,6 +154,7 @@ else
 			#/usr/bin/defaults delete "${user_home}/Library/Preferences/com.apple.HIToolbox.plist" AppleInputSourceHistory
 			#/usr/bin/defaults delete "${user_home}/Library/Preferences/com.apple.HIToolbox.plist" AppleSelectedInputSources
 			#/usr/sbin/chown "${user_id}" "${user_home}/Library/Preferences/com.apple.HIToolbox.plist"
+			killall cfprefsd
 		fi
 	fi
 	done
