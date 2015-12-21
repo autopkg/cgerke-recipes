@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# I hate everything about this postinstall, a good candidate for a profile.
+# A good candidate for a profile.
 
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
 formatted_date=$(date +"%Y%m%d%H%M%S") #++ date to string
@@ -26,6 +26,8 @@ if [ "${path_root}" != "/" ]; then
 	
 else
 	# booted volume
+	# Test this alternative to avoid a reboot.
+	#ifconfig awdl0 down
 	# check dscl for users UID > 500
 	for u in $(dscl . -ls /Users | grep -v '^_'); do
 	user_id=$(dscl . -read /Users/$u UniqueID | awk '{print $2}')
@@ -38,12 +40,5 @@ else
 	fi
 	done
 fi
-
-# test the implications of this
-#if [ "${path_root}" != "/" ]; then
-#	echo "Not a booted volume."
-#else
-#	ifconfig awdl0 down
-#fi
 
 exit 0
