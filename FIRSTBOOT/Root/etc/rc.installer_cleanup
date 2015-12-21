@@ -12,7 +12,7 @@ SYS_SERIAL=$(/usr/sbin/ioreg -l | /usr/bin/grep IOPlatformSerialNumber | /usr/bi
 # Disable GateKeeper re-arm
 #/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool false
 # Ugly! Figure out why I can't use defaults during rc stage
-/bin/cat > "/Library/Preferences/com.apple.security.plist" << EOPROFILE
+/bin/cat > "/Library/Preferences/com.apple.security.plist" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -23,7 +23,7 @@ SYS_SERIAL=$(/usr/sbin/ioreg -l | /usr/bin/grep IOPlatformSerialNumber | /usr/bi
 	<true/>
 </dict>
 </plist>
-EOPROFILE
+EOF
 /usr/bin/plutil -convert binary1 "/Library/Preferences/com.apple.security.plist"
 
 # Disable Setup and Registration
@@ -32,7 +32,7 @@ EOPROFILE
 
 # Preferences for new users
 # Ugly! Figure out why I can't use defaults during rc stage
-/bin/cat > "/var/tmp/com.apple.SetupAssistant.plist" << EOPROFILE
+/bin/cat > "/var/tmp/com.apple.SetupAssistant.plist" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -59,7 +59,7 @@ EOPROFILE
 	<string>${SYS_VERS}</string>
 </dict>
 </plist>
-EOPROFILE
+EOF
 /usr/bin/plutil -convert binary1 "/var/tmp/com.apple.SetupAssistant.plist"
 
 for USER_TEMPLATE in "/System/Library/User Template"/*
@@ -104,7 +104,7 @@ done
 # Figure out why I can't use defaults during rc stage
 #/usr/bin/defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" NetBIOSName "${SYS_SERIAL}"
 # Ugly! Figure out why I can't use defaults during rc stage
-/bin/cat > "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" << EOPROFILE
+/bin/cat > "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -113,7 +113,7 @@ done
 	<string>${SYS_SERIAL}</string>
 </dict>
 </plist>
-EOPROFILE
+EOF
 /usr/bin/plutil -convert binary1 "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist"
 
 # Bootstrap FILEWAVE,MUNKI,SCCM here...
