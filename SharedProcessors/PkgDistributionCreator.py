@@ -18,8 +18,6 @@
 
 # chris.gerke@gmail.com
 # Borrowed code and concepts from FlatPkgUnpacker.py (Copyright 2013 Timothy Sutton) in the AutoPKG core.
-# see comments throughout, there is a some todo items
-# figure out how to make this a shared processor
 
 import os.path
 import subprocess
