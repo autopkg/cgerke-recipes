@@ -2,7 +2,8 @@
 
 # A good candidate for a profile.
 # This example has a plist payload, you could instead write the values programmatically as below. This would save you having to use a different
-# package for every Locale you need to support
+# package for every Locale you need to support.
+# In my workflow I actually detect the gateway IP for each office and use that as a variable to decide which locale package should be received.
 # You need to kill cprefs.
 
 path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi #++ fix //
@@ -14,7 +15,9 @@ apple_metricunits="true"
 keyboardlayout_name="Australian"
 keyboardlayout_id="15"
 
-# Commented because this package has a payload, you can do it however you prefer.
+# Default system locale
+# You need to delete any existing USER GlobalPreferences to override them
+# Setting the language with /usr/sbin/languagesetup -langspec used to zap this preference, but that doesn't seem to happen anymore
 /usr/bin/defaults write "${path_root}/Library/Preferences/.GlobalPreferences.plist" AppleLocale -string "${apple_locale}"
 /usr/bin/defaults write "${path_root}/Library/Preferences/.GlobalPreferences.plist" Country -string "${apple_country}"
 /usr/bin/defaults write "${path_root}/Library/Preferences/.GlobalPreferences.plist" AppleMeasurementUnits -string "${apple_measurementunits}"
@@ -27,13 +30,13 @@ keyboardlayout_id="15"
 <plist version="1.0">
 <dict>
 	<key>AppleCurrentKeyboardLayoutInputSourceID</key>
-	<string>com.apple.keylayout.Australian</string>
+	<string>com.apple.keylayout.${keyboardlayout_name}</string>
 	<key>com.apple.HIToolbox</key>
 	<dict>
 		<key>AppleDefaultAsciiInputSource</key>
 		<array>
-			<string>Australian</string>
-			<integer>15</integer>
+			<string>${keyboardlayout_name}</string>
+			<integer>${keyboardlayout_id}</integer>
 			<string>Keyboard Layout</string>
 		</array>
 		<key>AppleEnabledInputSources</key>
@@ -42,9 +45,9 @@ keyboardlayout_id="15"
 				<key>InputSourceKind</key>
 				<string>Keyboard Layout</string>
 				<key>KeyboardLayout ID</key>
-				<integer>15</integer>
+				<integer>${keyboardlayout_id}</integer>
 				<key>KeyboardLayout Name</key>
-				<string>Australian</string>
+				<string>${keyboardlayout_name}</string>
 			</dict>
 		</array>
 		<key>AppleSelectedInputSources</key>
@@ -53,9 +56,9 @@ keyboardlayout_id="15"
 				<key>InputSourceKind</key>
 				<string>Keyboard Layout</string>
 				<key>KeyboardLayout ID</key>
-				<integer>15</integer>
+				<integer>${keyboardlayout_id}</integer>
 				<key>KeyboardLayout Name</key>
-				<string>Australian</string>
+				<string>${keyboardlayout_name}</string>
 			</dict>
 		</array>
 	</dict>
