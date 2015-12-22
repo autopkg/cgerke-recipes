@@ -25,7 +25,7 @@
                 <key>request_headers</key>
                 <dict>
                     <key>User-Agent</key>
-                    <string>Safari 9.0.2</string>
+                    <string>Safari 8.0.2</string>
                 </dict>
                 <key>re_pattern</key>
                 <string>(Wireshark 2.* 64.dmg)</string>
