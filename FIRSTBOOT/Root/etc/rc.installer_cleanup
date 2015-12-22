@@ -1,6 +1,7 @@
 #!/bin/bash
 # Minimal "firstboot" script
 # Note not everything is available during rc stage, keep it simple.
+# Redirction is ugly, but "defaults write..." won't work in rc stage
 
 SYS_VERS=$(/usr/bin/sw_vers -productVersion)
 SYS_BUILD=$(/usr/bin/sw_vers -buildVersion)
@@ -10,8 +11,6 @@ SYS_SERIAL=$(/usr/sbin/ioreg -l | /usr/bin/grep IOPlatformSerialNumber | /usr/bi
 /usr/sbin/spctl --master-disable
 
 # Disable GateKeeper re-arm
-#/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool false
-# Ugly! Figure out why I can't use defaults during rc stage
 /bin/cat > "/Library/Preferences/com.apple.security.plist" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -27,7 +26,6 @@ EOF
 /usr/bin/plutil -convert binary1 "/Library/Preferences/com.apple.security.plist"
 
 # Disable iCloud and Last... Wizards
-# Ugly! Figure out why I can't use defaults during rc stage
 /bin/cat > "/var/tmp/com.apple.SetupAssistant.plist" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -65,14 +63,7 @@ do
 	USER_UID=`/usr/bin/basename "${USER_HOME}"`
     if [ ! "${USER_UID}" = "Shared" ]; then
       if [ -d "${USER_HOME}"/Library/Preferences ]; then
-		# Figure out why I can't use defaults during rc stage
 		/bin/cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
-      	/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist DidSeeCloudSetup -bool TRUE
-		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist GestureMovieSeen none
-		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedBuild "${SYS_BUILD}"
-		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedVersion "${SYS_VERS}"
-		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenBuddyBuildVersion "${SYS_BUILD}"
-		/usr/bin/defaults write "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenCloudProductVersion "${SYS_VERS}"
         /usr/sbin/chown "${USER_UID}" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
         /bin/chmod 777 "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
       fi
@@ -83,14 +74,7 @@ done
 for USER_TEMPLATE in "/System/Library/User Template"/*
 do
 	if [ -d "${USER_TEMPLATE}"/Library/Preferences ]; then
-		# Ugly! Figure out why I can't use defaults during rc stage
 		/bin/cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist
-		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist DidSeeCloudSetup -bool TRUE
-		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist GestureMovieSeen none
-		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedBuild "${SYS_BUILD}"
-		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastPreLoginTasksPerformedVersion "${SYS_VERS}"
-		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenBuddyBuildVersion "${SYS_BUILD}"
-		#/usr/bin/defaults write "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist LastSeenCloudProductVersion "${SYS_VERS}"
 	fi
 done
 
@@ -103,10 +87,6 @@ done
 /usr/sbin/scutil --set LocalHostName "${SYS_SERIAL}"
 /usr/sbin/scutil --set HostName "${SYS_SERIAL}"
 /bin/hostname "${SYS_SERIAL}"
-
-# Ugly! Figure out why I can't use defaults during rc stage
-#/usr/bin/defaults write "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" NetBIOSName "${SYS_SERIAL}"
-# Ugly! Figure out why I can't use defaults during rc stage
 /bin/cat > "/Library/Preferences/SystemConfiguration/com.apple.smb.server.plist" << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
