@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.googlecode.autopkg.pkg.AdobeReader</string>
+	<string>com.github.autopkg.pkg.AdobeReader</string>
 	<key>Description</key>
 	<string>Downloads the latest Adobe Reader version and creates a cmmac package for deploying via Microsoft SCCM.</string>
 	<key>Identifier</key>
