@@ -61,12 +61,12 @@ EOF
 for USER_HOME in /Users/*
 do
 	USER_UID=`/usr/bin/basename "${USER_HOME}"`
-    if [ ! "${USER_UID}" = "Shared" ]; then
-      if [ -d "${USER_HOME}"/Library/Preferences ]; then
-		/bin/cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
-        /usr/sbin/chown "${USER_UID}" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
-        /bin/chmod 777 "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
-      fi
+	if [ ! "${USER_UID}" = "Shared" ]; then
+		if [ -d "${USER_HOME}"/Library/Preferences ]; then
+			/bin/cp -f "/var/tmp/com.apple.SetupAssistant.plist" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+			/usr/sbin/chown "${USER_UID}" "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+			/bin/chmod 777 "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+		fi
     fi
 done
 
