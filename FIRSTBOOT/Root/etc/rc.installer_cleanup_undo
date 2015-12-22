@@ -5,31 +5,46 @@
 /usr/sbin/spctl --master-enable
 
 # Enable GateKeeper re-arm
-/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool true
+#/usr/bin/defaults write /Library/Preferences/com.apple.security.plist GKAutoRearm -bool false
+# Ugly! Figure out why I can't use defaults during rc stage
+/bin/cat > "/Library/Preferences/com.apple.security.plist" << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GKAutoRearm</key>
+	<true/>
+	<key>SecItemSynchronizable</key>
+	<true/>
+</dict>
+</plist>
+EOF
+/usr/bin/plutil -convert binary1 "/Library/Preferences/com.apple.security.plist"
 
-# Enable Setup and Registration
-/bin/rm -f "/private/var/db/.AppleSetupDone"
-/bin/rm -f "/Library/Receipts/.SetupRegComplete"
+# Disable iCloud and Last... Wizards
+# Existing Users
+# Make this smarter, users may not exist in /Users
+for USER_HOME in /Users/*
+do
+	USER_UID=`/usr/bin/basename "${USER_HOME}"`
+    if [ ! "${USER_UID}" = "Shared" ]; then
+      if [ -d "${USER_HOME}"/Library/Preferences/ByHost ]; then
+      	/bin/rm -f "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
+      fi
+    fi
+done
 
-# Preferences for new users
+# Future Users
 for USER_TEMPLATE in "/System/Library/User Template"/*
 do
 	if [ -d "${USER_TEMPLATE}"/Library/Preferences ]; then
 		/bin/rm -f "${USER_TEMPLATE}"/Library/Preferences/com.apple.SetupAssistant.plist
 	fi
 done
-  
-# Preferences for existing users
-# Make this smarter, users may not exist in /Users
-#for USER_HOME in /Users/*
-#do
-#	USER_UID=`/usr/bin/basename "${USER_HOME}"`
-#    if [ ! "${USER_UID}" = "Shared" ]; then
-#      if [ -d "${USER_HOME}"/Library/Preferences/ByHost ]; then
-#      	/bin/rm -f "${USER_HOME}"/Library/Preferences/com.apple.SetupAssistant.plist
-#      fi
-#    fi
-#done
+
+# Enable Setup and Registration
+/bin/rm -f "/private/var/db/.AppleSetupDone"
+/bin/rm -f "/Library/Receipts/.SetupRegComplete"
 
 # Temporary identification
 /usr/sbin/scutil --set ComputerName "MacintoshHD"
