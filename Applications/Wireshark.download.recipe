@@ -25,10 +25,10 @@
                 <key>request_headers</key>
                 <dict>
                     <key>User-Agent</key>
-                    <string>Safari 8.0.2</string>
+                    <string>Safari 9.0.2</string>
                 </dict>
                 <key>re_pattern</key>
-                <string>Wireshark 1\.[1-9][1-9]\.[1-9] Intel 64\.dmg</string>
+                <string>(Wireshark 2.* 64.dmg)</string>
                 <key>result_output_var_name</key>
                 <string>match</string>
             </dict>
