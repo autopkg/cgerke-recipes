@@ -19,11 +19,16 @@
     <array>
         <dict>
             <key>Processor</key>
-            <string>AppDmgVersioner</string>
+            <string>PlistReader</string>
             <key>Arguments</key>
             <dict>
-                <key>dmg_path</key>
-                <string>%pathname%</string>
+                <key>info_path</key>
+                <string>%pathname%/MySQLWorkBench.app</string>
+                <key>plist_keys</key>
+                <dict>
+                    <key>CFBundleInfoDictionaryVersion</key>
+                    <string>version</string>
+                </dict>
             </dict>
         </dict>
         <dict>
@@ -57,7 +62,7 @@
             <key>Arguments</key>
             <dict>
                 <key>pkgname</key>
-                <string>%NAME%-%version%</string>
+                <string>%NAME%</string>
                 <key>pkg_request</key>
                 <dict>
                     <key>pkgdir</key>
