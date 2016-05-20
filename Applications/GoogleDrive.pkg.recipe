@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.derak.download.GoogleDrive</string>
+    <string>com.github.autopkg.cgerke-recipes.download.GoogleDrive</string>
     <key>Description</key>
     <string>Downloads the latest version Google Drive and builds a pkg.</string>
     <key>Identifier</key>
