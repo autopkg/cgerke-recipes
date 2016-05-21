@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ParentRecipe</key>
+	<string>com.github.n8felton.download.AppleJava6</string>
+	<key>Description</key>
+	<string>Downloads AppleJava6 and builds a pkg.</string>
+	<key>Identifier</key>
+	<string>com.github.autopkg.cgerke-recipes.pkg.AppleJava6</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>AppleJava6</string>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.4.0</string>
+	<key>Process</key>
+	<array>
+		<dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>source_pkg</key>
+                <string>%pathname%/*.pkg</string>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%NAME%.pkg</string>
+            </dict>
+        </dict>
+	</array>
+</dict>
+</plist>
