@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.keeleysam.recipes.FileZilla.download</string>
+    <string>com.github.autopkg.cgerke-recipes.download.FileZilla</string>
     <key>Description</key>
     <string>Downloads latest version of FileZilla and builds a pkg.</string>
     <key>Identifier</key>
