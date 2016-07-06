@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.pkg.MySQLWorkBench</string>
+    <string>com.github.autopkg.cgerke-recipes.download.MySQLWorkBench</string>
     <key>Description</key>
     <string>Builds MySQLWorkBench and imports into a Munki repo.</string>
     <key>Identifier</key>
@@ -31,19 +31,42 @@
         </dict>
     </dict>
     <key>MinimumVersion</key>
-    <string>0.4.0</string>
+    <string>0.6.0</string>
     <key>Process</key>
     <array>
         <dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
             <key>Arguments</key>
             <dict>
-                <key>pkg_path</key>
-                <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-                <key>repo_subdirectory</key>
-                <string>%MUNKI_REPO_SUBDIR%</string>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>installs</key>
+                    <array>
+                        <dict>
+                            <key>CFBundleIdentifier</key>
+                            <string>com.oracle.mysql.workbench</string>
+                            <key>CFBundleName</key>
+                            <string>MySQLWorkbench</string>
+                            <key>path</key>
+                            <string>/Applications/MySQLWorkbench.app</string>
+                            <key>type</key>
+                            <string>file</string>
+                        </dict>
+                    </array>
+                </dict>
             </dict>
-            <key>Processor</key>
-            <string>MunkiImporter</string>
+        </dict>
+        <dict>
+          <key>Processor</key>
+          <string>MunkiImporter</string>
+          <key>Arguments</key>
+          <dict>
+            <key>pkg_path</key>
+            <string>%pathname%</string>
+            <key>repo_subdirectory</key>
+            <string>%MUNKI_REPO_SUBDIR%</string>
+          </dict>
         </dict>
     </array>
 </dict>
