@@ -57,7 +57,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>version</key>
-				<string>0.1</string>
+				<string>1.7.5.1</string>
 				<key>template_path</key>
 				<string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
 				<key>infofile</key>
@@ -74,7 +74,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pkgname</key>
-				<string>%NAME%</string>
+				<string>%NAME%-%version%</string>
 				<key>pkg_request</key>
 				<dict>
 					<key>chown</key>
