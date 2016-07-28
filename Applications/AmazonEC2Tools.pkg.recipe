@@ -28,7 +28,7 @@
                 <key>Arguments</key>
                 <dict>
                     <key>pkgroot</key>
-                    <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>pkgdirs</key>
                     <dict>
                         <key>usr</key>
@@ -133,7 +133,7 @@
                         <key>id</key>
                         <string>com.github.cgerke.%NAME%</string>
                         <key>infofile</key>
-                        <string>%RECIPE_DIR%/%NAME%/PackageInfo</string>
+                        <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
                         <key>resources</key>
                         <string>%RECIPE_DIR%/%NAME%/Resources</string>
                         <key>options</key>
