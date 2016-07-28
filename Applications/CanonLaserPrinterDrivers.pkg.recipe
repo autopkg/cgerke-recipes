@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.n8felton.download.CanonLaserPrinterDrivers</string>
+    <string>com.github.n8felton.download.AppleCanonLaserPrinterDrivers</string>
     <key>Description</key>
     <string>Downloads the latest (Apple) Canon Laser Printer Drivers version and extracts the package.</string>
     <key>Identifier</key>
