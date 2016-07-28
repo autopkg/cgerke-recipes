@@ -73,7 +73,7 @@
                 <key>force_pkg_build</key>
                 <string>true</string>
 				<key>pkgname</key>
-				<string>%NAME%</string>
+				<string>%NAME%-%version%</string>
 				<key>pkg_request</key>
 				<dict>
 					<key>chown</key>
