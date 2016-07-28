@@ -25,7 +25,7 @@
                 <key>Arguments</key>
                 <dict>
                     <key>pkgroot</key>
-                    <string>%RECIPE_CACHE_DIR%/Root</string>
+                    <string>%RECIPE_CACHE_DIR%/pkgroot</string>
                     <key>pkgdirs</key>
                     <dict>
                         <key>tmp</key>
@@ -43,7 +43,7 @@
                     <key>source_path</key>
                     <string>%RECIPE_CACHE_DIR%/source/awscli-bundle</string>
                     <key>destination_path</key>
-                    <string>%RECIPE_CACHE_DIR%/Root/tmp/awscli-bundle</string>
+                    <string>%pkgroot%/tmp/awscli-bundle</string>
                 </dict>
             </dict>
             <dict>
@@ -91,7 +91,7 @@
                     <key>version</key>
                     <string>%output_string%</string>
                     <key>pkgroot</key>
-                    <string>%RECIPE_CACHE_DIR%/Root</string>
+                    <string>%pkgroot%</string>
                     <key>template_path</key>
                     <string>%RECIPE_DIR%/%NAME%/PackageInfoTemplate</string>
                     <key>infofile</key>
@@ -107,8 +107,6 @@
                 <string>PkgCreator</string>
                 <key>Arguments</key>
                 <dict>
-                    <key>force_pkg_build</key>
-                    <string>true</string>
                     <key>pkgname</key>
                     <string>%NAME%-%version%</string>
                     <key>pkg_request</key>
@@ -126,6 +124,8 @@
                         </array>
                         <key>id</key>
                         <string>com.github.autopkg.cgerke-recipes.%NAME%</string>
+                        <key>infofile</key>
+                        <string>%RECIPE_CACHE_DIR%/PackageInfo</string>
                         <key>options</key>
                         <string>purge_ds_store</string>
                         <key>resources</key>
