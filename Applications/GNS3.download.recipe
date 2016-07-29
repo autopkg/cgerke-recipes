@@ -3,44 +3,39 @@
 <plist version="1.0">
 <dict>
     <key>Description</key>
-    <string>Downloads the latest version of GNS3.</string>
+    <string>Downloads the latest version of GNS3</string>
     <key>Identifier</key>
     <string>com.github.autopkg.cgerke-recipes.download.GNS3</string>
     <key>Input</key>
     <dict>
+        <key>GITHUB_REPO</key>
+        <string>GNS3/gns3-gui</string>
         <key>NAME</key>
         <string>GNS3</string>
-                <key>USER_AGENT</key>
-				<string>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.28.10 (KHTML, like Gecko) Version/6.0.3 Safari/536.28.10</string>
-	</dict>
+    </dict>
     <key>MinimumVersion</key>
-    <string>0.4.0</string>
+    <string>0.6.1</string>
     <key>Process</key>
     <array>
-		<dict>
-            <key>Processor</key>
-            <string>URLTextSearcher</string>
+        <dict>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>https://github.com/GNS3/gns3-gui/releases</string>
-                <key>re_pattern</key>
-                <string>(?P&lt;dmg&gt;GNS3-1.5.0a2\S+dmg)</string>
-                <key>request_headers</key>
-                <dict>
-                        <key>user-agent</key>
-                        <string>%USER_AGENT%</string>
-                </dict>
+                <key>asset_regex</key>
+                <string>GNS3-.+.dmg</string>
+                <key>github_repo</key>
+                <string>%GITHUB_REPO%</string>
             </dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
         </dict>
         <dict>
-            <key>Processor</key>
-            <string>URLDownloader</string>
             <key>Arguments</key>
             <dict>
-                <key>url</key>
-                <string>https://github.com/GNS3/gns3-gui/releases/download/v1.5.0a2/%dmg%</string>
+                <key>filename</key>
+                <string>%NAME%-%version%.dmg</string>
             </dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
         </dict>
         <dict>
             <key>Processor</key>
