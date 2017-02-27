@@ -23,9 +23,9 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>https://dev.mysql.com/downloads/workbench</string>
+                <string>http://www.mirrorservice.org/sites/ftp.mysql.com/Downloads/MySQLGUITools/?C=M;O=D</string>
                 <key>re_pattern</key>
-                <string>(?P&lt;dmg&gt;mysql-workbench-community-\S+dmg)</string>
+               <string>(?P&lt;dmg&gt;mysql-workbench-community-[^"]+dmg)</string>
                 <key>request_headers</key>
                 <dict>
                         <key>user-agent</key>
@@ -39,7 +39,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>https://dev.mysql.com/get/Downloads/MySQLGUITools/%dmg%</string>
+                <string>http://www.mirrorservice.org/sites/ftp.mysql.com/Downloads/MySQLGUITools/%dmg%</string>
                 <key>filename</key>
                 <string>%NAME%.dmg</string>
             </dict>
@@ -54,7 +54,7 @@
             <key>input_path</key>
             <string>%pathname%/MySQLWorkbench.app</string>
             <key>requirement</key>
-            <string>identifier "com.oracle.mysql.workbench" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "VB5E2TV963"</string>
+            <string>identifier "com.oracle.workbench.MySQLWorkbench" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "VB5E2TV963"</string>
           </dict>
           <key>Processor</key>
           <string>CodeSignatureVerifier</string>
