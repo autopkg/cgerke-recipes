@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>ParentRecipe</key>
-	<string>com.github.autopkg.cgerke-recipes.pkg.MySQLWorkBench</string>
+	<string>com.github.autopkg.cgerke-recipes.pkg.MySQLWorkbench</string>
 	<key>Description</key>
-	<string>Downloads the latest version of MySQLWorkBench version and builds a pkg, installs it.</string>
+	<string>Downloads the latest version of MySQLWorkbench version and builds a pkg, installs it.</string>
 	<key>Identifier</key>
-	<string>com.github.autopkg.cgerke-recipes.install.MySQLWorkBench</string>
+	<string>com.github.autopkg.cgerke-recipes.install.MySQLWorkbench</string>
 	<key>Input</key>
 	<dict>
 	</dict>
