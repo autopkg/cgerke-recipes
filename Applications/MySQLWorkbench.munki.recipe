@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.download.MySQLWorkBench</string>
+    <string>com.github.autopkg.cgerke-recipes.download.MySQLWorkbench</string>
     <key>Description</key>
-    <string>Builds MySQLWorkBench and imports into a Munki repo.</string>
+    <string>Builds MySQLWorkbench and imports into a Munki repo.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.cgerke-recipes.munki.MySQLWorkBench</string>
+    <string>com.github.autopkg.cgerke-recipes.munki.MySQLWorkbench</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>MySQLWorkBench</string>
+        <string>MySQLWorkbench</string>
         <key>MUNKI_REPO_SUBDIR</key>
-        <string>apps</string>
+        <string>apps/%NAME%</string>
         <key>pkginfo</key>
         <dict>
             <key>catalogs</key>
@@ -23,7 +23,7 @@
             <key>description</key>
             <string>MySQL Workbench is a unified visual tool for database architects, developers, and DBAs.</string>
             <key>display_name</key>
-            <string>MySQLWorkBench</string>
+            <string>MySQLWorkbench</string>
             <key>name</key>
             <string>%NAME%</string>
             <key>unattended_install</key>
@@ -34,29 +34,6 @@
     <string>0.6.0</string>
     <key>Process</key>
     <array>
-        <dict>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-            <key>Arguments</key>
-            <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>installs</key>
-                    <array>
-                        <dict>
-                            <key>CFBundleIdentifier</key>
-                            <string>com.oracle.mysql.workbench</string>
-                            <key>CFBundleName</key>
-                            <string>MySQLWorkbench</string>
-                            <key>path</key>
-                            <string>/Applications/MySQLWorkbench.app</string>
-                            <key>type</key>
-                            <string>file</string>
-                        </dict>
-                    </array>
-                </dict>
-            </dict>
-        </dict>
         <dict>
           <key>Processor</key>
           <string>MunkiImporter</string>

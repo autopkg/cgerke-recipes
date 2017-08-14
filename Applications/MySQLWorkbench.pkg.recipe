@@ -3,15 +3,15 @@
 <plist version="1.0">
 <dict>
     <key>ParentRecipe</key>
-    <string>com.github.autopkg.cgerke-recipes.download.MySQLWorkBench</string>
+    <string>com.github.autopkg.cgerke-recipes.download.MySQLWorkbench</string>
     <key>Description</key>
-    <string>Downloads the latest version of MySQLWorkBench and builds a pkg.</string>
+    <string>Downloads the latest version of MySQLWorkbench and builds a pkg.</string>
     <key>Identifier</key>
-    <string>com.github.autopkg.cgerke-recipes.pkg.MySQLWorkBench</string>
+    <string>com.github.autopkg.cgerke-recipes.pkg.MySQLWorkbench</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
-        <string>MySQLWorkBench</string>
+        <string>MySQLWorkbench</string>
     </dict>
     <key>MinimumVersion</key>
     <string>0.6.0</string>
@@ -55,9 +55,9 @@
             <key>Arguments</key>
             <dict>
                 <key>source_path</key>
-                <string>%pathname%/MySQLWorkBench.app</string>
+                <string>%pathname%/MySQLWorkbench.app</string>
                 <key>destination_path</key>
-                <string>%pkgroot%/Applications/MySQLWorkBench.app</string>
+                <string>%pkgroot%/Applications/MySQLWorkbench.app</string>
             </dict>
         </dict>
         <dict>
