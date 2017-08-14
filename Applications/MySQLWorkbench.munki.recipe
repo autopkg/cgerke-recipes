@@ -35,29 +35,6 @@
     <key>Process</key>
     <array>
         <dict>
-            <key>Processor</key>
-            <string>MunkiPkginfoMerger</string>
-            <key>Arguments</key>
-            <dict>
-                <key>additional_pkginfo</key>
-                <dict>
-                    <key>installs</key>
-                    <array>
-                        <dict>
-                            <key>CFBundleIdentifier</key>
-                            <string>com.oracle.mysql.workbench</string>
-                            <key>CFBundleName</key>
-                            <string>MySQLWorkbench</string>
-                            <key>path</key>
-                            <string>/Applications/MySQLWorkbench.app</string>
-                            <key>type</key>
-                            <string>file</string>
-                        </dict>
-                    </array>
-                </dict>
-            </dict>
-        </dict>
-        <dict>
           <key>Processor</key>
           <string>MunkiImporter</string>
           <key>Arguments</key>
