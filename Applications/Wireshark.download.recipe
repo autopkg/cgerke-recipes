@@ -28,7 +28,7 @@
                     <string>Safari 8.0.2</string>
                 </dict>
                 <key>re_pattern</key>
-                <string>(Wireshark 2.* 64.dmg)</string>
+                <string>(Wireshark *.* 64.dmg)</string>
                 <key>result_output_var_name</key>
                 <string>match</string>
             </dict>
