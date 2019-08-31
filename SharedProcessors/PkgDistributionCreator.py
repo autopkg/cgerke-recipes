@@ -19,6 +19,7 @@
 # chris.gerke@gmail.com
 # Borrowed code and concepts from FlatPkgUnpacker.py (Copyright 2013 Timothy Sutton) in the AutoPKG core.
 
+from __future__ import absolute_import
 import os.path
 import subprocess
 import shutil

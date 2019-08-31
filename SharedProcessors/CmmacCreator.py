@@ -21,6 +21,7 @@
 # see comments throughout, there is a some todo items
 # figure out how to make this a shared processor
 
+from __future__ import absolute_import
 import os.path
 import subprocess
 import shutil
