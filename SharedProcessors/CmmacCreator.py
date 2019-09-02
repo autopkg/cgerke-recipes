@@ -22,11 +22,10 @@
 # figure out how to make this a shared processor
 
 from __future__ import absolute_import
+
 import os.path
 import subprocess
-import shutil
 
-from glob import glob
 from autopkglib import Processor, ProcessorError
 
 __all__ = ["CmmacCreator"]
