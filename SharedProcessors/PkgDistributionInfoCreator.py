@@ -19,11 +19,11 @@
 # chris.gerke@gmail.com
 # Borrowed code and concepts from FlatPkgUnpacker.py (Copyright 2013 Timothy Sutton) in the AutoPKG core.
 
+from __future__ import absolute_import
+
 import os.path
 import subprocess
-import shutil
 
-from glob import glob
 from autopkglib import Processor, ProcessorError
 
 __all__ = ["PkgDistributionInfoCreator"]
@@ -68,7 +68,7 @@ class PkgDistributionInfoCreator(Processor):
         if p.returncode != 0:
             raise ProcessorError("productbuild conversion of %s failed: %s"
                 % (self.env['source_path'], err))
-                
+
     def main(self):
         if os.path.exists(self.env['source_path']):
             try:
