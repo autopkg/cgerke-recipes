@@ -28,7 +28,7 @@
                     <string>Safari 8.0.2</string>
                 </dict>
                 <key>re_pattern</key>
-                <string>(Wireshark *.* 64.dmg)</string>
+                <string>(Wireshark([%]20)*.*([%]20)*Intel([%]20)*64.dmg)</string>
                 <key>result_output_var_name</key>
                 <string>match</string>
             </dict>
@@ -41,7 +41,7 @@
                 <key>url</key>
                 <string>https://www.wireshark.org/download/osx/%match%</string>
                 <key>filename</key>
-                <string>%match%</string>
+                <string>Wireshark.dmg</string>
             </dict>
         </dict>
         <dict>
@@ -50,18 +50,14 @@
         </dict>
         <dict>
 			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
-			<key>Arguments</key>
-			<dict>
-				<key>input_path</key>
-				<string>%pathname%/Wireshark*.pkg</string>
-				<key>expected_authority_names</key>
-				<array>
-					<string>Developer ID Installer: Wireshark Foundation, Inc. (7Z6EMTD2C6)</string>
-					<string>Developer ID Certification Authority</string>
-					<string>Apple Root CA</string>
-				</array>
-			</dict>
+            <string>CodeSignatureVerifier</string>
+            <key>Arguments</key>
+            <dict>
+                <key>input_path</key>
+                <string>%pathname%/Wireshark.app</string>
+                <key>requirement</key>
+                <string>anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = "7Z6EMTD2C6"</string>
+            </dict>
 		</dict>
     </array>
 </dict>
