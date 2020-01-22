@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>0.4.0</string>
 	<key>Process</key>
-    <array>
+	<array>
         <dict>
             <key>Processor</key>
             <string>AppDmgVersioner</string>
