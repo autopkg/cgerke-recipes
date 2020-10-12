@@ -41,7 +41,7 @@
                 <key>url</key>
                 <string>https://www.wireshark.org/download/osx/%match%</string>
                 <key>filename</key>
-                <string>Wireshark.dmg</string>
+                <string>%NAME%.dmg</string>
             </dict>
         </dict>
         <dict>
