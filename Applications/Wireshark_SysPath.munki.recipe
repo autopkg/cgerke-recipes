@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>ParentRecipe</key>
+    <string>com.github.autopkg.cgerke-recipes.munki.Wireshark</string>
+    <key>Description</key>
+    <string>Downloads Wireshark and imports Wireshark and the System Path PKG into a Munki repo.</string>
+    <key>Identifier</key>
+    <string>com.github.autopkg.cgerke-recipes.munki.Wireshark_SysPath</string>
+    <key>Input</key>
+    <dict>
+        <key>WIRESHARK_SYSPATH_CATEGORY</key>
+        <string>Configurations</string>
+        <key>WIRESHARK_SYSPATH_DEVELOPER</key>
+        <string></string>
+        <key>WIRESHARK_SYSPATH_DISPLAYNAME</key>
+        <string>Add Wireshark to System Path</string>
+        <key>WIRESHARK_SYSPATH_NAME</key>
+        <string>Wireshark_SysPath</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/wireshark</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.4.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Comment</key>
+            <string>Get Wireshark system path install pkg</string>
+            <key>Arguments</key>
+            <dict>
+                <key>pattern</key>
+                <string>%pathname%/Wireshark.app/Contents/Resources/Extras/Add*.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>FileFinder</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Check the code signature of the Wireshark system path install pkg.</string>
+            <key>Arguments</key>
+            <dict>
+                <key>expected_authority_names</key>
+                <array>
+                    <string>Developer ID Installer: Wireshark Foundation, Inc. (7Z6EMTD2C6)</string>
+                    <string>Developer ID Certification Authority</string>
+                    <string>Apple Root CA</string>
+                </array>
+                <key>input_path</key>
+                <string>%pathname%/%dmg_found_filename%</string>
+            </dict>
+            <key>Processor</key>
+            <string>CodeSignatureVerifier</string>
+        </dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%WIRESHARK_SYSPATH_NAME%.pkg</string>
+                <key>source_pkg</key>
+                <string>%pathname%/%dmg_found_filename%</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+        </dict>
+        <dict>
+            <key>Comment</key>
+            <string>Import the system path install PKG and set as an update_for %NAME%</string>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_makepkginfo_options</key>
+                <array>
+                    <string>--update_for</string>
+                    <string>%NAME%</string>
+                </array>
+                <key>pkginfo</key>
+                <dict>
+                    <key>category</key>
+                    <string>%WIRESHARK_SYSPATH_CATEGORY%</string>
+                    <key>developer</key>
+                    <string>%WIRESHARK_SYSPATH_DEVELOPER%</string>
+                    <key>display_name</key>
+                    <string>%WIRESHARK_SYSPATH_DISPLAYNAME%</string>
+                    <key>name</key>
+                    <string>%WIRESHARK_SYSPATH_NAME%</string>
+                    <key>unattended_install</key>
+                    <true/>
+                </dict>
+                <key>pkg_path</key>
+                <string>%RECIPE_CACHE_DIR%/%WIRESHARK_SYSPATH_NAME%.pkg</string>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+        </dict>
+    </array>
+</dict>
+</plist>
