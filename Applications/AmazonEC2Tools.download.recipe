@@ -21,7 +21,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>url</key>
-				<string>http://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip</string>
+				<string>https://s3.amazonaws.com/ec2-downloads/ec2-api-tools.zip</string>
 				<key>filename</key>
 				<string>ec2-api-tools.zip</string>
 			</dict>

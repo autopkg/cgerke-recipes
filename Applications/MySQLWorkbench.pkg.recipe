@@ -23,7 +23,7 @@
             <key>Arguments</key>
             <dict>
                 <key>url</key>
-                <string>http://dev.mysql.com/downloads/workbench</string>
+                <string>https://dev.mysql.com/downloads/workbench</string>
                 <key>re_pattern</key>
                 <string>mysql-workbench-community-([\d.]+)-\S+dmg</string>
                 <key>request_headers</key>
