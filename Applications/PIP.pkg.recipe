@@ -72,10 +72,10 @@
 			<dict>
                 <key>force_pkg_build</key>
                 <string>true</string>
-				<key>pkgname</key>
-				<string>%NAME%</string>
 				<key>pkg_request</key>
 				<dict>
+					<key>pkgname</key>
+					<string>%NAME%</string>
 					<key>chown</key>
 					<array>
 						<dict>
