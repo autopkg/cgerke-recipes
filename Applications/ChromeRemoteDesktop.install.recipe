@@ -17,6 +17,21 @@
 	<array>
 		<dict>
 			<key>Processor</key>
+			<string>DeprecationWarning</string>
+			<key>Arguments</key>
+			<dict>
+				<key>warning_message</key>
+				<string>The cgerke-recipes repository is deprecated.
+Details: https://github.com/autopkg/cgerke-recipes/issues/37
+
+Copies of these recipes have been created in the homebysix-recipes repo:
+- ChromeRemoteDesktop.install
+- ChromeRemoteDesktop.pkg
+				</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
 			<string>Installer</string>
 		</dict>
 	</array>

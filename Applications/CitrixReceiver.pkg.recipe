@@ -17,7 +17,27 @@
 	<string>0.4.0</string>
 	<key>Process</key>
 	<array>
-		<dict>
+        <dict>
+            <key>Processor</key>
+            <string>DeprecationWarning</string>
+            <key>Arguments</key>
+            <dict>
+                <key>warning_message</key>
+                <string>The cgerke-recipes repository is deprecated.
+Details: https://github.com/autopkg/cgerke-recipes/issues/37
+
+Copies of these recipes have been created in the homebysix-recipes repo:
+- CitrixReceiver.pkg
+
+These recipes are deprecated and will soon be removed:
+- CitrixReceiver.sccm
+
+If you are interested in adopting the deprecated recipes, comment on
+the issue linked above.
+                </string>
+            </dict>
+        </dict>
+        <dict>
             <key>Arguments</key>
             <dict>
                 <key>flat_pkg_path</key>
