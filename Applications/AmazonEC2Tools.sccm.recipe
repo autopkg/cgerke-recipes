@@ -19,6 +19,22 @@
 	<key>Process</key>
 	<array>
 		<dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+			<key>Arguments</key>
+			<dict>
+				<key>warning_message</key>
+				<string>The cgerke-recipes repository is deprecated.
+Details: https://github.com/autopkg/cgerke-recipes/issues/37
+
+Some recipes from the repo will be moved to the homebysix-recipes repo. However, 
+SCCM type recipes are not part of that plan. If you are interested in 
+maintaining one or more SCCM recipes from the cgerke-recipes repo, please 
+leave a comment on the issue linked above.
+				</string>
+			</dict>
+		</dict>
+		<dict>
 			<key>Comment</key>
 			<string>Create a cmmac file using a shared processor.</string>
 			<key>Processor</key>
