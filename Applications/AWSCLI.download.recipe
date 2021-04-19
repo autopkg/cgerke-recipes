@@ -17,6 +17,29 @@
 	<array>
 		<dict>
 			<key>Processor</key>
+			<string>DeprecationWarning</string>
+			<key>Arguments</key>
+			<dict>
+				<key>warning_message</key>
+				<string>The cgerke-recipes repository is deprecated.
+Details: https://github.com/autopkg/cgerke-recipes/issues/37
+
+Copies of these recipes have been created in the homebysix-recipes repo:
+- AWSCLI.download
+- AWSCLI.install
+- AWSCLI.munki
+- AWSCLI.pkg
+
+These recipes are deprecated and will soon be removed:
+- AWSCLI.mpkg
+
+If you are interested in adopting the deprecated recipes, comment on
+the issue linked above.
+				</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
 			<string>URLDownloader</string>
 			<key>Arguments</key>
 			<dict>
