@@ -23,7 +23,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>warning_message</key>
-				<string>The cgerke-recipes repository is deprecated.
+				<string>The cgerke-recipes repository is deprecated and will be removed soon.
 Details: https://github.com/autopkg/cgerke-recipes/issues/37
 
 Some recipes from the repo will be moved to the homebysix-recipes repo. However, 
