@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# I hate everything about this postinstall, a good candidate for a profile. it can't target a non-booted volume.
-
-/usr/sbin/softwareupdate --schedule off
-
-exit 0

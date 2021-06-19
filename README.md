@@ -1,33 +1,9 @@
-autopkg
-=======
+# cgerke-recipes
 
-AutoPKG Recipes all the way from Perth, Western Australia.
+**This repository has been [archived](https://github.com/autopkg/cgerke-recipes/issues/37) and its former contents have been removed.**
 
-Several of my recipes use parent recipes from the following repos;
+The [commit history](https://github.com/autopkg/cgerke-recipes/commits/master), [issues](https://github.com/autopkg/cgerke-recipes/issues?q=is%3Aissue), and [pull requests](https://github.com/autopkg/cgerke-recipes/pulls?q=is%3Apr) are still available for reference, but no future changes are planned.
 
-*  https://github.com/autopkg/recipes
-*  https://github.com/autopkg/arubdesu-recipes
-*  https://github.com/autopkg/dankeller-recipes
-*  https://github.com/autopkg/foigus-recipes
-*  https://github.com/autopkg/hjuutilainen-recipes
-*  https://github.com/autopkg/homebysix-recipes
-*  https://github.com/autopkg/keeleysam-recipes
-*  https://github.com/autopkg/n8felton-recipes
-*  https://github.com/autopkg/scriptingosx-recipes
-*  https://github.com/autopkg/timsutton-recipes
+To remove this repository from your local AutoPkg setup, run:
 
-Just add em all...
-
-```
-
-autopkg repo-add https://github.com/autopkg/recipes https://github.com/autopkg/arubdesu-recipes https://github.com/autopkg/cgerke-recipes https://github.com/autopkg/derak-recipes https://github.com/autopkg/foigus-recipes https://github.com/autopkg/hjuutilainen-recipes https://github.com/autopkg/homebysix-recipes https://github.com/autopkg/keeleysam-recipes https://github.com/autopkg/n8felton-recipes https://github.com/autopkg/scriptingosx-recipes https://github.com/autopkg/timsutton-recipes
-
-```
-
-My SCCM Shared Processor requires the CMAppUtil binary,
-which can be found in the macclient.dmg 
-
-Unfortunately Microsoft only offer this download as an MSI file so you need to extract
-that first to get to the DMG file.
-
-http://www.microsoft.com/en-au/download/details.aspx?id=39360
+    autopkg repo-delete cgerke-recipes

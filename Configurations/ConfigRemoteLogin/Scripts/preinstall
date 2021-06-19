@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# maybe delete launchagent if it already exists?
-
-exit 0

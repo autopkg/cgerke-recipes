@@ -1,5 +1,0 @@
-#!/bin/bash
-
-python /tmp/get-pip.py
-
-exit 0

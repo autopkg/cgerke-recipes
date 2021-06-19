@@ -1,9 +1,0 @@
-#!/bin/bash
-
-path_root="$3"; if [ -z "${path_root}" ] || [ "${path_root}" = "/" ]; then path_root=""; fi # fix //
-
-# Install AccuBarcode Pro unattended-ly using the pkg from the resources directory
-# Flag taken from here http://resources.ej-technologies.com/install4j/help/doc/index.html
-"${path_root}/tmp/AccuBarcode Pro Installer.app/Contents/MacOS/JavaApplicationStub" -q
-
-exit 0

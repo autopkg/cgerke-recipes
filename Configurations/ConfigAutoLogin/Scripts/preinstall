@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Possibly check first if the new user exists and decide what to do?
-
-exit 0
